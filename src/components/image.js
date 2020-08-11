@@ -1,32 +1,47 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
+import { css } from '@emotion/core';
 
-/*
- * This component is built using `gatsby-image` to automatically serve optimized
- * images with lazy loading and reduced file sizes. The image is loaded using a
- * `useStaticQuery`, which allows us to load the image from directly within this
- * component, rather than having to pass the image data down from pages.
- *
- * For more information, see the docs:
- * - `gatsby-image`: https://gatsby.dev/gatsby-image
- * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
-const Image = () => {
+const Image = ({ imageName, type, ...otherProps}) => {
   const data = useStaticQuery(graphql`
     query {
-      placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
+      logoSm: file(relativePath: { eq: "src/images/s.png" }) {
         childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid
+          fixed(width: 60) {
+            ...GatsbyImageSharpFixed
           }
         }
       }
-    }
-  `)
 
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+      logoLg: file(relativePath: { eq: "src/images/s.png" }) {
+        childImageSharp {
+          fixed(width: 150) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+ 
+      getAllImages: allImageSharp {
+        edges {
+          node {
+            fixed(height:70) {
+              ...GatsbyImageSharpFixed
+              originalName
+            }
+          }
+        }
+      }
+   }
+  `);
+
+  const filter = data.getAllImages.edges.filter(n=> n.node.fixed.originalName === imageName)
+
+  return type === 'db' ?
+     <Img fixed={filter[0]?.node?.fixed} />
+    :
+     <Img fixed={data[imageName].childImageSharp.fixed} {...otherProps} />
+  
 }
 
-export default Image
+export default Image;

@@ -1,0 +1,69 @@
+---
+name: OS dependices 
+menu: installation
+index: 3 
+version: 1
+---
+
+OS dependencies
+---------------
+
+
+Superset stores database connection information in its metadata database.
+For that purpose, we use the ``cryptography`` Python library to encrypt
+connection passwords. Unfortunately, this library has OS level dependencies.
+
+You may want to attempt the next step
+("Superset installation and initialization") and come back to this step if
+you encounter an error.
+
+Here's how to install them:
+
+For **Debian** and **Ubuntu**, the following command will ensure that
+the required dependencies are installed: 
+
+```
+sudo apt-get install build-essential libssl-dev libffi-dev python-dev python-pip libsasl2-dev libldap2-dev
+```
+
+**Ubuntu 18.04** If you have python3.6 installed alongside with python2.7, as is default on **Ubuntu 18.04 LTS**, run this command also: 
+
+```
+sudo apt-get install build-essential libssl-dev libffi-dev python3.6-dev python-pip libsasl2-dev libldap2-dev
+```
+
+otherwise build for `cryptography` fails.
+
+For **Fedora** and **RHEL-derivatives**, the following command will ensure
+that the required dependencies are installed:
+
+```
+sudo yum upgrade python-setuptools
+sudo yum install gcc gcc-c++ libffi-devel python-devel python-pip python-wheel openssl-devel cyrus-sasl-devel openldap-devel
+```
+
+**Mac OS X** If possible, you should upgrade to the latest version of OS X as issues are more likely to be resolved for that version.
+You *will likely need* the latest version of XCode available for your installed version of OS X. You should also install
+the XCode command line tools: 
+
+```
+xcode-select --install
+```
+
+System python is not recommended. Homebrew's python also ships with pip: 
+
+```
+brew install pkg-config libffi openssl python
+env LDFLAGS="-L$(brew --prefix openssl)/lib" CFLAGS="-I$(brew --prefix openssl)/include" pip install cryptography==2.4.2
+```
+
+**Windows** isn't officially supported at this point, but if you want to
+attempt it, download `get-pip.py <https://bootstrap.pypa.io/get-pip.py>`_, and run ``python get-pip.py`` which may need admin access. Then run the following: 
+
+```
+C:\> pip install cryptography
+
+# You may also have to create C:\Temp
+C:\> md C:\Temp
+```
+

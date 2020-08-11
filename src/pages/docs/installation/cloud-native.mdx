@@ -1,0 +1,33 @@
+---
+name: Cloud-Native
+menu: installation
+index: 1
+---
+
+Cloud-native!
+-------------
+
+Superset is designed to be highly available. It is
+"cloud-native" as it has been designed scale out in large,
+distributed environments, and works well inside containers.
+While you can easily
+test drive Superset on a modest setup or simply on your laptop,
+there's virtually no limit around scaling out the platform.
+Superset is also cloud-native in the sense that it is
+flexible and lets you choose your web server (Gunicorn, Nginx, Apache),
+your metadata database engine (MySQL, Postgres, MariaDB, ...),
+your message queue (Redis, RabbitMQ, SQS, ...),
+your results backend (S3, Redis, Memcached, ...), your caching layer
+(Memcached, Redis, ...), works well with services like NewRelic, StatsD and
+DataDog, and has the ability to run analytic workloads against
+most popular database technologies.
+
+Superset is battle tested in large environments with hundreds
+of concurrent users. Airbnb's production environment runs inside
+Kubernetes and serves 600+ daily active users viewing over 100K charts a
+day.
+
+The Superset web server and the Superset Celery workers (optional)
+are stateless, so you can scale out by running on as many servers
+as needed.
+
