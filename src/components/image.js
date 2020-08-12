@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import { css } from '@emotion/core';
 
-const Image = ({ imageName, type, ...otherProps}) => {
+const Image = ({ imageName, type, width, height, ...otherProps}) => {
   const data = useStaticQuery(graphql`
     query {
       logoSm: file(relativePath: { eq: "src/images/s.png" }) {
@@ -36,9 +36,10 @@ const Image = ({ imageName, type, ...otherProps}) => {
   `);
 
   const filter = data.getAllImages.edges.filter(n=> n.node.fixed.originalName === imageName)
+  const imgStyle = width && height ? {width, height}: {};
 
   return type === 'db' ?
-     <Img fixed={filter[0]?.node?.fixed} />
+     <Img fixed={filter[0]?.node?.fixed} style={imgStyle} imgStyle={imgStyle}/>
     :
      <Img fixed={data[imageName].childImageSharp.fixed} {...otherProps} />
   

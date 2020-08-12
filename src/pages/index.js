@@ -1,6 +1,6 @@
 import React from 'react';
 import { theme, useConfig } from 'docz';
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql, Link, withPrefix } from "gatsby"
 import { ThemeProvider } from 'theme-ui';
 import { Button, Row, Col } from 'antd';
 import { css } from '@emotion/core';
@@ -26,9 +26,28 @@ const { colors } = supersetTheme;
 
 
 const titleContainer= css`
+  position: relative;
   text-align: center;
-  background: #fff;
+  background: transparent;
   padding: 20vw 0;
+  z-index: 0;
+  &:after {
+    position: absolute;
+    content: "";
+    display: block;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: white;
+    background-position: 10% -35%;
+    background-size: 120% 60%;
+    background-image: url("/images/twister.jpg");
+    //background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.8;
+
+  }
   .alert {
     color: #0c5460;
     background-color: #d1ecf1;
@@ -51,7 +70,7 @@ const secondaryHeading = css`
   text-align: center;
 `;
 
-const featureHeight="150";
+const featureHeight="160";
 
 const featureSectionStyle= css`
   background: #fff;
@@ -87,6 +106,8 @@ const featureSectionStyle= css`
         flex-grow: 6;
         font-size: 15px;
         color:${colors.grayscale.base2};
+        line-height: 25px;
+        letter-spacing: 1px;
       }
     }
   }
@@ -111,7 +132,9 @@ const integrationSection = css`
     justify-content: space-around;
     margin-bottom: 100px;
     a {
+      //width: 250px;
       margin: 15px;
+      //box-shadow: 0 0 0 1px red;
       .gatsby-image-wrapper {
         img {
           filter: grayscale(100%);
@@ -166,18 +189,8 @@ const Theme = (props) => {
                       A rich set of data visualizations
                     </span>
                 </li>
-                <li className='feature'>
-                    <span className="imagePlaceHolder"> <BarChartOutlined /> </span>
-                    <span className='featureText'>
-                      An easy-to-use interface for exploring and visualizing data
-                    </span>
-                </li>
-                <li className='feature'>
-                    <span className="imagePlaceHolder"> <DotChartOutlined /> </span>
-                    <span className='featureText'>
-                      Create and share dashboards
-                    </span>
-                </li>
+
+
                 <li className='feature'>
                   <span className="imagePlaceHolder"> <BoxPlotOutlined /> </span>
                   <span className='featureText'>
@@ -185,13 +198,10 @@ const Theme = (props) => {
                   </span>
                 </li>
 
-              </Col>
-
-              <Col span={12}>
                 <li className='feature'>
-                  <span className="imagePlaceHolder"> <AreaChartOutlined /></span>
+                  <span className="imagePlaceHolder"> <StockOutlined /> </span>
                   <span className='featureText'>
-                    An extensible, high-granularity security/permission model allowing intricate rules on who can access individual features and the dataset
+                    Integration with most SQL-speaking RDBMS through SQLAlchemy
                   </span>
                 </li>
                 <li className='feature'>
@@ -200,18 +210,39 @@ const Theme = (props) => {
                     A simple semantic layer, allowing users to control how data sources are displayed in the UI by defining which fields should show up in which drop-down and which aggregation and function metrics are made available to the user
                   </span>
                 </li>
+
+              </Col>
+
+              <Col span={12}>
+
+                <li className='feature'>
+                    <span className="imagePlaceHolder"> <DotChartOutlined /> </span>
+                    <span className='featureText'>
+                      Create and share dashboards
+                    </span>
+                </li>
+                <li className='feature'>
+                    <span className="imagePlaceHolder"> <BarChartOutlined /> </span>
+                    <span className='featureText'>
+                      An easy-to-use interface for exploring and visualizing data
+                    </span>
+                </li>
+
+
+                <li className='feature'>
+                  <span className="imagePlaceHolder"> <AreaChartOutlined /></span>
+                  <span className='featureText'>
+                    An extensible, high-granularity security/permission model allowing intricate rules on who can access individual features and the dataset
+                  </span>
+                </li>
+
                 <li className='feature'>
                   <span className="imagePlaceHolder"> <LineChartOutlined /> </span>
                   <span className='featureText'>
                     Enterprise-ready authentication with integration with major authentication providers (database, OpenID, LDAP, OAuth & REMOTE_USER through Flask AppBuilder)
                   </span>
                 </li>
-                <li className='feature'>
-                  <span className="imagePlaceHolder"> <StockOutlined /> </span>
-                  <span className='featureText'>
-                    Integration with most SQL-speaking RDBMS through SQLAlchemy
-                  </span>
-                </li>
+
               </Col>
           </ul>
         </div>
@@ -222,9 +253,9 @@ const Theme = (props) => {
           </h2> 
           <span className="databaseSub">The following RDBMS are currently supported:</span>
           <ul className="databaseList">
-            {Databases.map(({title, href, imgName})=> ( 
+            {Databases.map(({title, href, imgName: imageName, width, height})=> ( 
                 <a href={href} target="_blank">
-                  <Image imageName={imgName} type="db" />
+                  <Image {...{imageName, type: "db", width, height}} />
                 </a>
             ))}
           </ul>

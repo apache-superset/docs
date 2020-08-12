@@ -117,12 +117,6 @@ export const Databases = [
     imgName: 'apache-druid.jpeg'
   },
   {
-    title: 'Apache Hive',
-    href: 'https://hive.apache.org/',
-    imgName: 'apache-hive.svg'
-  },
-
-  {
     title: 'Apache Kylin',
     href: 'http://kylin.apache.org/',
     imgName: 'apache-kylin.png'
@@ -175,7 +169,7 @@ export const Databases = [
   {
     title: 'Oracle',
     href: `https://www.oracle.com/database/`,
-    imgName: 'oracle-logo.png'
+    imgName: 'oraclelogo.png'
   },
   {
     title: 'PostgresSQL',
