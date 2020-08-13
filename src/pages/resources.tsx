@@ -21,7 +21,7 @@ const resourcesContainer = css`
 `;
 
 const title = css`
-  margin-top: 50px;
+  margin-top: 150px;
   color:${colors.grayscale.base};
   text-align: center;
 `;

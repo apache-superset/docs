@@ -3,20 +3,11 @@
     "title": "superset doc",
     "description": "A simple starter to get up and developing quickly with Gatsby",
     "menu": [
+      "MenuA",
       "installation",
       [
         "Getting Started",
         "cloud-native"
-      ],
-      [
-        "MenuA",
-        [
-          "ItemY",
-          "ItemZ"
-        ]
-      ],
-      [
-        "faq"
       ]
     ],
     "version": "0.1.0",
@@ -238,24 +229,58 @@
   ],
   "props": [
     {
-      "key": "src/gatsby-theme-docz/index.js",
+      "key": "src/components/seo.js",
       "value": [
         {
           "description": "",
-          "displayName": "Theme",
+          "displayName": "SEO",
           "methods": [],
-          "actualName": "Theme"
-        }
-      ]
-    },
-    {
-      "key": "src/pages/index.js",
-      "value": [
-        {
-          "description": "",
-          "displayName": "Theme",
-          "methods": [],
-          "actualName": "Theme"
+          "actualName": "SEO",
+          "props": {
+            "description": {
+              "type": {
+                "name": "string"
+              },
+              "required": false,
+              "description": "",
+              "defaultValue": {
+                "value": "``",
+                "computed": false
+              }
+            },
+            "lang": {
+              "type": {
+                "name": "string"
+              },
+              "required": false,
+              "description": "",
+              "defaultValue": {
+                "value": "`en`",
+                "computed": false
+              }
+            },
+            "meta": {
+              "type": {
+                "name": "arrayOf",
+                "value": {
+                  "name": "object"
+                }
+              },
+              "required": false,
+              "description": "",
+              "defaultValue": {
+                "value": "[]",
+                "computed": false
+              }
+            },
+            "title": {
+              "type": {
+                "name": "string"
+              },
+              "required": true,
+              "description": ""
+            }
+          }
         }
       ]
     }

@@ -18,6 +18,17 @@ import "./layout.css"
 
 const { Header, Content, Footer, Sider } = Layout;
 
+const layoutStyles = css`
+  .ant-layout {
+    background-color: white !important; 
+  }
+  Button {
+    background: #20A7C9;
+    border-color: #20A7C9;
+    border-radius: 4px;
+  }
+ `;
+
 const headerStyle = css`
   background-color: #fff;
   position: fixed;
@@ -81,10 +92,6 @@ const contentLayoutDocsStyle = css`
   overflow: auto;
 `;
 
-const marketingLayoutStyle = css`
-  margin-top: 67px;
-`
-
 const logoStyle = css`
   float:left;
   margin-left: -40px;
@@ -107,6 +114,11 @@ const iconContainerStyle = css`
       height: 60px;
       margin-left: 10px; 
     }
+    .svg {
+      width: 60px;
+      height: 60px;
+      margin-top: -35px;
+    }
   }
   .communityBtn {
     width: 50%;
@@ -117,14 +129,6 @@ const iconContainerStyle = css`
     }
   }
 `;
-
-/*  svg {
-    width: 100px;
-    height: 65px;
-    margin-top: 5px;
-  }
-  Button {
-  } */
 
 const AppLayout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -140,7 +144,7 @@ const AppLayout = ({ children }) => {
   const isOnDocsPage = window.location.pathname.indexOf("docs") > 0;
 
   return (
-    <Layout>
+    <Layout css={layoutStyles}>
       <Header css={headerStyle}>
         <Link to="/">
           <Logo css={logoStyle} imageName="logoSm" />
@@ -154,9 +158,6 @@ const AppLayout = ({ children }) => {
           </Menu.Item>
           <Menu.Item>
             <Link to="/src-pages-docs-installation-index">Documentation</Link>
-          </Menu.Item>
-          <Menu.Item>
-            <Link to="/">Use cases</Link>
           </Menu.Item>
         </Menu>
         <div css={getStartedButtonStyle}>
@@ -183,7 +184,7 @@ const AppLayout = ({ children }) => {
           </Layout>
         </Layout>
       : 
-        <Layout css={marketingLayoutStyle}>
+        <Layout>
           { children }
           <div css={iconContainerStyle} >
             <div className="icons">
@@ -193,9 +194,7 @@ const AppLayout = ({ children }) => {
               <a href="https://github.com/apache/incubator-superset" target="_blank">
                 <GithubOutlined className="icon" />
               </a>
-              <a href="https://stackoverflow.com/questions/tagged/apache-superset">
-                <img src="https://img.icons8.com/ios/50/000000/stackoverflow.png" className="icon"/>
-              </a>
+              <img src="/images/so-icon.svg" className="icon svg"/>
             </div>
             <div className="communityBtn">
               <Link to="/community">
@@ -207,7 +206,19 @@ const AppLayout = ({ children }) => {
           </div>
           <Footer css={footerStyle}>
             © Copyright {new Date().getFullYear()}, 
-            The Apache Software Fountation, Liscensced under the Apache License
+            <a 
+              href="http://www.apache.org/"
+              target="_blank"
+            >
+            &nbsp;The Apache Software Fountation
+            </a>
+            , &nbsp;Liscensed under the Apache 
+            <a 
+              href="https://www.apache.org/licenses/"
+              target="_blank" 
+            >
+              &nbsp;Liscense
+            </a>
           </Footer>
         </Layout>
       }
@@ -216,3 +227,4 @@ const AppLayout = ({ children }) => {
 }
 
 export default AppLayout
+

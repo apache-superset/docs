@@ -28,25 +28,11 @@ const { colors } = supersetTheme;
 const titleContainer= css`
   position: relative;
   text-align: center;
-  background: transparent;
-  padding: 20vw 0;
+  padding-top: 211px;
   z-index: 0;
-  &:after {
-    position: absolute;
-    content: "";
-    display: block;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: white;
-    background-position: 10% -35%;
-    background-size: 120% 60%;
-    background-image: url("/images/twister.jpg");
-    //background-repeat: no-repeat;
-    z-index: -1;
-    opacity: 0.8;
-
+  background: white;
+  Button {
+    margin-top: 39px
   }
   .alert {
     color: #0c5460;
@@ -55,14 +41,14 @@ const titleContainer= css`
     max-width: 600px;
     margin: 0 auto ;
     padding: .75rem 1.25rem;
-    margin-top: 25px;
+    margin-top: 83px;
     border: 1px solid transparent;
     border-radius: .25rem;
   }
 `;
 
 const title = css`
-  color:${colors.grayscale.base};
+  color:${colors.grayscale.dark2};
 `;
 
 const secondaryHeading = css`
@@ -75,6 +61,8 @@ const featureHeight="160";
 const featureSectionStyle= css`
   background: #fff;
   padding: 5vw 0;
+  margin-top: 50px;
+  margin-bottom: 100px;
   .featureList {
     padding: 0px;
     width: 100%;
@@ -105,7 +93,7 @@ const featureSectionStyle= css`
         width: 300px; 
         flex-grow: 6;
         font-size: 15px;
-        color:${colors.grayscale.base2};
+        color:${colors.grayscale.base};
         line-height: 25px;
         letter-spacing: 1px;
       }
@@ -116,13 +104,15 @@ const featureSectionStyle= css`
 const databaseHeight = 230;
 const integrationSection = css`
   background: white;
+  margin-bottom: 150px;
   .databaseSub {
-      text-align: center;
-      display: block;
+    text-align: center;
+    display: block;
+    margin-bottom: 40px; 
   }
 
   .databaseList {
-    margin-top: 100px !important;
+    margin-top: 100px;
     list-style-type: none;
     padding: 0px;
     max-width: 1000px;
@@ -132,9 +122,7 @@ const integrationSection = css`
     justify-content: space-around;
     margin-bottom: 100px;
     a {
-      //width: 250px;
       margin: 15px;
-      //box-shadow: 0 0 0 1px red;
       .gatsby-image-wrapper {
         img {
           filter: grayscale(100%);
@@ -154,6 +142,7 @@ const Theme = (props) => {
     <ThemeProvider theme={config}>
       <Layout> 
         <div css={titleContainer}>
+          //@ts-ignore
           <Image imageName="logoLg"/>
 
           <h1 css={title}>
@@ -254,9 +243,9 @@ const Theme = (props) => {
           <span className="databaseSub">The following RDBMS are currently supported:</span>
           <ul className="databaseList">
             {Databases.map(({title, href, imgName: imageName, width, height})=> ( 
-                <a href={href} target="_blank">
-                  <Image {...{imageName, type: "db", width, height}} />
-                </a>
+              <a href={href} target="_blank">
+                <Image {...{imageName, type: "db", width, height}} />
+              </a>
             ))}
           </ul>
         </div>
@@ -267,4 +256,5 @@ const Theme = (props) => {
   )
 }
 
+// @ts-ignore
 export default theme()(Theme)

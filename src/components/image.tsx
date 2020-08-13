@@ -1,9 +1,16 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
-import { css } from '@emotion/core';
 
-const Image = ({ imageName, type, width, height, ...otherProps}) => {
+interface Props {
+  imageName?: string;
+  type?: string;
+  width?: string;
+  height?: string;
+  otherProps?: any;
+}
+
+const Image = ({ imageName, type, width, height, ...otherProps}):Props => {
   const data = useStaticQuery(graphql`
     query {
       logoSm: file(relativePath: { eq: "src/images/s.png" }) {
@@ -22,6 +29,14 @@ const Image = ({ imageName, type, width, height, ...otherProps}) => {
         }
       }
  
+      stackoverflow: file(relativePath: { eq: "src/images/stack_overflow.png" }) {
+        childImageSharp {
+          fixed(width: 60) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+
       getAllImages: allImageSharp {
         edges {
           node {

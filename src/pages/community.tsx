@@ -16,7 +16,7 @@ const titleContainer= css`
 `;
 
 const title = css`
-  margin-top: 50px;
+  margin-top: 150px;
   color:${colors.grayscale.base};
 `;
 
@@ -56,6 +56,10 @@ const getInvolvedContainer = css`
     max-width: 800px;
     margin: 0 auto;
     padding: 30px 0;
+  }
+  .ppm {
+    margin-top: 100px;
+    margin-bottom: 100px;
   }
 `;
 
@@ -99,12 +103,12 @@ const Community = () => {
                 </span>
               </span>
               <a href="https://github.com/apache-superset/awesome-apache-superset" target="_blank">
-                <Button type="primary">
+                <Button type="primary" size="large">
                   More Resources!
                 </Button>
               </a>
             </div>
-            <h3 className="title">PPMC Members</h3>
+            <h3 className="title ppm">PPMC Members</h3>
             <div css={communityContainer}>
               { pmcList }
             </div>

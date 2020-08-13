@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import { Button } from 'antd'; 
+import React from 'react';
 import { useMenus} from 'docz';
 import { getPreviousAndNextUrls } from '../utils';
 
@@ -8,7 +7,7 @@ import { getPreviousAndNextUrls } from '../utils';
 const nextButtons = () => {
   const menus = useMenus();
   const [prevUrl, nextUrl] = getPreviousAndNextUrls(menus);
-  console.log([prevUrl, nextUrl]);
+
   return(
     <> 
       {prevUrl && 

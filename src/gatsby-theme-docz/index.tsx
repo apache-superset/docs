@@ -8,11 +8,8 @@ import NextLinks from '../components/next';
 
 import 'antd/dist/antd.css';
 
-console.log("---------->", Menu)
-
 const Theme = ({ children }) => {
   const config = useConfig()
-  //console.log("-------",{props});
   return (
     <ThemeProvider theme={config}>
       <Layout> 
@@ -23,4 +20,5 @@ const Theme = ({ children }) => {
   )
 }
 
+//@ts-ignore
 export default theme()(Theme)

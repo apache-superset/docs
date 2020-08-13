@@ -1,6 +1,6 @@
----
-name: readme Test 
-route: /readme
----
+###Getting Started
 
-test test
+1. Clone the repo.
+2. Cd inside the repo.
+3. `npm install` inside root directory.
+3. `npm run develop` to run the server.

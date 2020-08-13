@@ -1,4 +1,3 @@
-// src/Menu.js
 import React from 'react'
 import { useMenus, Link } from 'docz'
 import { Menu } from 'antd';
@@ -8,8 +7,7 @@ const { SubMenu } = Menu;
 export default () => {
   const menus = useMenus();
   const [ openKey, selectedKey ] = getActiveMenuItem(menus);
-  console.log(menus)
-  console.log('useMenus', menus);
+
   return (
     <Menu
       mode="inline"
