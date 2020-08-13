@@ -142,7 +142,6 @@ const Theme = (props) => {
     <ThemeProvider theme={config}>
       <Layout> 
         <div css={titleContainer}>
-          //@ts-ignore
           <Image imageName="logoLg"/>
 
           <h1 css={title}>
