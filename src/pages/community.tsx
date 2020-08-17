@@ -47,6 +47,8 @@ const getInvolvedContainer = css`
     display: block;
     font-size: 15px;
     margin: 20px 0;
+    text-align: left;
+
   }
   .title{
     font-size: 30px;
@@ -91,20 +93,17 @@ const Community = () => {
             <div className="joinCommunity section">
               <h2 className="title">Join the Community</h2>
               <span className='resources'>
-                  Use  <a href="https://stackoverflow.com/questions/tagged/apache-superset" target="_blank">stack overflow </a> to get help! <br/>
-                  Use our <a href="https://apache-superset.slack.com" target="_blank">Slack Community</a>! <br/> 
-                  Join our <a href="https://lists.apache.org/list.html?dev@superset.apache.org" target="_blank">Mailing list</a> <br/>
+                  <a href='https://apache-superset.slack.com/join/shared_invite/zt-g8lpruog-HeqpgYrwdfrD5OYhlU7hPQ#/' target="_blank"> Slack community </a> - interact with other Superset users and community members <br/>
+                  <a href="https://github.com/apache/incubator-superset" target="_blank"> Github page </a> - create tickets to report issues, report bugs, and suggest new features <br/>
+                  <a href="https://lists.apache.org/list.html?dev@superset.apache.org" target="_blank"> Mailing list </a>- receive up-to-date news and announcements on all things Superset <br/>
+                  <a href="https://stackoverflow.com/questions/tagged/superset+apache-superset" target="_blank"> Stack Overflow </a>- get help with Superset issues <br/>
+                  <a href="https://www.meetup.com/Global-Apache-Superset-Community-Meetup/" target="_blank"> Superset Meetup group </a>- join our monthly virtual meetups and register for any upcoming events <br/><br/>
 
-                <h3>
-                  Report a Bug!
-                </h3>
-                <span>
-                  Use our <a href="https://github.com/apache/incubator-superset" target="_blank">Github</a> to create a ticket
-                </span>
+                
               </span>
               <a href="https://github.com/apache-superset/awesome-apache-superset" target="_blank">
                 <Button type="primary" size="large">
-                  More Resources!
+                  Additional resources
                 </Button>
               </a>
             </div>

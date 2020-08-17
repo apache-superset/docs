@@ -44,7 +44,7 @@ const Resources = () => {
             href="https://preset.io/blog/"
             target="_blank"
           >
-           Prest Blog  
+           Preset Blog  
           </a>
           <a
             href="https://www.youtube.com/channel/UCMuwrvBsg_jjI2gLcm04R0g"

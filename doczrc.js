@@ -5,8 +5,8 @@ export default {
   ignore: ['**/blog/**', 'readme.md'],
   files: ['src/**/*.{md,markdown,mdx}'],
   menu: [
-    'Getting Started',
-    'Architecture', 
-    ['Front End', 'Back End'],
+    'MenuA',
+    'installation', 
+    ['Getting Started', 'cloud-native'],
   ],
 }

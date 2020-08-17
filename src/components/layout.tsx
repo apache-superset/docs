@@ -179,7 +179,7 @@ const AppLayout = ({ children }) => {
             </div>
             <Footer css={footerStyle}>
               © Copyright {new Date().getFullYear()}, 
-              The Apache Software Fountation, Liscensced under the Apache License
+              The Apache Software Fountation, Licensced under the Apache License
             </Footer>
           </Layout>
         </Layout>
@@ -212,17 +212,26 @@ const AppLayout = ({ children }) => {
             >
             &nbsp;The Apache Software Fountation
             </a>
-            , &nbsp;Liscensed under the Apache 
+            , &nbsp;Licensed under the Apache 
             <a 
               href="https://www.apache.org/licenses/"
               target="_blank" 
             >
-              &nbsp;Liscense
-            </a>
+              &nbsp;License.
+            </a> <br/>
+
+            <div>
+            Disclaimer: Apache Superset is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. 
+            Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, 
+            and decision making process have stabilized in a manner consistent with other successful ASF projects. 
+            While incubation status is not necessarily a reflection of the completeness or stability of the code,
+            it does indicate that the project has yet to be fully endorsed by the ASF.  
+          </div>
           </Footer>
         </Layout>
       }
     </Layout>
+
   )
 }
 
