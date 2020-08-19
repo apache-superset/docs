@@ -10,7 +10,7 @@ export const pmc = [
     image: 'https://github.com/betodealmeida.png'
   },
   {
-    name: 'bryan kyryliuk',
+    name: 'Bogdan Kyryliuk',
     github: 'https://github.com/bkyryliuk',
     image:'https://github.com/bkyryliuk.png' 
   },
@@ -59,7 +59,7 @@ export const pmc = [
   },
 
   {
-    name: 'John bodley',
+    name: 'John Bodley',
     github: 'https://github.com/john-bodley',
     image: 'https://github.com/john-bodley.png'
   },

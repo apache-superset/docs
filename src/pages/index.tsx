@@ -62,13 +62,14 @@ const featureSectionStyle= css`
   background: #fff;
   padding: 5vw 0;
   margin-top: 50px;
-  margin-bottom: 100px;
+  margin-bottom: 30px;
   .featureList {
     padding: 0px;
     width: 100%;
     list-style-type: none;
     margin: 0 auto;
     max-width: 1000px;
+    margin-top: 40px;
     .feature {
       display: flex;
       height: ${featureHeight}px;
@@ -84,7 +85,7 @@ const featureSectionStyle= css`
           position: absolute; 
           width: 60px;
           height: 60px; 
-          right: 16px;
+          right: 10px;
         }
       }
       .featureText {
@@ -98,6 +99,11 @@ const featureSectionStyle= css`
         letter-spacing: 1px;
       }
     }
+  }
+  .heading {
+      font-size: 20px;
+      width: 80%;
+      margin: 0 auto;
   }
 `;
 
@@ -120,9 +126,8 @@ const integrationSection = css`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     a {
-      margin: 15px;
       .gatsby-image-wrapper {
         img {
           filter: grayscale(100%);
@@ -148,33 +153,29 @@ const Theme = (props) => {
             Apache Superset (Incubating)
           </h1>
           <h2>
-            Apache Superset (incubating) is a modern, <br/> 
-            enterprise-ready business intelligence web application
+            Apache Superset (incubating) is a modern data <br/> 
+            exploration and visualization platform.
           </h2>
           <Link to="/src-pages-docs-installation-index">
             <Button type="primary" size="large">
-              Getting Started
+              Get Started
             </Button>
           </Link>
-          <div className="alert">
-            Disclaimer: Apache Superset is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. 
-            Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, 
-            and decision making process have stabilized in a manner consistent with other successful ASF projects. 
-            While incubation status is not necessarily a reflection of the completeness or stability of the code,
-            it does indicate that the project has yet to be fully endorsed by the ASF.  
-          </div>
+          
         </div>
 
         <div css={featureSectionStyle}>
           <h2 css={secondaryHeading}>   
-            Features
-          </h2>   
+            Overview
+          </h2>
+          <h4 className='heading'> Superset is fast, lightweight, intuitive, and loaded with options that make it easy for users of all skill sets to explore and visualize their data, from simple pie charts to highly detailed deck.gl geospatial charts. </h4>   
           <ul className='featureList ant-row'>
               <Col span={12}>
                 <li className='feature'>
                     <span className="imagePlaceHolder"> <PieChartOutlined /> </span>
-                    <span className='featureText'>
-                      A rich set of data visualizations
+                    <span className='featureText'><b>
+                      Powerful and easy to use </b><br/>
+                      Quickly and easily integrate and explore your data, using either our simple no-code viz builder or state of the art SQL IDE.  
                     </span>
                 </li>
 
@@ -182,22 +183,11 @@ const Theme = (props) => {
                 <li className='feature'>
                   <span className="imagePlaceHolder"> <BoxPlotOutlined /> </span>
                   <span className='featureText'>
-                    Deep integration with Druid.io
+                    <b> Integrates with modern data sources </b>
+                    <br/> Superset can connect to any SQL based datasource through SQL Alchemy, including modern cloud native data sources and engines at petabyte scale.
                   </span>
                 </li>
 
-                <li className='feature'>
-                  <span className="imagePlaceHolder"> <StockOutlined /> </span>
-                  <span className='featureText'>
-                    Integration with most SQL-speaking RDBMS through SQLAlchemy
-                  </span>
-                </li>
-                <li className='feature'>
-                  <span className="imagePlaceHolder"> <SlidersOutlined /> </span>
-                  <span className='featureText'>
-                    A simple semantic layer, allowing users to control how data sources are displayed in the UI by defining which fields should show up in which drop-down and which aggregation and function metrics are made available to the user
-                  </span>
-                </li>
 
               </Col>
 
@@ -206,29 +196,16 @@ const Theme = (props) => {
                 <li className='feature'>
                     <span className="imagePlaceHolder"> <DotChartOutlined /> </span>
                     <span className='featureText'>
-                      Create and share dashboards
+                    <b> Rich visualizations and dashboards </b> <br/>
+                    Superset ships with a wide array of beautiful visualizations. Our visualization plug-in architecture makes it easy to build custom visualizations that drop directly into Superset.  
                     </span>
                 </li>
                 <li className='feature'>
                     <span className="imagePlaceHolder"> <BarChartOutlined /> </span>
                     <span className='featureText'>
-                      An easy-to-use interface for exploring and visualizing data
+                      <b> Modern architecture </b><br/>
+                      Superset is lightweight and highly scalable, leveraging the power of your existing data infrastructure without requiring yet another ingestion layer.
                     </span>
-                </li>
-
-
-                <li className='feature'>
-                  <span className="imagePlaceHolder"> <AreaChartOutlined /></span>
-                  <span className='featureText'>
-                    An extensible, high-granularity security/permission model allowing intricate rules on who can access individual features and the dataset
-                  </span>
-                </li>
-
-                <li className='feature'>
-                  <span className="imagePlaceHolder"> <LineChartOutlined /> </span>
-                  <span className='featureText'>
-                    Enterprise-ready authentication with integration with major authentication providers (database, OpenID, LDAP, OAuth & REMOTE_USER through Flask AppBuilder)
-                  </span>
                 </li>
 
               </Col>
@@ -237,9 +214,9 @@ const Theme = (props) => {
 
         <div css={integrationSection}>
           <h2 css={secondaryHeading}>   
-            Databases
+            Supported Data Sources
           </h2> 
-          <span className="databaseSub">The following RDBMS are currently supported:</span>
+          
           <ul className="databaseList">
             {Databases.map(({title, href, imgName: imageName, width, height})=> ( 
               <a href={href} target="_blank">
@@ -247,6 +224,8 @@ const Theme = (props) => {
               </a>
             ))}
           </ul>
+
+          <span className="databaseSub"> .. and any other SQLAlchemy <a href="https://superset.incubator.apache.org/installation.html#database-dependencies"> compatible data source. </a> </span>
         </div>
 
 
