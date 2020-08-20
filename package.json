@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "apache-superset-docs",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "The landing page and doc size for getting started with Apache Superset",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "preset.io",
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
     "@emotion/core": "^10.0.28",

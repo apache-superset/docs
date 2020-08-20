@@ -1,6 +1,4 @@
 import React from "react";
-import { theme, useConfig } from 'docz';
-import { ThemeProvider } from 'theme-ui';
 import { useStaticQuery, graphql, Link } from "gatsby";
 import {Layout, Menu, Button} from 'antd';
 import { css } from '@emotion/core';
@@ -8,7 +6,6 @@ import {
   GithubOutlined,
   SlackSquareOutlined
 } from '@ant-design/icons'; 
-import { supersetTheme } from '@superset-ui/style';
 
 import Logo from './image';
 import AppMenu from './menu';
@@ -162,7 +159,7 @@ const AppLayout = ({ children }) => {
         </Menu>
         <div css={getStartedButtonStyle}>
           <Link to="/src-pages-docs-installation-index">
-            <Button type="primary" size="large">Getting Started</Button>
+            <Button type="primary" size="large">Get Started</Button>
           </Link>
         </div>
       </Header>
@@ -194,7 +191,9 @@ const AppLayout = ({ children }) => {
               <a href="https://github.com/apache/incubator-superset" target="_blank">
                 <GithubOutlined className="icon" />
               </a>
-              <img src="/images/so-icon.svg" className="icon svg"/>
+              <a href="https://stackoverflow.com/questions/tagged/apache-superset+superset" target="_blank">
+                <img src="/images/so-icon.svg" className="icon svg"/>
+              </a>
             </div>
             <div className="communityBtn">
               <Link to="/community">

@@ -6,14 +6,10 @@ import { Button, Row, Col } from 'antd';
 import { css } from '@emotion/core';
 import { supersetTheme } from '@superset-ui/style';
 import { 
-  AreaChartOutlined, 
   BarChartOutlined, 
   PieChartOutlined, 
   DotChartOutlined,
   BoxPlotOutlined,
-  SlidersOutlined,
-  LineChartOutlined,
-  StockOutlined
 } from '@ant-design/icons';
 
 import { Databases } from '../resources/data';
@@ -107,7 +103,6 @@ const featureSectionStyle= css`
   }
 `;
 
-const databaseHeight = 230;
 const integrationSection = css`
   background: white;
   margin-bottom: 150px;

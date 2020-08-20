@@ -2,7 +2,6 @@ import React from "react";
 import { css } from '@emotion/core';
 import { supersetTheme } from '@superset-ui/style';
 import { Button, Card} from 'antd';
-import { ThemeProvider } from 'theme-ui';
 import Layout from '../components/layout';
 import { pmc } from '../resources/data';
 
@@ -58,6 +57,7 @@ const getInvolvedContainer = css`
     max-width: 800px;
     margin: 0 auto;
     padding: 30px 0;
+    border-bottom: 1px solid #ccc;
   }
   .ppm {
     margin-top: 100px;
