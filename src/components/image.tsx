@@ -37,6 +37,22 @@ const Image = ({ imageName, type, width, height, ...otherProps}):Props => {
         }
       }
 
+      docker: file(relativePath: { eq: "src/images/docker.png" }) {
+        childImageSharp {
+          fixed(width: 60) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+
+      youtube: file(relativePath: { eq: "src/images/youtube.jpg" }) {
+        childImageSharp {
+          fixed(width: 60) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+
       getAllImages: allImageSharp {
         edges {
           node {
@@ -51,8 +67,8 @@ const Image = ({ imageName, type, width, height, ...otherProps}):Props => {
   `);
 
   const filter = data.getAllImages.edges.filter(n=> n.node.fixed.originalName === imageName)
-  const imgStyle = width && height ? {width, height}: {};
-
+  const imgStyle = width && height ? {width, height} : {};
+  console.log('data', data)
   return type === 'db' ?
      <Img fixed={filter[0]?.node?.fixed} style={imgStyle} imgStyle={imgStyle}/>
     :

@@ -6,6 +6,7 @@ export default {
   files: ['src/**/*.{md,markdown,mdx}'],
   menu: [
     'installation',
+    'Get Started',
     'MenuA', 
     'MenuB',
   ],

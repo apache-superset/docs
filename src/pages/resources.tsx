@@ -1,6 +1,7 @@
 import React from "react";
 import { css } from '@emotion/core';
 import { supersetTheme } from '@superset-ui/style';
+import Image from '../components/image';
 import Layout from '../components/layout';
 
 const { colors } = supersetTheme;
@@ -36,6 +37,8 @@ const Resources = () => {
           Resources
         </h1>
         <div className="links">
+
+          <Image imageName="docker" />
           <a 
             href="https://hub.docker.com/r/preset/superset/" 
             target="_blank"
@@ -48,6 +51,8 @@ const Resources = () => {
           >
            Preset Blog  
           </a>
+
+          <Image imageName="youtube" />
           <a
             href="https://www.youtube.com/channel/UCMuwrvBsg_jjI2gLcm04R0g"
             target="_blank"
@@ -85,9 +90,10 @@ const Resources = () => {
            <iframe 
             width="560" 
             height="315" 
-            src="https://www.youtube.com/embed/W_Sp4jo1ACg&t=701svvv" 
-            frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-            allowFullScreen></iframe> 
+            src="https://www.youtube.com/embed/W_Sp4jo1ACg" 
+            frameBorder="0" 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowFullScreen></iframe>
           </div>
         </div>
       </div>
