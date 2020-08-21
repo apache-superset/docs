@@ -53,14 +53,6 @@ const Image = ({ imageName, type, width, height, ...otherProps}):Props => {
         }
       }
 
-      youtube: file(relativePath: { eq: "src/images/youtube.png" }) {
-        childImageSharp {
-          fixed(width: 100) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-
       getAllImages: allImageSharp {
         edges {
           node {
