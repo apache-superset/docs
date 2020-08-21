@@ -30,6 +30,10 @@ const resourcesContainer = css`
           background-color: #c9eaf3;
           cursor: pointer;
         }
+        .youtube {
+          width: 94px;
+          height: 24px;
+        }
       }
         a {
           display: block;
@@ -92,7 +96,7 @@ const Resources = () => {
               >  
                 Youtube Page
               </a>
-              <div><Image imageName="youtube" /></div>
+              <div><img src="/images/youtube.png" alt="youtube"  className="youtube" /></div>
             </div>
           </div>
           <div className="videos">

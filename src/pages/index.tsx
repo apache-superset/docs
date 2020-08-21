@@ -82,6 +82,8 @@ const featureSectionStyle= css`
           width: 60px;
           height: 60px; 
           right: 10px;
+          left: 72px;
+          top: 35px;
         }
       }
       .featureText {
@@ -90,7 +92,7 @@ const featureSectionStyle= css`
         width: 300px; 
         flex-grow: 6;
         font-size: 15px;
-        color:${colors.grayscale.base};
+        color:${colors.grayscale.dark2};
         line-height: 25px;
         letter-spacing: 1px;
       }

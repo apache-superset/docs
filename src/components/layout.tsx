@@ -185,7 +185,7 @@ const AppLayout = ({ children }) => {
           { children }
           <div css={iconContainerStyle} >
             <div className="icons">
-              <a href="https://apache-superset.slack.com" target="_blank">
+              <a href="https://apache-superset.slack.com/join/shared_invite/zt-g8lpruog-HeqpgYrwdfrD5OYhlU7hPQ#/" target="_blank">
                 <SlackSquareOutlined className="icon"/>
               </a>
               <a href="https://github.com/apache/incubator-superset" target="_blank">
