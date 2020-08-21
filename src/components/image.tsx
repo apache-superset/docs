@@ -39,15 +39,23 @@ const Image = ({ imageName, type, width, height, ...otherProps}):Props => {
 
       docker: file(relativePath: { eq: "src/images/docker.png" }) {
         childImageSharp {
-          fixed(width: 60) {
+          fixed(width: 100) {
             ...GatsbyImageSharpFixed
           }
         }
       }
 
-      youtube: file(relativePath: { eq: "src/images/youtube.jpg" }) {
+      preset: file(relativePath: { eq: "src/images/preset.png" }) {
         childImageSharp {
-          fixed(width: 60) {
+          fixed(width: 100) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+
+      youtube: file(relativePath: { eq: "src/images/youtube.png" }) {
+        childImageSharp {
+          fixed(width: 100) {
             ...GatsbyImageSharpFixed
           }
         }
