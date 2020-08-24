@@ -22,6 +22,7 @@ export const getActiveMenuItem = (items) => {
   return [openKey, selectedKey];
 }
 
+// TODO implement versioned dox?
 /*const getVersionedDocs = (v, menus) => {
    //menus.filter(doc => 
   const stack = [...menus];
@@ -55,7 +56,7 @@ export const getPreviousAndNextUrls = (menus) => {
   const items = listOrderedMenu(menus);
   let prevUrl;
   let nextUrl;
-  const path = window.location.pathname;
+  const path = typeof window !== 'undefined' && window.location.pathname;
   items.forEach(({route}, index)=> {
     if (route === path) {
       if (items[index-1]) {
