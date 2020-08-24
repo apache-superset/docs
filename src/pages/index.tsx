@@ -100,7 +100,7 @@ const featureSectionStyle= css`
   }
   .heading {
       font-size: 20px;
-      width: 80%;
+      width: 60%;
       margin: 0 auto;
   }
 `;
@@ -124,16 +124,6 @@ const integrationSection = css`
     flex-wrap: wrap;
     justify-content: space-around;
     margin-bottom: 50px;
-    a {
-      .gatsby-image-wrapper {
-        img {
-          filter: grayscale(100%);
-          &:hover{
-            filter: grayscale(0%);
-          }
-        }
-      }
-    }
   }
 `;
 

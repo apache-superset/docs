@@ -1,6 +1,7 @@
 import React from "react";
 import { css } from '@emotion/core';
 import { supersetTheme } from '@superset-ui/style';
+import { Button } from 'antd'
 import Image from '../components/image';
 import Layout from '../components/layout';
 
@@ -18,13 +19,13 @@ const resourcesContainer = css`
       text-align: center; 
       .link {
         margin: 25px;
-        width: 150px;
+        width: 189px;
         position: relative;
         font-size: 16px;
         flex-direction: column;
         border: solid 1px #cbcbcb;
         border-radius: 5px;
-        padding: 46px 22px;
+        padding: 45px 36px;
         height: 50%;
         &:hover{
           background-color: #c9eaf3;
@@ -74,7 +75,9 @@ const Resources = () => {
                 href="https://hub.docker.com/r/preset/superset/" 
                 target="_blank"
               > 
-                Docker Image
+                <Button type="primary"> 
+                  Docker Image
+                </Button>
               </a>
               <div>
               <Image imageName="docker" />
@@ -85,7 +88,9 @@ const Resources = () => {
                 href="https://preset.io/blog/"
                 target="_blank"
               >
-              Preset Blog  
+                <Button type="primary">
+                  Preset Blog  
+                </Button>
               </a>
               <div><Image imageName="preset" /></div>
             </div>
@@ -94,7 +99,9 @@ const Resources = () => {
                 href="https://www.youtube.com/channel/UCMuwrvBsg_jjI2gLcm04R0g"
                 target="_blank"
               >  
-                Youtube Page
+                <Button type="primary">
+                  Youtube Page
+                </Button>
               </a>
               <div><img src="/images/youtube.png" alt="youtube"  className="youtube" /></div>
             </div>
