@@ -2,7 +2,7 @@ import React from "react";
 import { css } from '@emotion/core';
 import { supersetTheme } from '@superset-ui/style';
 import { Button, Card} from 'antd';
-import { ThemeProvider } from 'theme-ui';
+import { GithubOutlined } from "@ant-design/icons";
 import Layout from '../components/layout';
 import { pmc } from '../resources/data';
 
@@ -36,6 +36,7 @@ const communityContainer = css`
     .ant-card-meta-title {
       text-overflow: clip;
       white-space: normal;
+      font-size: 13px;
     }
   }
 `;
@@ -58,6 +59,7 @@ const getInvolvedContainer = css`
     max-width: 800px;
     margin: 0 auto;
     padding: 30px 0;
+    border-bottom: 1px solid #ccc;
   }
   .ppm {
     margin-top: 100px;
@@ -67,19 +69,23 @@ const getInvolvedContainer = css`
 
 
 const Community = () => {
-  let pmcList = pmc.map(e=>(
-    <a href={e.github} target="_blank">
-      <Card
-        className="communityCard"
-        hoverable
-        style={{ width: '140px' }}
-        size="small"
-        cover={<img alt="example" src={e.image} />}
-      >
-        <Meta title={e.name} />
-      </Card>
-    </a>
-  ));
+  let pmcList = pmc.map(e=>{
+    const name = e.name.indexOf(' ')
+    return(
+      <a href={e.github} target="_blank">
+        <Card
+          className="communityCard"
+          hoverable
+          style={{ width: '140px'}}
+          size="small"
+          cover={<img alt="example" src={e.image} />}
+        >
+          <GithubOutlined />
+          <Meta title={e.name} />
+        </Card>
+      </a>
+    )
+  });
   return(
       <Layout>
         <div css={titleContainer}>
