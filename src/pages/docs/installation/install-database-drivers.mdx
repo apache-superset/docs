@@ -1,0 +1,85 @@
+---
+name: Install Database Drivers
+menu: Installation
+index: 2
+version: 1
+---
+
+Install Database Drivers
+-------------
+
+Now that you have Superset up and running on your local machine, along with some example dashboards, let’s connect it to a database to run some queries and visualize some data.
+
+Superset runs on Python and requires a database driver to be installed for each type of database. When setting up Superset locally via `docker-compose`, the drivers and packages
+contained in [requirements.txt](https://github.com/apache/incubator-superset/blob/master/requirements.txt) and
+[requirements-dev.txt](https://github.com/apache/incubator-superset/blob/master/requirements-dev.txt) will
+be installed automatically. At the time of this writing, drivers for the following databases are included:
+
+* [Druid](https://pypi.org/project/pydruid/)
+* [Postgres](https://pypi.org/project/psycopg2/)
+* [Presto/Hive](https://pypi.org/project/PyHive/)
+
+If your database is one of these, you should be good to go! However, if you want to
+connect to something different, like MySQL, you would need to install an additional driver. Here’s how you would do that.
+
+### 1. Determine the driver you need
+
+To figure out how to install the database driver of your choice, a good starting point is the [Datasource Connector section]( LINK TBD) of this documentation for instructions. If your database isn't on the list, please file an issue on the [Superset GitHub repo](https://github.com/apache/incubator-superset/issues), so we can work on supporting it. The [Superset community Slack channel](https://join.slack.com/t/apache-superset/shared_invite/enQtNDMxMDY5NjM4MDU0LWJmOTcxYjlhZTRhYmEyYTMzOWYxOWEwMjcwZDZiNWRiNDY2NDUwNzcwMDFhNzE1ZmMxZTZlZWY0ZTQ2MzMyNTU)
+is also a great place for asking general questions about database driver installation and connection. 
+
+In the end, you should be looking for a Python PIP package compatible with your database. One part that makes database driver installation tricky is the fact that local binaries are sometimes required in order for
+them to bind properly, which means that various APT packages might need to be installed before PIP can
+get things set up.
+
+This tutorial will describe the process of installing a MySQL driver as an example. 
+
+
+### 2. Install MySQL Driver 
+
+As we are currently running inside of a Docker container via `docker compose`, we cannot simply run `pip install xxx` on our local CMD line and expect drivers to be installed for the containers to use. 
+
+In order to address this, the Superset `docker compose` setup comes with a mechanism for you to install packages locally, which will be ignored by Git for the purposes of local development. Please follow these steps:
+
+Create `requirements-local.txt`
+
+```
+# From the repo root...
+touch ./docker/requirements-local.txt
+```
+Add the driver selected in step above:
+
+```
+echo "mysqlclient" >> ./docker/requirements-local.txt
+```
+Rebuild your local image with the new driver baked in:
+
+```
+docker-compose build --force-rm
+```
+
+After the rebuild is complete, which make take a few minutes, relaunch:
+
+```
+docker-compose up
+```
+
+### Step 3: Connect to MySQL in Superset What's Next
+
+Now that you've got a MySQL driver installed locally, you should be able to test it out. 
+
+We can now create a Datasource in Superset that can be used to connect to a MySQL instance. Assuming your MySQL instance is running locally and can be accessed via localhost, use the following connection string in “SQL Alchemy URI”, by going to Sources > Databases > + icon (to add a new datasource) in Superset.
+
+For Docker running in Linux:
+
+```
+mysql://mysqluser:mysqluserpassword@localhost/example?charset=utf8
+```  
+
+For Docker running in OSX:
+
+```
+mysql://mysqluser:mysqluserpassword@docker.for.mac.host.internal/example?charset=utf8
+``` 
+
+Then click “Test Connection”, which should give you an “OK” message. If not, please look at your terminal for error messages, and reach out for help.
+

@@ -1,13 +1,15 @@
-
 export default {
   title: 'superset doc',
   base: '/docs',
   ignore: ['**/blog/**', 'readme.md'],
   files: ['src/**/*.{md,markdown,mdx}'],
   menu: [
-    'installation',
-    'Get Started',
-    'MenuA', 
-    'MenuB',
+    'Installation',
+    'Database Connectors',
+    'Architecture Overview',
+    'Build Your Own Viz Plugins',
+    'Best Practices',
+    'FAQs',
+    'Roadmap',
   ],
 }
