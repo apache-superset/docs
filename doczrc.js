@@ -1,4 +1,3 @@
-
 export default {
   title: 'superset doc',
   base: '/docs',
@@ -9,10 +8,8 @@ export default {
     'Database Connectors',
     'Architecture Overview',
     'Build Your Own Viz Plugins',
-    'Learning Resources',
     'Best Practices',
     'FAQs',
-    'Contribution',
     'Roadmap',
   ],
 }
