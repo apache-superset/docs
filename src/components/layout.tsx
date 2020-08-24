@@ -10,7 +10,7 @@ import 'antd/dist/antd.css';
 import "./layout.css"
 
 
-const { Header, Content, Sider } = Layout;
+const { Header, Sider } = Layout;
 
 const layoutStyles = css`
   .ant-layout {
@@ -89,7 +89,7 @@ const logoStyle = css`
 
 
 const AppLayout = ({ children }) => {
-  const isOnDocsPage = window.location.pathname.indexOf("docs") > 0;
+  const isOnDocsPage = typeof window !== 'undefined' && window.location.pathname.indexOf("docs") > 0;
 
   return (
     <Layout css={layoutStyles}>
