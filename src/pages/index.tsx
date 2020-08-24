@@ -6,14 +6,10 @@ import { Button, Row, Col } from 'antd';
 import { css } from '@emotion/core';
 import { supersetTheme } from '@superset-ui/style';
 import { 
-  AreaChartOutlined, 
   BarChartOutlined, 
   PieChartOutlined, 
   DotChartOutlined,
   BoxPlotOutlined,
-  SlidersOutlined,
-  LineChartOutlined,
-  StockOutlined
 } from '@ant-design/icons';
 
 import { Databases } from '../resources/data';
@@ -86,6 +82,8 @@ const featureSectionStyle= css`
           width: 60px;
           height: 60px; 
           right: 10px;
+          left: 72px;
+          top: 35px;
         }
       }
       .featureText {
@@ -94,7 +92,7 @@ const featureSectionStyle= css`
         width: 300px; 
         flex-grow: 6;
         font-size: 15px;
-        color:${colors.grayscale.base};
+        color:${colors.grayscale.dark2};
         line-height: 25px;
         letter-spacing: 1px;
       }
@@ -102,12 +100,11 @@ const featureSectionStyle= css`
   }
   .heading {
       font-size: 20px;
-      width: 80%;
+      width: 60%;
       margin: 0 auto;
   }
 `;
 
-const databaseHeight = 230;
 const integrationSection = css`
   background: white;
   margin-bottom: 150px;
@@ -127,16 +124,6 @@ const integrationSection = css`
     flex-wrap: wrap;
     justify-content: space-around;
     margin-bottom: 50px;
-    a {
-      .gatsby-image-wrapper {
-        img {
-          filter: grayscale(100%);
-          &:hover{
-            filter: grayscale(0%);
-          }
-        }
-      }
-    }
   }
 `;
 

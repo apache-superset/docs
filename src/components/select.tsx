@@ -12,6 +12,7 @@ const VersionSelect = () => {
   console.log('version', version);
   const handleChange = (e) => {
     console.log('e', e);
+    // @ts-ignore
     window.location = "/src-pages-docs-installation-index?version="+e;
     
   }
