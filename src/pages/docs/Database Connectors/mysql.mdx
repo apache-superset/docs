@@ -1,0 +1,30 @@
+---
+name: MySQL
+menu: Database Connectors 
+index: 8
+version: 1
+---
+
+MySQL
+-------------
+
+
+Set up the URI using the following settings:
+
+* **User Name**: UserName
+* **Password**: DBPassword
+* **Database Host**:
+    * For Localhost: localhost or 127.0.0.1   
+    * For On Prem: IP address or Host name
+    * For AWS Endpoint   
+* **Database Name**: Database Name
+* **Port**: default 3306
+
+```
+mysql://<UserName>:<DBPassword>@<Database Host>/<Database Name>
+```
+
+Lastly, add Preset's IP addresses to your Inbound and Outbound firewall rules:
+
+
+<img src="/static/images/ip-address-example.png" />

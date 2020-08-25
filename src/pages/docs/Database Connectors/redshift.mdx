@@ -1,0 +1,27 @@
+---
+name: AWS Redshift
+menu: Database Connectors 
+index: 10
+version: 1
+---
+
+AWS Redshift
+-------------
+
+Set up the URI using the following settings:
+
+* **User Name**: userName
+* **Password**: DBPassword
+* **Database Host**:  AWS Endpoint   
+* **Database Name**: Database Name
+* **Port**: default 5439
+
+```
+redshift+psycopg2://<userName>:<DBPassword>@<AWS End Point>:5439/<Database Name> 
+```
+
+Lastly, add Preset's IP addresses to your Inbound and Outbound firewall rules for TCP port 5439:
+
+* 35.161.45.11
+* 52.32.136.34
+* 54.244.23.85

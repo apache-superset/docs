@@ -13,7 +13,9 @@ Now that you have Superset up and running on your local machine, along with some
 Superset runs on Python and requires a database driver to be installed for each type of database. When setting up Superset locally via `docker-compose`, the drivers and packages
 contained in [requirements.txt](https://github.com/apache/incubator-superset/blob/master/requirements.txt) and
 [requirements-dev.txt](https://github.com/apache/incubator-superset/blob/master/requirements-dev.txt) will
-be installed automatically. At the time of this writing, drivers for the following databases are included:
+be installed automatically. 
+
+At the time of this writing, drivers for the following databases are included:
 
 * [Druid](https://pypi.org/project/pydruid/)
 * [Postgres](https://pypi.org/project/psycopg2/)
@@ -82,4 +84,6 @@ mysql://mysqluser:mysqluserpassword@docker.for.mac.host.internal/example?charset
 ``` 
 
 Then click “Test Connection”, which should give you an “OK” message. If not, please look at your terminal for error messages, and reach out for help.
+
+Click 'Next' to learn how to make your first chart in Superset.
 

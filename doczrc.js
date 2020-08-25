@@ -6,10 +6,7 @@ export default {
   menu: [
     'Installation',
     'Database Connectors',
-    'Architecture Overview',
     'Build Your Own Viz Plugins',
     'Best Practices',
-    'FAQs',
-    'Roadmap',
   ],
 }
