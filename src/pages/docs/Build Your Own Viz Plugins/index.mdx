@@ -55,31 +55,31 @@ There are [complete instructions](https://github.com/apache/incubator-superset#i
 4. Finally, run `yo @superset-ui/superset`
 5. Select `Create superset-ui chart plugin package` on the following screen:
 
-<img src="/images/plugin-1-yeoman-select.png" /> 
+<img src="/static/images/plugin-1-yeoman-select.png" /> 
 
 6. Give it a name (in our case, go with the default, based on the folder name):
 
-	<img src="/images/plugin-2-yeoman-package-name.png" />
+	<img src="/static/images/plugin-2-yeoman-package-name.png" />
 
 7. Give it a description (again, default is fine!)
 
-	<img src="/images/plugin-3-yeoman-description.png" /> 
+	<img src="/static/images/plugin-3-yeoman-description.png" /> 
 
 8. Choose which type of React component you want to make (Class, or Function component).
 
-	<img src="/images/plugin-4-yeoman-component-type.png" />  
+	<img src="/static/images/plugin-4-yeoman-component-type.png" />  
 
 9. Select whether you'd like your visualization to be timeseries-based or not
 
-	<img src="/images/plugin-5-yeoman-timeseries.png" />  
+	<img src="/static/images/plugin-5-yeoman-timeseries.png" />  
 
 10. Select whether or not you want to include badges at the top of your README file (really only needed if you intend to contribute your plugin to the `superset-ui` repo).
 
-	<img src="/images/plugin-6-yeoman-badges.png" />  
+	<img src="/static/images/plugin-6-yeoman-badges.png" />  
 
 11. Admire all the files the generator has created for you. Note that EACH of these is chock full of comments about what they're for, and how best to use them.
 
-	<img src="/images/plugin-7-yeoman-files.png" />  
+	<img src="/static/images/plugin-7-yeoman-files.png" />  
 
 
 ### Add your Plugin to Superset (with NPM Link)
@@ -88,14 +88,14 @@ Now, we want to see this thing actually RUN! To do that, we'll add your package 
  
 1. Add your package to the `package.json` file in `incubator-superset/superset-frontend`.
 
-	<img src="/images/plugin-8-package-json.png" /> 
+	<img src="/static/images/plugin-8-package-json.png" /> 
 
 
    Note: Do _not_ run `npm install`... explanation below.
 
 2. Add your plugin to the `MainPreset.js` file (located in `incubator-superset/superset-frontend/src/visualizations/presets/MainPreset.js`) in two places, alongside the other plugins.
 
-	<img src="/images/plugin-9-mainpreset-import.png" />  
+	<img src="/static/images/plugin-9-mainpreset-import.png" />  
 
 
     <img src="/images/plugin-9-mainpreset-register.png" /> 
@@ -116,11 +116,11 @@ Now, we want to see this thing actually RUN! To do that, we'll add your package 
 
 You should now be able to go to the Explore view in your local Superset and add a new chart! You'll see your new plugin when you go to select your viz type.
 
-<img src="/images/plugin-10-hello-thumbnail.png" /> 
+<img src="/static/images/plugin-10-hello-thumbnail.png" /> 
 
 Now you can load up some data, and you'll see it appear in the plugin!
 
-<img src="/images/plugin-11-explore-view.png" /> 
+<img src="/static/images/plugin-11-explore-view.png" /> 
 
 The plugin also outputs three things to your browser's console:
 
@@ -128,7 +128,7 @@ The plugin also outputs three things to your browser's console:
 - `props`, as output from the `transformProps` file for your plugin's consumption
 - The actual HTML element, which your plugin has hooks into for any necessary DOM maniupluation
 
-<img src="/images/plugin-12-console-logs.png" />  
+<img src="/static/images/plugin-12-console-logs.png" />  
 
 ## Make it Your Own
 
