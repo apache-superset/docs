@@ -12,6 +12,12 @@ const { Footer } = Layout;
 const footerStyle = css`
   background-color: #323232; 
   color: #ccc;
+  .apacheLinks {
+    a {
+      color: white;
+      margin: 10px;
+    }
+  }
 `;
 
 const iconContainerStyle = css`
@@ -38,17 +44,28 @@ const iconContainerStyle = css`
   }
   .communityBtn {
     width: 50%;
-    Button {
-      margin-top: 15px;
-      margin-right: 15px;
+    .joinCommunity {
       float: right;
+      display: flex;
+      flex-direction: row;
+      Button {
+        margin-top: 15px;
+        margin-right: 15px;
+        float: right;
+      }
+      #head {
+        margin-top: 20px;
+        margin-right: 10px;
+        font-size: 15px;
+        color: white;
+        display: block;
+      }
     }
   }
 `;
 
 const LayoutFooter = () => (
   <>
-
     <div css={iconContainerStyle} >
       <div className="icons">
         <a href="https://apache-superset.slack.com/join/shared_invite/zt-g8lpruog-HeqpgYrwdfrD5OYhlU7hPQ#/" target="_blank">
@@ -62,28 +79,31 @@ const LayoutFooter = () => (
         </a>
       </div>
       <div className="communityBtn">
-        <Link to="/community">
-        <Button type="primary" size="large">
-            Join the Community!
-        </Button>
-        </Link>
+        <div className="joinCommunity">
+          <span id="head"> Want to be part of Apache Superset?</span>
+          <Link to="/community">
+            <Button type="primary" size="large">
+              Join the Community!
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
     <Footer css={footerStyle}>
       © Copyright {new Date().getFullYear()}, 
-        <a 
-            href="http://www.apache.org/"
-            target="_blank"
-        >
+      <a 
+        href="http://www.apache.org/"
+        target="_blank"
+      >
         &nbsp;The Apache Software Fountation
-        </a>
-        , &nbsp;Licensed under the Apache 
-        <a 
+      </a>
+       , &nbsp;Licensed under the Apache 
+      <a 
         href="https://www.apache.org/licenses/"
         target="_blank" 
-        >
+      >
         &nbsp;License.
-        </a> <br/>
+      </a> <br/>
 
       <div>
         Disclaimer: Apache Superset is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. 
@@ -91,6 +111,27 @@ const LayoutFooter = () => (
         and decision making process have stabilized in a manner consistent with other successful ASF projects. 
         While incubation status is not necessarily a reflection of the completeness or stability of the code,
         it does indicate that the project has yet to be fully endorsed by the ASF.  
+      </div>
+      <div className="apacheLinks">
+        <a 
+          href="https://www.apache.org/security/" 
+          target="_blank"
+        >
+          Security &nbsp;|
+        </a>
+        <a 
+          href="https://www.apache.org/foundation/sponsorship.html" 
+          target="_blank"
+        >
+          Dontate &nbsp;|
+        </a>
+
+        <a 
+          href="https://www.apache.org/foundation/thanks.html" 
+          target="_blank"
+        >
+          Thanks 
+        </a>
       </div>
     </Footer>
   </>
