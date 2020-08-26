@@ -2,11 +2,11 @@ import React from 'react';
 import { theme, useConfig } from 'docz';
 import { Link } from "gatsby"
 import { ThemeProvider } from 'theme-ui';
-import { Button, Col } from 'antd';
+import { Button, Col, Carousel } from 'antd';
 import { css } from '@emotion/core';
 import { supersetTheme } from '@superset-ui/style';
 import { 
-  BarChartOutlined, 
+  BarChartOutlined,
   PieChartOutlined, 
   DotChartOutlined,
   BoxPlotOutlined,
@@ -19,12 +19,25 @@ import 'antd/dist/antd.css';
 
 const { colors } = supersetTheme;
 
-const titleContainer= css`
+const carousel = css`
+  .slick-dots li button{
+    background: blue !important;
+  }
+  .slick-dots li.slick-active button {
+    background: #1fa8c9 !important;
+  }
+`;
+
+const titleContainer = css`
   position: relative;
   text-align: center;
-  padding-top: 211px;
   z-index: 0;
-  padding-bottom: 200px;
+  height: 942px;
+  padding-top: 148px;
+  background-image: url('/images/gray-plot.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   Button {
     margin-top: 39px
   }
@@ -104,7 +117,7 @@ const featureSectionStyle= css`
 
 const integrationSection = css`
   background: white;
-  margin-bottom: 150px;
+  margin-top: 200px;
   .databaseSub {
     text-align: center;
     display: block;
@@ -112,7 +125,7 @@ const integrationSection = css`
   }
 
   .databaseList {
-    margin-top: 100px;
+    margin-top: 180px;
     list-style-type: none;
     padding: 0px;
     max-width: 1000px;
@@ -130,84 +143,85 @@ const Theme = (props) => {
   return (
     <ThemeProvider theme={config}>
       <Layout> 
-        <div css={titleContainer}>
-          <Image imageName="logoLg"/>
+        <Carousel css={carousel}>
+          <div css={titleContainer}>
+            <Image imageName="logoLg"/>
 
-          <h1 css={title}>
-            Apache Superset (Incubating)
-          </h1>
-          <h2>
-            Apache Superset (incubating) is a modern data <br/> 
-            exploration and visualization platform.
-          </h2>
-          <Link to="/src-pages-docs-installation-index">
-            <Button type="primary" size="large">
-              Get Started
-            </Button>
-          </Link>
-          
-        </div>
+            <h1 css={title}>
+              Apache Superset (Incubating)
+            </h1>
+            <h2>
+              Apache Superset (incubating) is a modern data <br/> 
+              exploration and visualization platform.
+            </h2>
+            <Link to="/src-pages-docs-installation-index">
+              <Button type="primary" size="large">
+                Get Started
+              </Button>
+            </Link>
+            
+          </div>
 
-        <div css={featureSectionStyle}>
-          <h2 css={secondaryHeading}>   
-            Overview
-          </h2>
-          <h4 className='heading'> Superset is fast, lightweight, intuitive, and loaded with options that make it easy for users of all skill sets to explore and visualize their data, from simple pie charts to highly detailed deck.gl geospatial charts. </h4>   
-          <ul className='featureList ant-row'>
-              <Col span={12}>
-                <li className='feature'>
-                    <span className="imagePlaceHolder"> <PieChartOutlined /> </span>
-                    <span className='featureText'><b>
-                      Powerful and easy to use </b><br/>
-                      Quickly and easily integrate and explore your data, using either our simple no-code viz builder or state of the art SQL IDE.  
-                    </span>
-                </li>
+          <div css={featureSectionStyle}>
+            <h2 css={secondaryHeading}>   
+              Overview
+            </h2>
+            <h4 className='heading'> Superset is fast, lightweight, intuitive, and loaded with options that make it easy for users of all skill sets to explore and visualize their data, from simple pie charts to highly detailed deck.gl geospatial charts. </h4>   
+            <ul className='featureList ant-row'>
+                <Col span={12}>
+                  <li className='feature'>
+                      <span className="imagePlaceHolder"> <PieChartOutlined /> </span>
+                      <span className='featureText'><b>
+                        Powerful and easy to use </b><br/>
+                        Quickly and easily integrate and explore your data, using either our simple no-code viz builder or state of the art SQL IDE.  
+                      </span>
+                  </li>
 
 
-                <li className='feature'>
-                  <span className="imagePlaceHolder"> <BoxPlotOutlined /> </span>
-                  <span className='featureText'>
-                    <b> Integrates with modern data sources </b>
-                    <br/> Superset can connect to any SQL based datasource through SQL Alchemy, including modern cloud native data sources and engines at petabyte scale.
-                  </span>
-                </li>
-              </Col>
-
-              <Col span={12}>
-                <li className='feature'>
-                    <span className="imagePlaceHolder"> <BarChartOutlined /> </span>
+                  <li className='feature'>
+                    <span className="imagePlaceHolder"> <BoxPlotOutlined /> </span>
                     <span className='featureText'>
-                      <b> Modern architecture </b><br/>
-                      Superset is lightweight and highly scalable, leveraging the power of your existing data infrastructure without requiring yet another ingestion layer.
+                      <b> Integrates with modern data sources </b>
+                      <br/> Superset can connect to any SQL based datasource through SQL Alchemy, including modern cloud native data sources and engines at petabyte scale.
                     </span>
-                </li>
-                <li className='feature'>
-                    <span className="imagePlaceHolder"> <DotChartOutlined /> </span>
-                    <span className='featureText'>
-                    <b> Rich visualizations and dashboards </b> <br/>
-                    Superset ships with a wide array of beautiful visualizations. Our visualization plug-in architecture makes it easy to build custom visualizations that drop directly into Superset.  
-                    </span>
-                </li>
-              </Col>
-          </ul>
-        </div>
+                  </li>
+                </Col>
 
-        <div css={integrationSection}>
-          <h2 css={secondaryHeading}>   
-            Supported Data Sources
-          </h2> 
-          
-          <ul className="databaseList">
-            {Databases.map(({title, href, imgName: imageName, width, height})=> ( 
-              <a href={href} target="_blank">
-                <Image {...{imageName, type: "db", width, height}} />
-              </a>
-            ))}
-          </ul>
+                <Col span={12}>
+                  <li className='feature'>
+                      <span className="imagePlaceHolder"> <BarChartOutlined /> </span>
+                      <span className='featureText'>
+                        <b> Modern architecture </b><br/>
+                        Superset is lightweight and highly scalable, leveraging the power of your existing data infrastructure without requiring yet another ingestion layer.
+                      </span>
+                  </li>
+                  <li className='feature'>
+                      <span className="imagePlaceHolder"> <DotChartOutlined /> </span>
+                      <span className='featureText'>
+                      <b> Rich visualizations and dashboards </b> <br/>
+                      Superset ships with a wide array of beautiful visualizations. Our visualization plug-in architecture makes it easy to build custom visualizations that drop directly into Superset.  
+                      </span>
+                  </li>
+                </Col>
+            </ul>
+          </div>
 
-          <span className="databaseSub"> .. and any other SQLAlchemy <a href="https://superset.incubator.apache.org/installation.html#database-dependencies"> compatible data source. </a> </span>
-        </div>
+          <div css={integrationSection}>
+            <h2 css={secondaryHeading}>   
+              Supported Data Sources
+            </h2> 
+            
+            <ul className="databaseList">
+              {Databases.map(({title, href, imgName: imageName, width, height})=> ( 
+                <a href={href} target="_blank">
+                  <Image {...{imageName, type: "db", width, height}} />
+                </a>
+              ))}
+            </ul>
 
+            <span className="databaseSub"> .. and any other SQLAlchemy <a href="https://superset.incubator.apache.org/installation.html#database-dependencies"> compatible data source. </a> </span>
+          </div>
+        </Carousel>
 
       </Layout>
     </ThemeProvider>
