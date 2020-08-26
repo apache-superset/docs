@@ -25,6 +25,7 @@ const iconContainerStyle = css`
   background-color: #323232; 
   display: flex;
   flex-direction: row;
+  padding-top: 15px;
   .icons {
     float: right;
     width: 50%;
@@ -50,13 +51,14 @@ const iconContainerStyle = css`
       flex-direction: row;
       Button {
         margin-top: 15px;
-        margin-right: 15px;
+        margin-right: 20px;
         float: right;
       }
       #head {
-        margin-top: 20px;
-        margin-right: 10px;
-        font-size: 15px;
+        margin-top: 22px;
+        margin-right: 15px;
+        font-size: 17px;
+        font-weight: 500;
         color: white;
         display: block;
       }

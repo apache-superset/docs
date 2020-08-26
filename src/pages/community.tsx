@@ -13,11 +13,13 @@ const { Meta } = Card;
 const titleContainer= css`
   text-align: center;
   background: #fff;
+  padding-bottom: 200px;
 `;
 
 const title = css`
   margin-top: 150px;
   color:${colors.grayscale.base};
+  font-size: 60px;
 `;
 
 const hr = css`
@@ -52,7 +54,7 @@ const getInvolvedContainer = css`
 
   }
   .title{
-    font-size: 30px;
+    font-size: 45px;
   }
   .section {
     border-top: 1px solid #ccc;
