@@ -19,14 +19,12 @@ import 'antd/dist/antd.css';
 
 const { colors } = supersetTheme;
 
-
-
 const titleContainer= css`
   position: relative;
   text-align: center;
   padding-top: 211px;
   z-index: 0;
-  background: white;
+  padding-bottom: 200px;
   Button {
     margin-top: 39px
   }
@@ -45,10 +43,11 @@ const titleContainer= css`
 
 const title = css`
   color:${colors.grayscale.dark2};
+  font-size: 60px;
 `;
 
 const secondaryHeading = css`
-  font-size: 35px; 
+  font-size: 55px; 
   text-align: center;
 `;
 
@@ -89,7 +88,7 @@ const featureSectionStyle= css`
         display: block;
         padding-top: 30px;
         flex-grow: 6;
-        font-size: 15px;
+        font-size: 20px;
         color:${colors.grayscale.dark2};
         line-height: 25px;
         letter-spacing: 1px;
@@ -97,7 +96,7 @@ const featureSectionStyle= css`
     }
   }
   .heading {
-      font-size: 20px;
+      font-size: 25px;
       width: 60%;
       margin: 0 auto;
   }
@@ -172,19 +171,9 @@ const Theme = (props) => {
                     <br/> Superset can connect to any SQL based datasource through SQL Alchemy, including modern cloud native data sources and engines at petabyte scale.
                   </span>
                 </li>
-
-
               </Col>
 
               <Col span={12}>
-
-                <li className='feature'>
-                    <span className="imagePlaceHolder"> <DotChartOutlined /> </span>
-                    <span className='featureText'>
-                    <b> Rich visualizations and dashboards </b> <br/>
-                    Superset ships with a wide array of beautiful visualizations. Our visualization plug-in architecture makes it easy to build custom visualizations that drop directly into Superset.  
-                    </span>
-                </li>
                 <li className='feature'>
                     <span className="imagePlaceHolder"> <BarChartOutlined /> </span>
                     <span className='featureText'>
@@ -192,7 +181,13 @@ const Theme = (props) => {
                       Superset is lightweight and highly scalable, leveraging the power of your existing data infrastructure without requiring yet another ingestion layer.
                     </span>
                 </li>
-
+                <li className='feature'>
+                    <span className="imagePlaceHolder"> <DotChartOutlined /> </span>
+                    <span className='featureText'>
+                    <b> Rich visualizations and dashboards </b> <br/>
+                    Superset ships with a wide array of beautiful visualizations. Our visualization plug-in architecture makes it easy to build custom visualizations that drop directly into Superset.  
+                    </span>
+                </li>
               </Col>
           </ul>
         </div>

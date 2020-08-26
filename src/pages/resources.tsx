@@ -28,12 +28,13 @@ const resourcesContainer = css`
         padding: 45px 36px;
         height: 50%;
         &:hover{
-          background-color: #c9eaf3;
+          border-color: #1fa8c9;;
           cursor: pointer;
         }
         .youtube {
           width: 94px;
           height: 24px;
+          margin-bottom: 40px;
         }
       }
         a {
@@ -42,6 +43,7 @@ const resourcesContainer = css`
         }
         .gatsby-image-wrapper {
           display: block !important;
+          margin-bottom: 40px;
         }
       }
     }
@@ -69,45 +71,7 @@ const Resources = () => {
         </h1>
         <div className="links">
 
-          <div className="resourcesLinks">
-            <div className="link">
-              <a 
-                href="https://hub.docker.com/r/preset/superset/" 
-                target="_blank"
-              > 
-                <Button type="primary"> 
-                  Docker Image
-                </Button>
-              </a>
-              <div>
-              <Image imageName="docker" />
-              </div>
-            </div>
-            <div className="link">
-              <a 
-                href="https://preset.io/blog/"
-                target="_blank"
-              >
-                <Button type="primary">
-                  Preset Blog  
-                </Button>
-              </a>
-              <div><Image imageName="preset" /></div>
-            </div>
-            <div className="link">
-              <a
-                href="https://www.youtube.com/channel/UCMuwrvBsg_jjI2gLcm04R0g"
-                target="_blank"
-              >  
-                <Button type="primary">
-                  Youtube Page
-                </Button>
-              </a>
-              <div><img src="/images/youtube.png" alt="youtube"  className="youtube" /></div>
-            </div>
-          </div>
           <div className="videos">
-            <h2>Video Resources</h2>
             <iframe 
               width="560" 
               height="315" 
@@ -142,6 +106,43 @@ const Resources = () => {
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
               allowFullScreen
               ></iframe>
+          </div>
+          <div className="resourcesLinks">
+            <div className="link">
+              <div>
+                <Image imageName="docker" />
+              </div>
+              <a 
+                href="https://hub.docker.com/r/preset/superset/" 
+                target="_blank"
+              > 
+                <Button type="primary"> 
+                  Docker Image
+                </Button>
+              </a>
+            </div>
+            <div className="link">
+              <div><Image imageName="preset" /></div>
+              <a 
+                href="https://preset.io/blog/"
+                target="_blank"
+              >
+                <Button type="primary">
+                  Preset Blog  
+                </Button>
+              </a>
+            </div>
+            <div className="link">
+              <div><img src="/images/youtube.png" alt="youtube"  className="youtube" /></div>
+              <a
+                href="https://www.youtube.com/channel/UCMuwrvBsg_jjI2gLcm04R0g"
+                target="_blank"
+              >  
+                <Button type="primary">
+                  Youtube Page
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </div>
