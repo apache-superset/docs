@@ -1,8 +1,8 @@
 import React from 'react';
 import { theme, useConfig } from 'docz';
-import { useStaticQuery, graphql, Link, withPrefix } from "gatsby"
+import { Link } from "gatsby"
 import { ThemeProvider } from 'theme-ui';
-import { Button, Row, Col } from 'antd';
+import { Button, Col } from 'antd';
 import { css } from '@emotion/core';
 import { supersetTheme } from '@superset-ui/style';
 import { 
@@ -68,7 +68,6 @@ const featureSectionStyle= css`
     margin-top: 40px;
     .feature {
       display: flex;
-      height: ${featureHeight}px;
       margin: 10px;
       .imagePlaceHolder {
         display: block;
@@ -89,7 +88,6 @@ const featureSectionStyle= css`
       .featureText {
         display: block;
         padding-top: 30px;
-        width: 300px; 
         flex-grow: 6;
         font-size: 15px;
         color:${colors.grayscale.dark2};

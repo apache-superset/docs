@@ -7,7 +7,6 @@ import { getPreviousAndNextUrls } from '../utils';
 const nextButtons = () => {
   const menus = useMenus();
   const [prevUrl, nextUrl] = getPreviousAndNextUrls(menus);
-
   return(
     <> 
       {prevUrl && 

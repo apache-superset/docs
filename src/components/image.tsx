@@ -68,7 +68,7 @@ const Image = ({ imageName, type, width, height, ...otherProps}):Props => {
 
   const filter = data.getAllImages.edges.filter(n=> n.node.fixed.originalName === imageName)
   const imgStyle = width && height ? {width, height} : {};
-  console.log('data', data)
+
   return type === 'db' ?
      <Img fixed={filter[0]?.node?.fixed} style={imgStyle} imgStyle={imgStyle}/>
     :

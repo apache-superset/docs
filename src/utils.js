@@ -36,7 +36,6 @@ export const getActiveMenuItem = (items) => {
 
 //flattens ordered menu
 const listOrderedMenu = (menus) => {
-  console.log('menus links', menus);
   const newlist =[];
   const stack =[...menus];
   
@@ -47,7 +46,6 @@ const listOrderedMenu = (menus) => {
       stack.unshift(...sortedMenu);  
     } else newlist.push(temp)
   }
-  console.log({ newlist });
   return newlist;
 }
 
@@ -57,6 +55,7 @@ export const getPreviousAndNextUrls = (menus) => {
   let prevUrl;
   let nextUrl;
   const path = typeof window !== 'undefined' && window.location.pathname;
+
   items.forEach(({route}, index)=> {
     if (route === path) {
       if (items[index-1]) {

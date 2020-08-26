@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import {Layout, Menu, Button} from 'antd';
+import { Layout, Menu, Button } from 'antd';
 import { css } from '@emotion/core';
 
 import Logo from './image';
@@ -39,6 +39,8 @@ const getStartedButtonStyle = css`
 
 const centerLayoutStyle = css`
   padding: 25px;
+  min-height: 60vw;
+  overflow: auto;
 `;
 
 const sidebarStyle = css`
@@ -78,6 +80,9 @@ const contentLayoutDocsStyle = css`
   right: 0px;
   bottom: 0px;
   overflow: auto;
+  aside {
+    overflow: auto;
+  }
 `;
 
 const logoStyle = css`
@@ -115,19 +120,21 @@ const AppLayout = ({ children }) => {
         </div>
       </Header>
       {isOnDocsPage ? 
-        <Layout css={contentLayoutDocsStyle }>
-          {isOnDocsPage &&
-            <Sider width={250} css={sidebarStyle}>
-              <AppMenu/>
-            </Sider>
-          }
-          <Layout css={contentStyle}>
-            <div css={centerLayoutStyle}>
-              {children}
-            </div>
-            <Footer />
+        <>
+          <Layout css={contentLayoutDocsStyle }>
+            {isOnDocsPage &&
+              <Sider width={250} css={sidebarStyle}>
+                <AppMenu/>
+              </Sider>
+            }
+            <Layout css={contentStyle}>
+              <div css={centerLayoutStyle}>
+                {children}
+              </div>
+              <Footer />
+            </Layout>
           </Layout>
-        </Layout>
+        </>
       : 
         <Layout>
           { children }

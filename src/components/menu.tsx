@@ -15,7 +15,6 @@ export default () => {
       defaultSelectedKeys={[selectedKey]}
     >
       {menus.map(menuItem => { 
-        console.log('menuItem', menuItem.menu);
         if (menuItem.menu?.length > 0)
         {
           return (
