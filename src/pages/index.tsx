@@ -25,6 +25,8 @@ const titleContainer= css`
   padding-top: 211px;
   z-index: 0;
   padding-bottom: 200px;
+  background-image: url('/images/data-point.png');
+  background-size: cover;
   Button {
     margin-top: 39px
   }
