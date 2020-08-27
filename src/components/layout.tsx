@@ -28,7 +28,11 @@ const headerStyle = css`
   position: fixed;
   top: 0;
   width: 100%;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,.12);
   z-index: 1;
+  .ant-menu {
+    background: transparent;
+  }
 `;
 
 const getStartedButtonStyle = css`

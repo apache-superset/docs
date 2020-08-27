@@ -15,7 +15,7 @@ const footerStyle = css`
   .apacheLinks {
     a {
       color: white;
-      margin: 10px;
+      margin: 5px;
     }
   }
 `;
@@ -50,12 +50,12 @@ const iconContainerStyle = css`
       display: flex;
       flex-direction: row;
       Button {
-        margin-top: 15px;
+        margin-top: 31px;
         margin-right: 20px;
         float: right;
       }
       #head {
-        margin-top: 22px;
+        margin-top: 38px;
         margin-right: 15px;
         font-size: 17px;
         font-weight: 500;
@@ -125,7 +125,7 @@ const LayoutFooter = () => (
           href="https://www.apache.org/foundation/sponsorship.html" 
           target="_blank"
         >
-          Dontate &nbsp;|
+          Donate &nbsp;|
         </a>
 
         <a 

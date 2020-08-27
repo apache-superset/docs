@@ -7,7 +7,6 @@ const { SubMenu } = Menu;
 export default () => {
   const menus = useMenus();
   const [ openKey, selectedKey ] = getActiveMenuItem(menus);
-
   return (
     <Menu
       mode="inline"
