@@ -1,18 +1,24 @@
+const getPathName = (path) => {
+  return path.replace(/[\/]+/g, '');
+}
+
 //get active menus
 export const getActiveMenuItem = (items) => {
   let selectedKey;
   let openKey;
-  const path = window.location.pathname;
+  const path = getPathName(window.location.pathname);
   items.forEach(({menu, id: itemId, route: itemRoute}) => {
      if (menu) {
        menu.forEach(({id: menuId, route})=> {
-         if (route === path) {
+         console.log(route)
+         if (getPathName(route) === path) {
            selectedKey = menuId;
            openKey = itemId;
          }
        });
      } else {
-       if (itemRoute === path)
+        console.log(itemRoute)
+       if (getPathName(itemRoute) === path)
        {
          selectedKey = itemId;
          openKey = itemId;
@@ -54,10 +60,10 @@ export const getPreviousAndNextUrls = (menus) => {
   const items = listOrderedMenu(menus);
   let prevUrl;
   let nextUrl;
-  const path = typeof window !== 'undefined' && window.location.pathname;
+  const path = typeof window !== 'undefined' && getPathName(window.location.pathname);
 
   items.forEach(({route}, index)=> {
-    if (route === path) {
+    if (getPathName(route) === path) {
       if (items[index-1]) {
         prevUrl = items[index - 1].route;
       }
