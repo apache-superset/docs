@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useRef }from 'react';
 import { theme, useConfig } from 'docz';
 import { Link } from "gatsby"
 import { ThemeProvider } from 'theme-ui';
-import { Button, Col } from 'antd';
+import { Button, Col, Carousel } from 'antd';
 import { css } from '@emotion/core';
 import { supersetTheme } from '@superset-ui/style';
 import { 
@@ -18,13 +18,16 @@ import Image from '../components/image';
 import 'antd/dist/antd.css';
 
 const { colors } = supersetTheme;
-
+console.log('colors', colors)
 const titleContainer= css`
   position: relative;
   text-align: center;
   padding-top: 211px;
   z-index: 0;
   padding-bottom: 200px;
+  background-image: linear-gradient(to top, rgba(255, 255, 255, .5), rgba(100, 100, 100, 0)), 
+  url('/images/data-point.jpg');
+  background-size: cover;
   Button {
     margin-top: 39px
   }
@@ -121,12 +124,52 @@ const integrationSection = css`
     flex-wrap: wrap;
     justify-content: space-around;
     margin-bottom: 50px;
+    a {
+      margin: 20px;
+    }
+  }
+
+`;
+
+const linkCarousel = css`
+  .toggleContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+    .toggleBtns {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      .toggle {
+        margin: 15px;
+        padding: 43px;
+        color: #bfbfbf;
+        border: 1px solid #bfbfbf;
+        border-radius: 3px;
+        padding: 50px;
+        &:hover {
+          cursor: pointer;
+          color:${colors.primary.base};
+          border: 1px solid ${colors.primary.base};
+        }
+      }
+    }
+    .imageContainer {
+      img {
+        height: 400px;
+        display: block;
+        margin: 0 auto;
+      }
+    }
   }
 `;
 
 const Theme = (props) => {
+  const  [display, setDisplay] = useState(0);
+
   const config = useConfig()
-  
+  const slider = useRef(null);
+     
   return (
     <ThemeProvider theme={config}>
       <Layout> 
@@ -192,6 +235,35 @@ const Theme = (props) => {
           </ul>
         </div>
 
+        <div css={linkCarousel}>
+          <h2 css={secondaryHeading}>Explore</h2>
+          <div className="toggleContainer">
+            <div className="toggleBtns">
+                <div className="toggle" onClick={()=>slider.current.prev()}>
+                  <span> 
+                    Explore your data using the array of data visualizations. 
+                  </span>
+                </div>
+
+                <div className="toggle" onClick={()=>slider.current.next()}>
+                  <span>
+                    View your data through interactive dashboards
+                  </span>
+                </div>
+            </div>
+            <Carousel ref={slider} effect="scrollx">
+              <div className="imageContainer">
+                <img src="/images/google-analytics.png" />
+              </div>
+              <div className="imageContainer">
+                <img src="/images/google-analytics.png" />
+              </div>
+            </Carousel>
+          </div>
+        </div>
+
+          
+        
         <div css={integrationSection}>
           <h2 css={secondaryHeading}>   
             Supported Data Sources
