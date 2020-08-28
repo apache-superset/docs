@@ -33,6 +33,9 @@ const headerStyle = css`
   .ant-menu {
     background: transparent;
   }
+  .ant-menu-horizontal {
+    border-bottom: none;
+  }
 `;
 
 const getStartedButtonStyle = css`
@@ -53,6 +56,7 @@ const sidebarStyle = css`
   top: 64px;
   bottom: 0px;
   left: 0px;
+  border-right: 1px solid #bfbfbf;
 `;
 
 const contentStyle = css`

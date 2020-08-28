@@ -36,6 +36,10 @@ const resourcesContainer = css`
           height: 24px;
           margin-bottom: 40px;
         }
+        .preset {
+          margin-top: -13px;
+          margin-bottom: -10px;
+        }
       }
         a {
           display: block;
@@ -60,6 +64,7 @@ const title = css`
   margin-top: 150px;
   color:${colors.grayscale.base};
   text-align: center;
+  font-size: 60px;
 `;
 
 const Resources = () => {
@@ -70,7 +75,43 @@ const Resources = () => {
           Resources
         </h1>
         <div className="links">
-
+          <div className="resourcesLinks">
+            <div className="link">
+              <div>
+                <Image imageName="docker" />
+              </div>
+              <a 
+                href="https://hub.docker.com/r/preset/superset/" 
+                target="_blank"
+              > 
+                <Button type="primary"> 
+                  Docker Image
+                </Button>
+              </a>
+            </div>
+            <div className="link">
+              <div className="preset"><Image imageName="preset" /></div>
+              <a 
+                href="https://preset.io/blog/"
+                target="_blank"
+              >
+                <Button type="primary">
+                  Preset Blog  
+                </Button>
+              </a>
+            </div>
+            <div className="link">
+              <div><img src="/images/youtube.png" alt="youtube"  className="youtube" /></div>
+              <a
+                href="https://www.youtube.com/channel/UCMuwrvBsg_jjI2gLcm04R0g"
+                target="_blank"
+              >  
+                <Button type="primary">
+                  Youtube Page
+                </Button>
+              </a>
+            </div>
+          </div>
           <div className="videos">
             <iframe 
               width="560" 
@@ -105,44 +146,8 @@ const Resources = () => {
               frameBorder="0" 
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
               allowFullScreen
-              ></iframe>
-          </div>
-          <div className="resourcesLinks">
-            <div className="link">
-              <div>
-                <Image imageName="docker" />
-              </div>
-              <a 
-                href="https://hub.docker.com/r/preset/superset/" 
-                target="_blank"
-              > 
-                <Button type="primary"> 
-                  Docker Image
-                </Button>
-              </a>
-            </div>
-            <div className="link">
-              <div><Image imageName="preset" /></div>
-              <a 
-                href="https://preset.io/blog/"
-                target="_blank"
               >
-                <Button type="primary">
-                  Preset Blog  
-                </Button>
-              </a>
-            </div>
-            <div className="link">
-              <div><img src="/images/youtube.png" alt="youtube"  className="youtube" /></div>
-              <a
-                href="https://www.youtube.com/channel/UCMuwrvBsg_jjI2gLcm04R0g"
-                target="_blank"
-              >  
-                <Button type="primary">
-                  Youtube Page
-                </Button>
-              </a>
-            </div>
+            </iframe>
           </div>
         </div>
       </div>
