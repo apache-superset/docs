@@ -1,4 +1,4 @@
-import React, { useState, useRef }from 'react';
+import React, { useState, useRef, useEffect}from 'react';
 import { theme, useConfig } from 'docz';
 import { Link } from "gatsby"
 import { ThemeProvider } from 'theme-ui';
@@ -11,6 +11,7 @@ import {
   DotChartOutlined,
   BoxPlotOutlined,
 } from '@ant-design/icons';
+import particles from './paticles';
 
 import { Databases } from '../resources/data';
 import Layout from '../components/layout';
@@ -18,7 +19,7 @@ import Image from '../components/image';
 import 'antd/dist/antd.css';
 
 const { colors } = supersetTheme;
-console.log('colors', colors)
+
 const titleContainer= css`
   position: relative;
   text-align: center;
@@ -26,7 +27,6 @@ const titleContainer= css`
   z-index: 0;
   padding-bottom: 200px;
   background-image: linear-gradient(to top, rgba(255, 255, 255, .5), rgba(100, 100, 100, 0)), 
-  url('/images/data-point.jpg');
   background-size: cover;
   Button {
     margin-top: 39px
@@ -142,11 +142,10 @@ const linkCarousel = css`
       justify-content: center;
       .toggle {
         margin: 15px;
-        padding: 43px;
         color: #bfbfbf;
         border: 1px solid #bfbfbf;
         border-radius: 3px;
-        padding: 50px;
+        padding: 30px;
         &:hover {
           cursor: pointer;
           color:${colors.primary.base};
@@ -163,19 +162,35 @@ const linkCarousel = css`
     }
   }
 `;
+const particlesContainer = css`
+  height: 500px;
+  width: 1100px;
+  background: transparent;
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: visible;
+`;
 
-const Theme = (props) => {
-  const  [display, setDisplay] = useState(0);
-
+const Theme = () => {
   const config = useConfig()
   const slider = useRef(null);
-     
+  const particlesRef = useRef(null);
+
+  useEffect(()=> {
+    particles.init(particlesRef.current);
+    particles.animate();
+  }, [])
   return (
     <ThemeProvider theme={config}>
       <Layout> 
         <div css={titleContainer}>
           <Image imageName="logoLg"/>
 
+          <div ref={particlesRef} css={particlesContainer}></div> 
           <h1 css={title}>
             Apache Superset (Incubating)
           </h1>
@@ -188,7 +203,6 @@ const Theme = (props) => {
               Get Started
             </Button>
           </Link>
-          
         </div>
 
         <div css={featureSectionStyle}>
@@ -239,31 +253,39 @@ const Theme = (props) => {
           <h2 css={secondaryHeading}>Explore</h2>
           <div className="toggleContainer">
             <div className="toggleBtns">
-                <div className="toggle" onClick={()=>slider.current.prev()}>
+                <div className="toggle" onClick={()=>slider.current.goTo(0)}>
+                  <h3>Explore</h3>
                   <span> 
                     Explore your data using the array of data visualizations. 
                   </span>
                 </div>
 
-                <div className="toggle" onClick={()=>slider.current.next()}>
+                <div className="toggle" onClick={()=>slider.current.goTo(1)}>
+                  <h2>View</h2>
                   <span>
                     View your data through interactive dashboards
+                  </span>
+                </div>
+                <div className="toggle" onClick={()=>slider.current.goTo(2)}>
+                  <h3>Investigate</h3>
+                  <span>
+                    Use sqlab to write queries to explore your data
                   </span>
                 </div>
             </div>
             <Carousel ref={slider} effect="scrollx">
               <div className="imageContainer">
-                <img src="/images/google-analytics.png" />
+                <img src="/images/pie-chart.png" />
               </div>
               <div className="imageContainer">
                 <img src="/images/google-analytics.png" />
               </div>
+              <div className="imageContainer">
+                <img src="/images/sqllab.png" />
+              </div>
             </Carousel>
           </div>
         </div>
-
-          
-        
         <div css={integrationSection}>
           <h2 css={secondaryHeading}>   
             Supported Data Sources
@@ -276,11 +298,8 @@ const Theme = (props) => {
               </a>
             ))}
           </ul>
-
           <span className="databaseSub"> .. and any other SQLAlchemy <a href="https://superset.incubator.apache.org/installation.html#database-dependencies"> compatible data source. </a> </span>
         </div>
-
-
       </Layout>
     </ThemeProvider>
   )
