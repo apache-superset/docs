@@ -54,6 +54,17 @@ const sidebarStyle = css`
 const contentStyle = css`
   margin-top: 3px;
   background-color: white;
+  h2 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  img {
+    max-width: 800px;
+  }
   blockquote {
     color: rgb(132, 146, 166);
     padding: 10px 30px;
@@ -67,6 +78,10 @@ const contentStyle = css`
     padding: 5px;
     background-color: #82ef8217;
     border-radius: 3px;
+    max-width: 800px;
+    code {
+      white-space: normal;
+    }
   }
   p {
     font-size: 16px;

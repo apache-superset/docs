@@ -11,7 +11,9 @@ const Theme = ({ children }) => {
     <ThemeProvider theme={config}>
       <Layout> 
         { children }
-        <NextLinks />
+        <div>
+          <NextLinks />
+        </div>
       </Layout>
     </ThemeProvider>
   )

@@ -125,7 +125,7 @@ const LayoutFooter = () => (
           href="https://www.apache.org/foundation/sponsorship.html" 
           target="_blank"
         >
-          Dontate &nbsp;|
+          Donate &nbsp;|
         </a>
 
         <a 
