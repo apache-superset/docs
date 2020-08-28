@@ -11,7 +11,6 @@ import {
   DotChartOutlined,
   BoxPlotOutlined,
 } from '@ant-design/icons';
-import particles from './paticles';
 
 import { Databases } from '../resources/data';
 import Layout from '../components/layout';
@@ -24,9 +23,8 @@ const titleContainer= css`
   position: relative;
   text-align: center;
   padding-top: 211px;
-  z-index: 0;
   padding-bottom: 200px;
-  background-image: linear-gradient(to top, rgba(255, 255, 255, .5), rgba(100, 100, 100, 0)), 
+  background-image: url('/images/data-point.jpg');
   background-size: cover;
   Button {
     margin-top: 39px
@@ -178,19 +176,12 @@ const particlesContainer = css`
 const Theme = () => {
   const config = useConfig()
   const slider = useRef(null);
-  const particlesRef = useRef(null);
 
-  useEffect(()=> {
-    particles.init(particlesRef.current);
-    particles.animate();
-  }, [])
   return (
     <ThemeProvider theme={config}>
       <Layout> 
         <div css={titleContainer}>
           <Image imageName="logoLg"/>
-
-          <div ref={particlesRef} css={particlesContainer}></div> 
           <h1 css={title}>
             Apache Superset (Incubating)
           </h1>
