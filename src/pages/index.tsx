@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useRef, useEffect}from 'react';
 import { theme, useConfig } from 'docz';
 import { Link } from "gatsby"
 import { ThemeProvider } from 'theme-ui';
-import { Button, Col } from 'antd';
+import { Button, Col, Carousel } from 'antd';
 import { css } from '@emotion/core';
 import { supersetTheme } from '@superset-ui/style';
 import { 
@@ -23,8 +23,9 @@ const titleContainer= css`
   position: relative;
   text-align: center;
   padding-top: 211px;
-  z-index: 0;
   padding-bottom: 200px;
+  background-image: url('/images/data-point.jpg');
+  background-size: cover;
   Button {
     margin-top: 39px
   }
@@ -121,18 +122,66 @@ const integrationSection = css`
     flex-wrap: wrap;
     justify-content: space-around;
     margin-bottom: 50px;
+    a {
+      margin: 20px;
+    }
   }
+
 `;
 
-const Theme = (props) => {
+const linkCarousel = css`
+  .toggleContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+    .toggleBtns {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      .toggle {
+        margin: 15px;
+        color: #bfbfbf;
+        border: 1px solid #bfbfbf;
+        border-radius: 3px;
+        padding: 30px;
+        &:hover {
+          cursor: pointer;
+          color:${colors.primary.base};
+          border: 1px solid ${colors.primary.base};
+        }
+      }
+    }
+    .imageContainer {
+      img {
+        height: 400px;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
+`;
+const particlesContainer = css`
+  height: 500px;
+  width: 1100px;
+  background: transparent;
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: visible;
+`;
+
+const Theme = () => {
   const config = useConfig()
-  
+  const slider = useRef(null);
+
   return (
     <ThemeProvider theme={config}>
       <Layout> 
         <div css={titleContainer}>
           <Image imageName="logoLg"/>
-
           <h1 css={title}>
             Apache Superset (Incubating)
           </h1>
@@ -145,7 +194,6 @@ const Theme = (props) => {
               Get Started
             </Button>
           </Link>
-          
         </div>
 
         <div css={featureSectionStyle}>
@@ -192,6 +240,43 @@ const Theme = (props) => {
           </ul>
         </div>
 
+        <div css={linkCarousel}>
+          <h2 css={secondaryHeading}>Explore</h2>
+          <div className="toggleContainer">
+            <div className="toggleBtns">
+                <div className="toggle" onClick={()=>slider.current.goTo(0)}>
+                  <h3>Explore</h3>
+                  <span> 
+                    Explore your data using the array of data visualizations. 
+                  </span>
+                </div>
+
+                <div className="toggle" onClick={()=>slider.current.goTo(1)}>
+                  <h2>View</h2>
+                  <span>
+                    View your data through interactive dashboards
+                  </span>
+                </div>
+                <div className="toggle" onClick={()=>slider.current.goTo(2)}>
+                  <h3>Investigate</h3>
+                  <span>
+                    Use sqlab to write queries to explore your data
+                  </span>
+                </div>
+            </div>
+            <Carousel ref={slider} effect="scrollx">
+              <div className="imageContainer">
+                <img src="/images/pie-chart.png" />
+              </div>
+              <div className="imageContainer">
+                <img src="/images/google-analytics.png" />
+              </div>
+              <div className="imageContainer">
+                <img src="/images/sqllab.png" />
+              </div>
+            </Carousel>
+          </div>
+        </div>
         <div css={integrationSection}>
           <h2 css={secondaryHeading}>   
             Supported Data Sources
@@ -204,11 +289,8 @@ const Theme = (props) => {
               </a>
             ))}
           </ul>
-
           <span className="databaseSub"> .. and any other SQLAlchemy <a href="https://superset.incubator.apache.org/installation.html#database-dependencies"> compatible data source. </a> </span>
         </div>
-
-
       </Layout>
     </ThemeProvider>
   )
