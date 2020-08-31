@@ -8,7 +8,7 @@ version: 1
 Deploy Locally with Docker
 -------------
 
-To get you started on trying out Superset locally, currently the best-supported method is via Docker, using ‘docker-compose’. Superset does not have official support for Windows, so we have provided a VM workaround below. (We will update this documentation once Windows is supported.)
+To get you started on trying out Superset locally, currently the best-supported method is via Docker, using `docker-compose`. Superset does not have official support for Windows, so we have provided a VM workaround below. (We will update this documentation once Windows is supported.)
 
 ### Step 0 - Install a Docker Engine and Docker Compose 
 
@@ -29,7 +29,7 @@ Windows:
 For Windows users, the best option may be to install an Ubuntu Desktop VM via [VirtualBox](https://www.virtualbox.org/) and proceed with the Docker on Linux instructions inside of that VM. It is recommended to assign at least 8GB of RAM to the virtual machine
 as well as provisioning a hard drive of at least 40GB, so that there will be enough space for both the OS and all of the required dependencies.
 
-### Step 1 - Clone Superset's Github repository
+### 1. Clone Superset's Github repository
 
 [Clone Superset's repo](https://github.com/apache/incubator-superset) in your terminal with the following command:
 
@@ -40,7 +40,7 @@ $ git clone https://github.com/apache/incubator-superset.git
 Once that command completes successfully, you should see a new `incubator-superset`
 folder in your current directory.
 
-### Step 2 - Launch Superset via `docker-compose up`
+### 2. Launch Superset via `docker-compose up`
 
 Next, `cd` into the folder you created in Step 1:
 
@@ -58,7 +58,7 @@ You should see a wall of logging output from the containers being launched on yo
 machine. Once this output slows to a crawl, you should have a running
 instance of Superset on your local machine!
     
-### Step 3 - Log In to Superset!
+### 3. Log In to Superset
 
 Your Superset local instance also includes a Postgres server to store your data and is already pre-loaded with some example datasets that ship with Superset. You can access Superset now via your web browser by visiting
 `http://localhost:8088`. Note that many browsers now default to `https` - if
@@ -66,8 +66,11 @@ yours is one of them, please make sure it uses `http`.
 
 Log in with the default username and password:
 
-```
+```bash
 username: admin
+```
+
+```bash
 password: admin 
 ```
 
