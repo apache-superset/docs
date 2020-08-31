@@ -102,7 +102,7 @@ const contentLayoutDocsStyle = css`
   left: 250px;
   right: 0px;
   bottom: 0px;
-  overflow: auto;
+  overflow: visible;
   aside {
     overflow: auto;
   }

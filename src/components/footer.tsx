@@ -25,11 +25,9 @@ const iconContainerStyle = css`
   background-color: #323232; 
   display: flex;
   flex-direction: row;
-  padding-top: 15px;
   .icons {
     float: right;
     width: 50%;
-    padding-left: 50px;
     svg {
       margin-top: 15px;
       color: #ccc;
@@ -68,30 +66,31 @@ const iconContainerStyle = css`
 
 const LayoutFooter = () => (
   <>
-    <div css={iconContainerStyle} >
-      <div className="icons">
-        <a href="https://apache-superset.slack.com/join/shared_invite/zt-g8lpruog-HeqpgYrwdfrD5OYhlU7hPQ#/" target="_blank">
-        <SlackSquareOutlined className="icon"/>
-        </a>
-        <a href="https://github.com/apache/incubator-superset" target="_blank">
-        <GithubOutlined className="icon" />
-        </a>
-        <a href="https://stackoverflow.com/questions/tagged/apache-superset+superset" target="_blank">
-        <img src="/images/so-icon.svg" className="icon svg"/>
-        </a>
-      </div>
-      <div className="communityBtn">
-        <div className="joinCommunity">
-          <span id="head"> Want to be part of Apache Superset?</span>
-          <Link to="/community">
-            <Button type="primary" size="large">
-              Join the Community!
-            </Button>
-          </Link>
+    
+    <Footer css={footerStyle}>
+      <div css={iconContainerStyle} >
+        <div className="icons">
+          <a href="https://apache-superset.slack.com/join/shared_invite/zt-g8lpruog-HeqpgYrwdfrD5OYhlU7hPQ#/" target="_blank">
+          <SlackSquareOutlined className="icon"/>
+          </a>
+          <a href="https://github.com/apache/incubator-superset" target="_blank">
+          <GithubOutlined className="icon" />
+          </a>
+          <a href="https://stackoverflow.com/questions/tagged/apache-superset+superset" target="_blank">
+          <img src="/images/so-icon.svg" className="icon svg"/>
+          </a>
+        </div>
+        <div className="communityBtn">
+          <div className="joinCommunity">
+            <span id="head"> Want to be part of Apache Superset?</span>
+            <Link to="/community">
+              <Button type="primary" size="large">
+                Join the Community!
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
-    <Footer css={footerStyle}>
       © Copyright {new Date().getFullYear()}, 
       <a 
         href="http://www.apache.org/"
