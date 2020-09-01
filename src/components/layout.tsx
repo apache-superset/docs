@@ -14,6 +14,7 @@ import "./layout.css"
 const { Header, Sider } = Layout;
 
 const layoutStyles = css`
+  font-family: Inter;
   .ant-layout {
     background-color: white !important;
   }

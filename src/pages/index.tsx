@@ -99,7 +99,6 @@ const featureSectionStyle= css`
         font-size: 20px;
         color:${colors.grayscale.dark2};
         line-height: 25px;
-        letter-spacing: 1px;
       }
     }
   }
