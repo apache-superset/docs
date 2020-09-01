@@ -3,8 +3,9 @@ import { Link } from "gatsby";
 import { Layout, Menu, Button } from 'antd';
 import { css } from '@emotion/core';
 
-import Logo from './image';
+import logoSvg from '../images/superset-logo-horiz.svg'
 import Footer from './footer';
+import SEO from "./seo"
 import AppMenu from './menu';
 import 'antd/dist/antd.css';
 import "./layout.css"
@@ -14,7 +15,7 @@ const { Header, Sider } = Layout;
 
 const layoutStyles = css`
   .ant-layout {
-    background-color: white !important; 
+    background-color: white !important;
   }
   Button {
     background: #20A7C9;
@@ -110,8 +111,9 @@ const contentLayoutDocsStyle = css`
 
 const logoStyle = css`
   float:left;
-  margin-left: -40px;
-  margin-top: 15px;
+  margin-left: -50px;
+  margin-top: 5px;
+  heigh: 30px;
 `
 
 
@@ -121,9 +123,10 @@ const AppLayout = ({ children }) => {
 
   return (
     <Layout css={layoutStyles}>
+      <SEO title="Welcome" />
       <Header css={headerStyle}>
         <Link to="/">
-          <Logo css={logoStyle} imageName="logoSm" />
+          <img height="50" css={logoStyle} src={logoSvg} />
         </Link>
         <Menu mode="horizontal">
           <Menu.Item>
@@ -133,16 +136,16 @@ const AppLayout = ({ children }) => {
             <Link to="/resources"> Resources</Link>
           </Menu.Item>
           <Menu.Item>
-            <Link to="/src-pages-docs-installation-index">Documentation</Link>
+            <Link to="/docs/intro">Documentation</Link>
           </Menu.Item>
         </Menu>
         <div css={getStartedButtonStyle}>
-          <Link to="/src-pages-docs-installation-index">
-            <Button type="primary" size="large">Get Started</Button>
+          <Link to="/docs/intro">
+          <Button type="primary" size="large">Get Started</Button>
           </Link>
         </div>
       </Header>
-      {isOnDocsPage ? 
+      {isOnDocsPage ?
         <>
           <Layout css={contentLayoutDocsStyle }>
             {isOnDocsPage &&
@@ -158,7 +161,7 @@ const AppLayout = ({ children }) => {
             </Layout>
           </Layout>
         </>
-      : 
+      :
         <Layout>
           { children }
           <Footer />

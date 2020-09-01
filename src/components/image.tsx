@@ -15,7 +15,7 @@ const Image = ({ imageName, type, width, height, ...otherProps}):Props => {
     query {
       logoSm: file(relativePath: { eq: "src/images/s.png" }) {
         childImageSharp {
-          fixed(width: 60) {
+          fixed(height: 30) {
             ...GatsbyImageSharpFixed
           }
         }
@@ -28,7 +28,15 @@ const Image = ({ imageName, type, width, height, ...otherProps}):Props => {
           }
         }
       }
- 
+
+      incubatorSm: file(relativePath: { eq: "src/images/incubator.png" }) {
+        childImageSharp {
+          fixed(width: 300) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+
       stackoverflow: file(relativePath: { eq: "src/images/stack_overflow.png" }) {
         childImageSharp {
           fixed(width: 60) {
@@ -72,7 +80,7 @@ const Image = ({ imageName, type, width, height, ...otherProps}):Props => {
   return type === 'db' ?
      <Img fixed={filter[0]?.node?.fixed} style={imgStyle} imgStyle={imgStyle}/>
     :
-     <Img fixed={data[imageName].childImageSharp.fixed} {...otherProps} />
+     <Img fixed={data[imageName]?.childImageSharp?.fixed} {...otherProps} />
   
 }
 

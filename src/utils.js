@@ -1,5 +1,5 @@
 const getPathName = (path) => {
-  return path.replace(/[\/]+/g, '');
+  return path.replace(/[/]+/g, '');
 }
 
 //get active menus
