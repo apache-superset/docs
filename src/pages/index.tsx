@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect}from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { theme, useConfig } from 'docz';
-import { Link } from "gatsby"
+import { Link } from 'gatsby';
 import { ThemeProvider } from 'theme-ui';
 import { Button, Col, Carousel } from 'antd';
 import { css } from '@emotion/core';
@@ -16,13 +16,12 @@ import { Databases } from '../resources/data';
 import Layout from '../components/layout';
 import Image from '../components/image';
 import 'antd/dist/antd.css';
-import SEO from "../components/seo"
-import logo from "../images/superset-logo-horiz-apache.svg";
-
+import SEO from '../components/seo';
+import logo from '../images/superset-logo-horiz-apache.svg';
 
 const { colors } = supersetTheme;
 
-const titleContainer= css`
+const titleContainer = css`
   position: relative;
   text-align: center;
   padding-top: 131px;
@@ -30,7 +29,7 @@ const titleContainer= css`
   background-image: url('/images/data-point.jpg');
   background-size: cover;
   Button {
-    margin-top: 39px
+    margin-top: 39px;
   }
   .logo-horiz {
     margin-top: 50px;
@@ -41,16 +40,16 @@ const titleContainer= css`
     background-color: #d1ecf1;
     border-color: #bee5eb;
     max-width: 600px;
-    margin: 0 auto ;
-    padding: .75rem 1.25rem;
+    margin: 0 auto;
+    padding: 0.75rem 1.25rem;
     margin-top: 83px;
     border: 1px solid transparent;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
   }
 `;
 
 const title = css`
-  color:${colors.grayscale.dark2};
+  color: ${colors.grayscale.dark2};
   font-size: 60px;
 `;
 
@@ -59,9 +58,9 @@ const secondaryHeading = css`
   text-align: center;
 `;
 
-const featureHeight="160";
+const featureHeight = '160';
 
-const featureSectionStyle= css`
+const featureSectionStyle = css`
   background: #fff;
   padding: 5vw 0;
   margin-top: 50px;
@@ -97,18 +96,18 @@ const featureSectionStyle= css`
         padding-top: 30px;
         flex-grow: 6;
         font-size: 16px;
-        color:${colors.grayscale.dark2};
+        color: ${colors.grayscale.dark2};
         line-height: 25px;
-        strong{
+        strong {
           font-size: 18px;
         }
       }
     }
   }
   .heading {
-      font-size: 25px;
-      width: 60%;
-      margin: 0 auto;
+    font-size: 25px;
+    width: 60%;
+    margin: 0 auto;
   }
 `;
 
@@ -135,7 +134,6 @@ const integrationSection = css`
       margin: 20px;
     }
   }
-
 `;
 
 const linkCarousel = css`
@@ -155,7 +153,7 @@ const linkCarousel = css`
         padding: 30px;
         &:hover {
           cursor: pointer;
-          color:${colors.primary.base};
+          color: ${colors.primary.base};
           border: 1px solid ${colors.primary.base};
         }
       }
@@ -185,7 +183,7 @@ const particlesContainer = css`
 `;
 
 const Theme = () => {
-  const config = useConfig()
+  const config = useConfig();
   const slider = useRef(null);
 
   return (
@@ -194,12 +192,12 @@ const Theme = () => {
         <div css={titleContainer}>
           <img width="600" className="logo-horiz" src={logo} />
           <h2>
-            Apache Superset is a modern data <br/>
+            Apache Superset is a modern data <br />
             exploration and visualization platform
           </h2>
-          <Image imageName="incubatorSm"/>
+          <Image imageName="incubatorSm" />
           <div>
-              <Link to="/docs/intro">
+            <Link to="/docs/intro">
               <Button type="primary" size="large">
                 Get Started
               </Button>
@@ -208,46 +206,67 @@ const Theme = () => {
         </div>
 
         <div css={featureSectionStyle}>
-          <h2 css={secondaryHeading}>
-            Overview
-          </h2>
-          <h4 className='heading'> Superset is fast, lightweight, intuitive, and loaded with options that make it easy for users of all skill sets to explore and visualize their data, from simple pie charts to highly detailed geospatial charts. </h4>
-          <ul className='featureList ant-row'>
-              <Col span={12}>
-                <li className='feature'>
-                    <span className="imagePlaceHolder"> <PieChartOutlined /> </span>
-                    <span className='featureText'><strong>
-                      Powerful and easy to use </strong><br/>
-                      Quickly and easily integrate and explore your data, using either our simple no-code viz builder or state of the art SQL IDE.
-                    </span>
-                </li>
+          <h2 css={secondaryHeading}>Overview</h2>
+          <h4 className="heading">
+            {' '}
+            Superset is fast, lightweight, intuitive, and loaded with options that make it easy for
+            users of all skill sets to explore and visualize their data, from simple pie charts to
+            highly detailed geospatial charts.{' '}
+          </h4>
+          <ul className="featureList ant-row">
+            <Col span={12}>
+              <li className="feature">
+                <span className="imagePlaceHolder">
+                  {' '}
+                  <PieChartOutlined />{' '}
+                </span>
+                <span className="featureText">
+                  <strong>Powerful and easy to use </strong>
+                  <br />
+                  Quickly and easily integrate and explore your data, using either our simple
+                  no-code viz builder or state of the art SQL IDE.
+                </span>
+              </li>
 
+              <li className="feature">
+                <span className="imagePlaceHolder">
+                  {' '}
+                  <BoxPlotOutlined />{' '}
+                </span>
+                <span className="featureText">
+                  <strong> Integrates with modern databases</strong>
+                  <br /> Superset can connect to any SQL based datasource through SQL Alchemy,
+                  including modern cloud native data sources and engines at petabyte scale.
+                </span>
+              </li>
+            </Col>
 
-                <li className='feature'>
-                  <span className="imagePlaceHolder"> <BoxPlotOutlined /> </span>
-                  <span className='featureText'>
-                    <strong> Integrates with modern databases</strong>
-                    <br/> Superset can connect to any SQL based datasource through SQL Alchemy, including modern cloud native data sources and engines at petabyte scale.
-                  </span>
-                </li>
-              </Col>
-
-              <Col span={12}>
-                <li className='feature'>
-                    <span className="imagePlaceHolder"> <BarChartOutlined /> </span>
-                    <span className='featureText'>
-                      <strong> Modern architecture </strong><br/>
-                      Superset is lightweight and highly scalable, leveraging the power of your existing data infrastructure without requiring yet another ingestion layer.
-                    </span>
-                </li>
-                <li className='feature'>
-                    <span className="imagePlaceHolder"> <DotChartOutlined /> </span>
-                    <span className='featureText'>
-                    <strong> Rich visualizations and dashboards </strong> <br/>
-                    Superset ships with a wide array of beautiful visualizations. Our visualization plug-in architecture makes it easy to build custom visualizations that drop directly into Superset.
-                    </span>
-                </li>
-              </Col>
+            <Col span={12}>
+              <li className="feature">
+                <span className="imagePlaceHolder">
+                  {' '}
+                  <BarChartOutlined />{' '}
+                </span>
+                <span className="featureText">
+                  <strong> Modern architecture </strong>
+                  <br />
+                  Superset is lightweight and highly scalable, leveraging the power of your existing
+                  data infrastructure without requiring yet another ingestion layer.
+                </span>
+              </li>
+              <li className="feature">
+                <span className="imagePlaceHolder">
+                  {' '}
+                  <DotChartOutlined />{' '}
+                </span>
+                <span className="featureText">
+                  <strong> Rich visualizations and dashboards </strong> <br />
+                  Superset ships with a wide array of beautiful visualizations. Our visualization
+                  plug-in architecture makes it easy to build custom visualizations that drop
+                  directly into Superset.
+                </span>
+              </li>
+            </Col>
           </ul>
         </div>
 
@@ -255,25 +274,19 @@ const Theme = () => {
           <h2 css={secondaryHeading}>Explore</h2>
           <div className="toggleContainer">
             <div className="toggleBtns">
-                <div className="toggle" onClick={()=>slider.current.goTo(0)}>
-                  <h3>Explore</h3>
-                  <span>
-                    Explore your data using the array of data visualizations.
-                  </span>
-                </div>
+              <div className="toggle" onClick={() => slider.current.goTo(0)}>
+                <h3>Explore</h3>
+                <span>Explore your data using the array of data visualizations.</span>
+              </div>
 
-                <div className="toggle" onClick={()=>slider.current.goTo(1)}>
-                  <h3>View</h3>
-                  <span>
-                    View your data through interactive dashboards
-                  </span>
-                </div>
-                <div className="toggle" onClick={()=>slider.current.goTo(2)}>
-                  <h3>Investigate</h3>
-                  <span>
-                    Use sqlab to write queries to explore your data
-                  </span>
-                </div>
+              <div className="toggle" onClick={() => slider.current.goTo(1)}>
+                <h3>View</h3>
+                <span>View your data through interactive dashboards</span>
+              </div>
+              <div className="toggle" onClick={() => slider.current.goTo(2)}>
+                <h3>Investigate</h3>
+                <span>Use sqlab to write queries to explore your data</span>
+              </div>
             </div>
             <Carousel ref={slider} effect="scrollx">
               <div className="imageContainer">
@@ -289,23 +302,28 @@ const Theme = () => {
           </div>
         </div>
         <div css={integrationSection}>
-          <h2 css={secondaryHeading}>
-            Supported Data Sources
-          </h2>
+          <h2 css={secondaryHeading}>Supported Data Sources</h2>
 
           <ul className="databaseList">
-            {Databases.map(({title, href, imgName: imageName, width, height})=> (
-              <a href={href} target="_blank">
-                <Image {...{imageName, type: "db", width, height}} />
+            {Databases.map(({ title, href, imgName: imageName, width, height }) => (
+              <a href={href} target="_blank" key={imageName}>
+                <Image {...{ imageName, type: 'db', width, height }} />
               </a>
             ))}
           </ul>
-          <span className="databaseSub"> .. and any other SQLAlchemy <a href="https://superset.incubator.apache.org/installation.html#database-dependencies"> compatible data source. </a> </span>
+          <span className="databaseSub">
+            {' '}
+            .. and any other SQLAlchemy{' '}
+            <a href="https://superset.incubator.apache.org/installation.html#database-dependencies">
+              {' '}
+              compatible data source.{' '}
+            </a>{' '}
+          </span>
         </div>
       </Layout>
     </ThemeProvider>
-  )
-}
+  );
+};
 
 // @ts-ignore
-export default theme()(Theme)
+export default theme()(Theme);

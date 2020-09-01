@@ -1,6 +1,6 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
 interface Props {
   imageName?: string;
@@ -10,7 +10,7 @@ interface Props {
   otherProps?: any;
 }
 
-const Image = ({ imageName, type, width, height, ...otherProps}):Props => {
+const Image = ({ imageName, type, width, height, ...otherProps }): Props => {
   const data = useStaticQuery(graphql`
     query {
       logoSm: file(relativePath: { eq: "src/images/s.png" }) {
@@ -64,24 +64,24 @@ const Image = ({ imageName, type, width, height, ...otherProps}):Props => {
       getAllImages: allImageSharp {
         edges {
           node {
-            fixed(height:70) {
+            fixed(height: 70) {
               ...GatsbyImageSharpFixed
               originalName
             }
           }
         }
       }
-   }
+    }
   `);
 
-  const filter = data.getAllImages.edges.filter(n=> n.node.fixed.originalName === imageName)
-  const imgStyle = width && height ? {width, height} : {};
+  const filter = data.getAllImages.edges.filter((n) => n.node.fixed.originalName === imageName);
+  const imgStyle = width && height ? { width, height } : {};
 
-  return type === 'db' ?
-     <Img fixed={filter[0]?.node?.fixed} style={imgStyle} imgStyle={imgStyle}/>
-    :
-     <Img fixed={data[imageName]?.childImageSharp?.fixed} {...otherProps} />
-  
-}
+  return type === 'db' ? (
+    <Img fixed={filter[0]?.node?.fixed} style={imgStyle} imgStyle={imgStyle} />
+  ) : (
+    <Img fixed={data[imageName]?.childImageSharp?.fixed} {...otherProps} />
+  );
+};
 
 export default Image;
