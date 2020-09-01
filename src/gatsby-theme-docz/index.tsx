@@ -9,7 +9,7 @@ const Theme = ({ children }) => {
   const config = useConfig()
   return (
     <ThemeProvider theme={config}>
-      <Layout> 
+      <Layout>
         { children }
         <div>
           <NextLinks />

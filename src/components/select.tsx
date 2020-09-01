@@ -13,8 +13,7 @@ const VersionSelect = () => {
   const handleChange = (e) => {
     console.log('e', e);
     // @ts-ignore
-    window.location = "/src-pages-docs-installation-index?version="+e;
-    
+    window.location = "/docs/intro?version="+e;
   }
   return(
     <div>
