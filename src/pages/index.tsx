@@ -96,10 +96,12 @@ const featureSectionStyle= css`
         display: block;
         padding-top: 30px;
         flex-grow: 6;
-        font-size: 20px;
+        font-size: 16px;
         color:${colors.grayscale.dark2};
         line-height: 25px;
-        letter-spacing: 1px;
+        strong{
+          font-size: 18px;
+        }
       }
     }
   }
@@ -209,13 +211,13 @@ const Theme = () => {
           <h2 css={secondaryHeading}>
             Overview
           </h2>
-          <h4 className='heading'> Superset is fast, lightweight, intuitive, and loaded with options that make it easy for users of all skill sets to explore and visualize their data, from simple pie charts to highly detailed deck.gl geospatial charts. </h4>
+          <h4 className='heading'> Superset is fast, lightweight, intuitive, and loaded with options that make it easy for users of all skill sets to explore and visualize their data, from simple pie charts to highly detailed geospatial charts. </h4>
           <ul className='featureList ant-row'>
               <Col span={12}>
                 <li className='feature'>
                     <span className="imagePlaceHolder"> <PieChartOutlined /> </span>
-                    <span className='featureText'><b>
-                      Powerful and easy to use </b><br/>
+                    <span className='featureText'><strong>
+                      Powerful and easy to use </strong><br/>
                       Quickly and easily integrate and explore your data, using either our simple no-code viz builder or state of the art SQL IDE.
                     </span>
                 </li>
@@ -224,7 +226,7 @@ const Theme = () => {
                 <li className='feature'>
                   <span className="imagePlaceHolder"> <BoxPlotOutlined /> </span>
                   <span className='featureText'>
-                    <b> Integrates with modern data sources </b>
+                    <strong> Integrates with modern databases</strong>
                     <br/> Superset can connect to any SQL based datasource through SQL Alchemy, including modern cloud native data sources and engines at petabyte scale.
                   </span>
                 </li>
@@ -234,14 +236,14 @@ const Theme = () => {
                 <li className='feature'>
                     <span className="imagePlaceHolder"> <BarChartOutlined /> </span>
                     <span className='featureText'>
-                      <b> Modern architecture </b><br/>
+                      <strong> Modern architecture </strong><br/>
                       Superset is lightweight and highly scalable, leveraging the power of your existing data infrastructure without requiring yet another ingestion layer.
                     </span>
                 </li>
                 <li className='feature'>
                     <span className="imagePlaceHolder"> <DotChartOutlined /> </span>
                     <span className='featureText'>
-                    <b> Rich visualizations and dashboards </b> <br/>
+                    <strong> Rich visualizations and dashboards </strong> <br/>
                     Superset ships with a wide array of beautiful visualizations. Our visualization plug-in architecture makes it easy to build custom visualizations that drop directly into Superset.
                     </span>
                 </li>
