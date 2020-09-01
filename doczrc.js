@@ -10,5 +10,8 @@ export default {
     'Database Connectors',
     'Build Your Own Viz Plugins',
     'Best Practices',
+    'Contributing',
+    'Roadmap',
+    'Security',
   ],
 }

@@ -17,6 +17,7 @@ import Layout from '../components/layout';
 import Image from '../components/image';
 import 'antd/dist/antd.css';
 import SEO from "../components/seo"
+import logo from "../images/superset-logo-horiz-apache.svg";
 
 
 const { colors } = supersetTheme;
@@ -30,6 +31,10 @@ const titleContainer= css`
   background-size: cover;
   Button {
     margin-top: 39px
+  }
+  .logo-horiz {
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
   .alert {
     color: #0c5460;
@@ -185,10 +190,7 @@ const Theme = () => {
     <ThemeProvider theme={config}>
       <Layout>
         <div css={titleContainer}>
-          <Image imageName="logoLg"/>
-          <h1 css={title}>
-            Apache Superset
-          </h1>
+          <img width="600" className="logo-horiz" src={logo} />
           <h2>
             Apache Superset is a modern data <br/>
             exploration and visualization platform
