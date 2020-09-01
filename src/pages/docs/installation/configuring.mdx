@@ -1,0 +1,223 @@
+---
+name: Configuring For Scale
+menu: Installation
+route: /docs/installation/configuring-superset-for-scale
+index: 3
+version: 1
+---
+
+Configuring For Scale
+-------------
+
+### Configuration
+
+To configure your application, you need to create a file `superset_config.py` and make sure it is in your `PYTHONPATH`. Here are some of the parameters you can copy / paste in that configuration module:
+
+```
+#---------------------------------------------------------
+# Superset specific config
+#---------------------------------------------------------
+ROW_LIMIT = 5000
+
+SUPERSET_WEBSERVER_PORT = 8088
+#---------------------------------------------------------
+
+#---------------------------------------------------------
+# Flask App Builder configuration
+#---------------------------------------------------------
+# Your App secret key
+SECRET_KEY = '\2\1thisismyscretkey\1\2\e\y\y\h'
+
+# The SQLAlchemy connection string to your database backend
+# This connection defines the path to the database that stores your
+# superset metadata (slices, connections, tables, dashboards, ...).
+# Note that the connection information to connect to the datasources
+# you want to explore are managed directly in the web UI
+SQLALCHEMY_DATABASE_URI = 'sqlite:////path/to/superset.db'
+
+# Flask-WTF flag for CSRF
+WTF_CSRF_ENABLED = True
+# Add endpoints that need to be exempt from CSRF protection
+WTF_CSRF_EXEMPT_LIST = []
+# A CSRF token that expires in 1 year
+WTF_CSRF_TIME_LIMIT = 60 * 60 * 24 * 365
+
+# Set this API key to enable Mapbox visualizations
+MAPBOX_API_KEY = ''
+```
+
+All the parameters and default values defined in [https://github.com/apache/incubator-superset/blob/master/superset/config.py](https://github.com/apache/incubator-superset/blob/master/superset/config.py) can be altered in your local `superset_config.py`. Administrators will want to read through the file to understand what can be configured locally as well as the default values in place.
+
+Since `superset_config.py` acts as a Flask configuration module, it can be used to alter the settings Flask itself, as well as Flask extensions like `flask-wtf`, `flask-cache`, `flask-migrate`, and `flask-appbuilder`. Flask App Builder, the web framework used by Superset, offers many configuration settings. Please consult the [Flask App Builder Documentation](https://flask-appbuilder.readthedocs.org/en/latest/config.html) for more information on how to configure it.
+
+Make sure to change:
+
+- `SQLALCHEMY_DATABASE_URI`: by default it is stored at ~/.superset/superset.db
+- `SECRET_KEY`: to a long random string
+
+If you need to exempt endpoints from CSRF (e.g. if you are running a custom auth postback endpoint), you can add the endpoints to `WTF_CSRF_EXEMPT_LIST`:
+
+```
+WTF_CSRF_EXEMPT_LIST = [‘’]
+```
+
+### Flask AppBuilder Permissions
+
+By default, every time the Flask-AppBuilder (FAB) app is initialized the permissions and views are added automatically to the backend and associated with the ‘Admin’ role. The issue, however, is when you are running multiple concurrent workers this creates a lot of contention and race conditions when defining permissions and views.
+
+To alleviate this issue, the automatic updating of permissions can be disabled by setting FAB_UPDATE_PERMS = False (defaults to True).
+
+In a production environment initialization could take on the following form:
+
+```
+superset init gunicorn -w 10 … superset:app
+```
+
+### Running on a WSGI HTTP Server
+
+While you can run Superset on NGINX or Apache, we recommend using Gunicorn in async mode. This enables impressive concurrency even and is fairly easy to install and configure. Please refer to the documentation of your preferred technology to set up this Flask WSGI application in a way that works well in your environment. Here’s an async setup known to work well in production:
+
+```
+      -w 10 \
+      -k gevent \
+      --timeout 120 \
+      -b  0.0.0.0:6666 \
+      --limit-request-line 0 \
+      --limit-request-field_size 0 \
+      --statsd-host localhost:8125 \
+      "superset.app:create_app()"
+```
+
+Refer to the [Gunicorn documentation](https://docs.gunicorn.org/en/stable/design.html) for more information. *Note that the development web server (`superset run` or `flask run`) is not intended for production use.*
+
+If you're not using Gunicorn, you may want to disable the use of `flask-compress` by setting `COMPRESS_REGISTER = False` in your `superset_config.py`.
+
+
+### Configurationg Behind a Load Balancer
+
+If you are running superset behind a load balancer or reverse proxy (e.g. NGINX or ELB on AWS), you may need to utilize a healthcheck endpoint so that your load balancer knows if your superset instance is running. This is provided at `/health` which will return a 200 response containing “OK” if the the webserver is running.
+
+If the load balancer is inserting `X-Forwarded-For/X-Forwarded-Proto` headers, you should set `ENABLE_PROXY_FIX = True` in the superset config file (`superset_config.py`) to extract and use the headers.
+
+In case the reverse proxy is used for providing SSL encryption, an explicit definition of the `X-Forwarded-Proto` may be required. For the Apache webserver this can be set as follows:
+
+```
+RequestHeader set X-Forwarded-Proto "https"
+```
+
+### Caching
+
+
+Superset uses [Flask-Cache](https://pythonhosted.org/Flask-Cache/) for caching purpose. Configuring your caching backend is as easy as providing a `CACHE_CONFIG`, constant in your `superset_config.py` that complies with the Flask-Cache specifications.
+
+Flask-Cache supports multiple caching backends (Redis, Memcached, SimpleCache (in-memory), or the local filesystem). 
+
+- Memcached: we recommend using [pylibmc](https://pypi.org/project/pylibmc/) client library as `python-memcached` does not handle storing binary data correctly. 
+- Redis: we recommend the [redis](https://pypi.python.org/pypi/redis) Python package
+
+Both of these libraries can be installed using `pip install <libraryname>`.
+
+For setting your timeouts, this is done in the Superset metadata and goes up the “timeout searchpath”, from your slice configuration, to your data source’s configuration, to your database’s and ultimately falls back into your global default defined in `CACHE_CONFIG`.
+
+```
+CACHE_CONFIG = {
+    'CACHE_TYPE': 'redis',
+    'CACHE_DEFAULT_TIMEOUT': 60 * 60 * 24, # 1 day default (in secs)
+    'CACHE_KEY_PREFIX': 'superset_results',
+    'CACHE_REDIS_URL': 'redis://localhost:6379/0',
+}
+```
+
+It is also possible to pass a custom cache initialization function in the config to handle additional caching use cases. The function must return an object that is compatible with the [Flask-Cache API](https://pythonhosted.org/Flask-Cache/).
+
+```python
+from custom_caching import CustomCache
+
+def init_cache(app):
+    """Takes an app instance and returns a custom cache backend"""
+    config = {
+        'CACHE_DEFAULT_TIMEOUT': 60 * 60 * 24, # 1 day default (in secs)
+        'CACHE_KEY_PREFIX': 'superset_results',
+    }
+    return CustomCache(app, config)
+
+CACHE_CONFIG = init_cache
+```
+
+Superset has a Celery task that will periodically warm up the cache based on different strategies. To use it, add the following to the `CELERYBEAT_SCHEDULE` section in `config.py`:
+
+
+```python
+CELERYBEAT_SCHEDULE = {
+    'cache-warmup-hourly': {
+        'task': 'cache-warmup',
+        'schedule': crontab(minute=0, hour='*'),  # hourly
+        'kwargs': {
+            'strategy_name': 'top_n_dashboards',
+            'top_n': 5,
+            'since': '7 days ago',
+        },
+    },
+}
+```
+
+This will cache all the charts in the top 5 most popular dashboards every hour. For other strategies, check the `superset/tasks/cache.py` file.
+
+### Caching Thumbnails
+
+This is an optional feature that can be turned on by activating it’s feature flag on config:
+
+```
+FEATURE_FLAGS = {
+    "THUMBNAILS": True,
+    "THUMBNAILS_SQLA_LISTENERS": True,
+}
+```
+
+For this feature you will need a cache system and celery workers. All thumbnails are store on cache and are processed asynchronously by the workers.
+
+An example config where images are stored on S3 could be:
+
+```python
+from flask import Flask
+from s3cache.s3cache import S3Cache
+
+...
+
+class CeleryConfig(object):
+    BROKER_URL = "redis://localhost:6379/0"
+    CELERY_IMPORTS = ("superset.sql_lab", "superset.tasks", "superset.tasks.thumbnails")
+    CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
+    CELERYD_PREFETCH_MULTIPLIER = 10
+    CELERY_ACKS_LATE = True
+
+
+CELERY_CONFIG = CeleryConfig
+
+def init_thumbnail_cache(app: Flask) -> S3Cache:
+    return S3Cache("bucket_name", 'thumbs_cache/')
+
+
+THUMBNAIL_CACHE_CONFIG = init_thumbnail_cache
+# Async selenium thumbnail task will use the following user
+THUMBNAIL_SELENIUM_USER = "Admin"
+```
+
+Using the above example cache keys for dashboards will be `superset_thumb__dashboard__{ID}`. You can override the base URL for selenium using:
+
+```
+WEBDRIVER_BASEURL = "https://superset.company.com"
+```
+
+Additional selenium web drive configuration can be set using `WEBDRIVER_CONFIGURATION`. You can implement a custom function to authenticate selenium. The default function uses the `flask-login` session cookie. Here's an example of a custom function signature:
+
+```python
+def auth_driver(driver: WebDriver, user: "User") -> WebDriver:
+    pass
+```
+
+Then on configuration:
+
+```
+WEBDRIVER_AUTH_FUNC = auth_driver
+```
