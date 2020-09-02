@@ -1,30 +1,25 @@
 ---
-name: Configuring For Scale
-menu: Installation
-route: /docs/installation/configuring-superset-for-scale
+name: Configuring Superset
+menu: Installation and Configuration
+route: /docs/installation/configuring-superset
 index: 3
 version: 1
 ---
 
-Configuring For Scale
+Configuring Superset
 -------------
 
 ### Configuration
 
-To configure your application, you need to create a file `superset_config.py` and make sure it is in your `PYTHONPATH`. Here are some of the parameters you can copy / paste in that configuration module:
+To configure your application, you need to create a file `superset_config.py` and add it to your `PYTHONPATH`. Here are some of the parameters you can set in that file:
 
 ```
-#---------------------------------------------------------
 # Superset specific config
-#---------------------------------------------------------
 ROW_LIMIT = 5000
 
 SUPERSET_WEBSERVER_PORT = 8088
-#---------------------------------------------------------
 
-#---------------------------------------------------------
 # Flask App Builder configuration
-#---------------------------------------------------------
 # Your App secret key
 SECRET_KEY = '\2\1thisismyscretkey\1\2\e\y\y\h'
 
@@ -65,7 +60,7 @@ WTF_CSRF_EXEMPT_LIST = [‘’]
 
 By default, every time the Flask-AppBuilder (FAB) app is initialized the permissions and views are added automatically to the backend and associated with the ‘Admin’ role. The issue, however, is when you are running multiple concurrent workers this creates a lot of contention and race conditions when defining permissions and views.
 
-To alleviate this issue, the automatic updating of permissions can be disabled by setting FAB_UPDATE_PERMS = False (defaults to True).
+To alleviate this issue, the automatic updating of permissions can be disabled by setting `FAB_UPDATE_PERMS = False` (defaults to True).
 
 In a production environment initialization could take on the following form:
 
@@ -93,7 +88,7 @@ Refer to the [Gunicorn documentation](https://docs.gunicorn.org/en/stable/design
 If you're not using Gunicorn, you may want to disable the use of `flask-compress` by setting `COMPRESS_REGISTER = False` in your `superset_config.py`.
 
 
-### Configurationg Behind a Load Balancer
+### Configuration Behind a Load Balancer
 
 If you are running superset behind a load balancer or reverse proxy (e.g. NGINX or ELB on AWS), you may need to utilize a healthcheck endpoint so that your load balancer knows if your superset instance is running. This is provided at `/health` which will return a 200 response containing “OK” if the the webserver is running.
 
@@ -105,119 +100,134 @@ In case the reverse proxy is used for providing SSL encryption, an explicit defi
 RequestHeader set X-Forwarded-Proto "https"
 ```
 
-### Caching
+### Custom OAuth2 Configuration
 
+Beyond FAB supported providers (Github, Twitter, LinkedIn, Google, Azure, etc), its easy to connect Superset with other OAuth2 Authorization Server implementations that support “code” authorization.
 
-Superset uses [Flask-Cache](https://pythonhosted.org/Flask-Cache/) for caching purpose. Configuring your caching backend is as easy as providing a `CACHE_CONFIG`, constant in your `superset_config.py` that complies with the Flask-Cache specifications.
-
-Flask-Cache supports multiple caching backends (Redis, Memcached, SimpleCache (in-memory), or the local filesystem). 
-
-- Memcached: we recommend using [pylibmc](https://pypi.org/project/pylibmc/) client library as `python-memcached` does not handle storing binary data correctly. 
-- Redis: we recommend the [redis](https://pypi.python.org/pypi/redis) Python package
-
-Both of these libraries can be installed using `pip install <libraryname>`.
-
-For setting your timeouts, this is done in the Superset metadata and goes up the “timeout searchpath”, from your slice configuration, to your data source’s configuration, to your database’s and ultimately falls back into your global default defined in `CACHE_CONFIG`.
-
-```
-CACHE_CONFIG = {
-    'CACHE_TYPE': 'redis',
-    'CACHE_DEFAULT_TIMEOUT': 60 * 60 * 24, # 1 day default (in secs)
-    'CACHE_KEY_PREFIX': 'superset_results',
-    'CACHE_REDIS_URL': 'redis://localhost:6379/0',
-}
-```
-
-It is also possible to pass a custom cache initialization function in the config to handle additional caching use cases. The function must return an object that is compatible with the [Flask-Cache API](https://pythonhosted.org/Flask-Cache/).
+First, configure authorization in Superset `superset_config.py`.
 
 ```python
-from custom_caching import CustomCache
-
-def init_cache(app):
-    """Takes an app instance and returns a custom cache backend"""
-    config = {
-        'CACHE_DEFAULT_TIMEOUT': 60 * 60 * 24, # 1 day default (in secs)
-        'CACHE_KEY_PREFIX': 'superset_results',
+AUTH_TYPE = AUTH_OAUTH
+OAUTH_PROVIDERS = [
+    {   'name':'egaSSO',
+        'token_key':'access_token', # Name of the token in the response of access_token_url
+        'icon':'fa-address-card',   # Icon for the provider
+        'remote_app': {
+            'consumer_key':'myClientId',  # Client Id (Identify Superset application)
+            'consumer_secret':'MySecret', # Secret for this Client Id (Identify Superset application)
+            'request_token_params':{
+                'scope': 'read'               # Scope for the Authorization
+            },
+            'access_token_method':'POST',    # HTTP Method to call access_token_url
+            'access_token_params':{        # Additional parameters for calls to access_token_url
+                'client_id':'myClientId'
+            },
+            'access_token_headers':{    # Additional headers for calls to access_token_url
+                'Authorization': 'Basic Base64EncodedClientIdAndSecret'
+            },
+            'base_url':'https://myAuthorizationServer/oauth2AuthorizationServer/',
+            'access_token_url':'https://myAuthorizationServer/oauth2AuthorizationServer/token',
+            'authorize_url':'https://myAuthorizationServer/oauth2AuthorizationServer/authorize'
+        }
     }
-    return CustomCache(app, config)
+]
 
-CACHE_CONFIG = init_cache
+# Will allow user self registration, allowing to create Flask users from Authorized User
+AUTH_USER_REGISTRATION = True
+
+# The default user self registration role
+AUTH_USER_REGISTRATION_ROLE = "Public"
 ```
 
-Superset has a Celery task that will periodically warm up the cache based on different strategies. To use it, add the following to the `CELERYBEAT_SCHEDULE` section in `config.py`:
-
+Then, create a `CustomSsoSecurityManager` that extends `SupersetSecurityManager` and overrides `oauth_user_info`:
 
 ```python
-CELERYBEAT_SCHEDULE = {
-    'cache-warmup-hourly': {
-        'task': 'cache-warmup',
-        'schedule': crontab(minute=0, hour='*'),  # hourly
-        'kwargs': {
-            'strategy_name': 'top_n_dashboards',
-            'top_n': 5,
-            'since': '7 days ago',
-        },
-    },
+from superset.security import SupersetSecurityManager
+
+class CustomSsoSecurityManager(SupersetSecurityManager):
+
+    def oauth_user_info(self, provider, response=None):
+        logging.debug("Oauth2 provider: {0}.".format(provider))
+        if provider == 'egaSSO':
+            # As example, this line request a GET to base_url + '/' + userDetails with Bearer  Authentication,
+    # and expects that authorization server checks the token, and response with user details
+            me = self.appbuilder.sm.oauth_remotes[provider].get('userDetails').data
+            logging.debug("user_data: {0}".format(me))
+            return { 'name' : me['name'], 'email' : me['email'], 'id' : me['user_name'], 'username' : me['user_name'], 'first_name':'', 'last_name':''}
+    ...
+```
+
+This file must be located at the same directory than `superset_config.py` with the name `custom_sso_security_manager.py`. Finally, add the following 2 lines to `superset_config.py`:
+
+```
+from custom_sso_security_manager import CustomSsoSecurityManager
+CUSTOM_SECURITY_MANAGER = CustomSsoSecurityManager
+```
+
+### Feature Flags
+
+To support a diverse set of users, Superset has some features that are not enabled by default. For example, some users have stronger security restrictions, while some others may not. So Superset allow users to enable or disable some features by config. For feature owners, you can add optional functionalities in Superset, but will be only affected by a subset of users.
+
+You can enable or disable features with flag from `superset_config.py`:
+
+```python
+DEFAULT_FEATURE_FLAGS = {
+    'CLIENT_CACHE': False,
+    'ENABLE_EXPLORE_JSON_CSRF_PROTECTION': False,
+    'PRESTO_EXPAND_DATA': False,
 }
 ```
 
-This will cache all the charts in the top 5 most popular dashboards every hour. For other strategies, check the `superset/tasks/cache.py` file.
+Here is a list of flags and descriptions:
 
-### Caching Thumbnails
+- `ENABLE_EXPLORE_JSON_CSRF_PROTECTION`: For some security concerns, you may need to enforce CSRF protection on all query request to the `explore_json` endpoint.  When `ENABLE_EXPLORE_JSON_CSRF_PROTECTION` is set to true, your users cannot make GET request to `explore_json`. The default value for this feature is `False` and `explore_json` will accept both GET and POST request. See [PR 7935](https://github.com/apache/incubator-superset/pull/7935) for more details.
 
-This is an optional feature that can be turned on by activating it’s feature flag on config:
+- `PRESTO_EXPAND_DATA`: When this feature is enabled, nested types in Presto will be expanded into extra columns and / or arrays. This is experimental, and doesn’t work with all nested types.
+
+### SIP 15
+
+[Superset Improvement Proposal 15](https://github.com/apache/incubator-superset/issues/6360)  aims to ensure that time intervals are handled in a consistent and transparent manner for both the Druid and SQLAlchemy connectors.
+
+Prior to SIP-15 SQLAlchemy used inclusive endpoints however these may behave like exclusive for string columns (due to lexicographical ordering) if no formatting was defined and the column formatting did not conform to an ISO 8601 date-time (refer to the SIP for details).
+
+To remedy this rather than having to define the date/time format for every non-IS0 8601 date-time column, once can define a default column mapping on a per database level via the `extra` parameter:
 
 ```
-FEATURE_FLAGS = {
-    "THUMBNAILS": True,
-    "THUMBNAILS_SQLA_LISTENERS": True,
+{
+    "python_date_format_by_column_name": {
+        "ds": "%Y-%m-%d"
+    }
 }
 ```
 
-For this feature you will need a cache system and celery workers. All thumbnails are store on cache and are processed asynchronously by the workers.
+**New Deployments**
 
-An example config where images are stored on S3 could be:
+All new deployments should enable SIP-15 by setting this value in `superset_config.py`:
+
+```
+SIP_15_ENABLED = True
+
+```
+
+**Existing Deployments**
+
+Given that it is not apparent whether the chart creator was aware of the time range inconsistencies (and adjusted the endpoints accordingly) changing the behavior of all charts is overly aggressive. Instead SIP-15 proivides a soft transistion allowing producers (chart owners) to see the impact of the proposed change and adjust their charts accordingly.
+
+Prior to enabling SIP-15, existing deployments should communicate to their users the impact of the change and define a grace period end date (exclusive of course) after which all charts will conform to the [start, end) interval.
 
 ```python
-from flask import Flask
-from s3cache.s3cache import S3Cache
+from dateime import date
 
-...
-
-class CeleryConfig(object):
-    BROKER_URL = "redis://localhost:6379/0"
-    CELERY_IMPORTS = ("superset.sql_lab", "superset.tasks", "superset.tasks.thumbnails")
-    CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
-    CELERYD_PREFETCH_MULTIPLIER = 10
-    CELERY_ACKS_LATE = True
-
-
-CELERY_CONFIG = CeleryConfig
-
-def init_thumbnail_cache(app: Flask) -> S3Cache:
-    return S3Cache("bucket_name", 'thumbs_cache/')
-
-
-THUMBNAIL_CACHE_CONFIG = init_thumbnail_cache
-# Async selenium thumbnail task will use the following user
-THUMBNAIL_SELENIUM_USER = "Admin"
+SIP_15_ENABLED = True
+SIP_15_GRACE_PERIOD_END = date(<YYYY>, <MM>, <DD>)
 ```
 
-Using the above example cache keys for dashboards will be `superset_thumb__dashboard__{ID}`. You can override the base URL for selenium using:
-
-```
-WEBDRIVER_BASEURL = "https://superset.company.com"
-```
-
-Additional selenium web drive configuration can be set using `WEBDRIVER_CONFIGURATION`. You can implement a custom function to authenticate selenium. The default function uses the `flask-login` session cookie. Here's an example of a custom function signature:
+To aid with transparency the current endpoint behavior is explicitly called out in the chart time range (post SIP-15 this will be [start, end) for all connectors and databases). One can override the defaults on a per database level via the `extra` parameter.
 
 ```python
-def auth_driver(driver: WebDriver, user: "User") -> WebDriver:
-    pass
+{
+    "time_range_endpoints": ["inclusive", "inclusive"]
+}
 ```
 
-Then on configuration:
-
-```
-WEBDRIVER_AUTH_FUNC = auth_driver
-```
+Note in a future release the interim SIP-15 logic will be removed (including the `time_grain_endpoints` form-data field) via a code change and Alembic migration.

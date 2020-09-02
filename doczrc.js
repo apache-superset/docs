@@ -5,10 +5,10 @@ export default {
   files: ['src/**/*.{md,markdown,mdx}'],
   menu: [
     'Introduction',
-    'Installation',
-    'Database Connectors',
+    'Installation and Configuration',
+    'Connecting to Databases',
     'Creating Charts and Dashboards',
-    'Build Your Own Viz Plugins',
+    'Building Custom Viz Plugins',
     'Best Practices',
     'Contributing',
     'Roadmap',
