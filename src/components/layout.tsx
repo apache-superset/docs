@@ -88,9 +88,6 @@ const contentStyle = css`
     background-color: #82ef8217;
     border-radius: 3px;
     max-width: 800px;
-    code {
-      white-space: normal;
-    }
   }
   p {
     font-size: 16px;

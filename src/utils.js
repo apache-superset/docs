@@ -1,7 +1,7 @@
 const getPathName = (path) => {
-  console.log('path', path);
+  console.log('path', path)
   return path.replace(/[/]+/g, '');
-};
+}
 
 //get active menus
 export const getActiveMenuItem = (items) => {
@@ -9,25 +9,26 @@ export const getActiveMenuItem = (items) => {
   let openKey;
   const path = getPathName(window.location.pathname);
   console.log(items);
-  items.forEach(({ menu, id: itemId, route: itemRoute }) => {
-    if (menu) {
-      menu.forEach(({ id: menuId, route }) => {
-        console.log(route);
-        if (getPathName(route) === path) {
-          selectedKey = menuId;
-          openKey = itemId;
-        }
-      });
-    } else if (itemRoute) {
-      console.log(itemRoute);
-      if (getPathName(itemRoute) === path) {
-        selectedKey = itemId;
-        openKey = itemId;
-      }
-    }
-  });
+  items.forEach(({menu, id: itemId, route: itemRoute}) => {
+     if (menu) {
+       menu.forEach(({id: menuId, route})=> {
+         console.log(route)
+         if (getPathName(route) === path) {
+           selectedKey = menuId;
+           openKey = itemId;
+         }
+       });
+     } else if (itemRoute) {
+        console.log(itemRoute)
+       if (getPathName(itemRoute) === path)
+       {
+         selectedKey = itemId;
+         openKey = itemId;
+       }
+     }
+  })
   return [openKey, selectedKey];
-};
+}
 
 // TODO implement versioned dox?
 /*const getVersionedDocs = (v, menus) => {
@@ -43,17 +44,17 @@ export const getActiveMenuItem = (items) => {
 
 //flattens ordered menu
 const listOrderedMenu = (menus) => {
-  const newlist = [];
-  const stack = [...menus];
-  while (stack.length > 0) {
+  const newlist =[];
+  const stack =[...menus];
+  while(stack.length > 0){
     let temp = stack.shift();
-    if (Array.isArray(temp.menu)) {
-      const sortedMenu = temp.menu.sort((a, b) => a.index - b.index);
-      stack.unshift(...sortedMenu);
-    } else newlist.push(temp);
+    if(Array.isArray(temp.menu)){
+      const sortedMenu = temp.menu.sort((a,b)=>a.index-b.index);
+      stack.unshift(...sortedMenu);  
+    } else newlist.push(temp)
   }
   return newlist;
-};
+}
 
 //functionality for prev and next button
 export const getPreviousAndNextUrls = (menus) => {
@@ -62,16 +63,17 @@ export const getPreviousAndNextUrls = (menus) => {
   let nextUrl;
   const path = typeof window !== 'undefined' && getPathName(window.location.pathname);
 
-  items.forEach(({ route }, index) => {
+  items.forEach(({route}, index)=> {
     if (getPathName(route) === path) {
-      if (items[index - 1]) {
+      if (items[index-1]) {
         prevUrl = items[index - 1].route;
       }
-      if (items[index + 1]) {
+      if (items[index + 1])
+      {
         nextUrl = items[index + 1].route;
       }
     }
-  });
+  })
 
   return [prevUrl, nextUrl];
-};
+}
