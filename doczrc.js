@@ -10,7 +10,7 @@ export default {
     'Creating Charts and Dashboards',
     'Miscellaneous',
     'Frequently Asked Questions',
-    'Contributing',
+    'Contribution',
     'Roadmap',
     'Learning Resources',
     'Security',
