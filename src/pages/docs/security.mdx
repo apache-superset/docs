@@ -1,5 +1,7 @@
 ---
 title: Security
+name: Security
+route: /docs/security
 ---
 
 Security
@@ -16,7 +18,7 @@ The ASF Security Team maintains a page with the description of how vulnerabiliti
 
 ### FAB
 
-Security in Superset is handled by Flask AppBuilder (FAB). FAB is a “Simple and rapid application development framework, built on top of Flask.”. FAB provides authentication, user management, permissions and roles. Please read its [Security documentation](https://flask-appbuilder.readthedocs.io/en/latest/security.html).
+Security in Superset is handled by Flask AppBuilder (FAB). FAB is a “Simple and rapid application development framework, built on top of Flask”. FAB provides authentication, user management, permissions and roles. Please read its [Security documentation](https://flask-appbuilder.readthedocs.io/en/latest/security.html).
 
 ### Provided Roles
 
@@ -60,7 +62,7 @@ You can then confirm with your Gamma users that they see the objects (dashboards
 
 ### Customizing
 
-The permissions exposed by FAB are very granular and allow for a great level of customization. FAB creates many permissions automagically for each model that is created (can_add, can_delete, can_show, can_edit, …) as well as for each view. On top of that, Superset can expose more granular permissions like **all_datasource_access**.
+The permissions exposed by FAB are very granular and allow for a great level of customization. FAB creates many permissions automagically for each model that is created (**can_add, can_delete, can_show, can_edit,** etc) as well as for each view. On top of that, Superset can expose more granular permissions like **all_datasource_access**.
 
 We do not recommend altering the 3 base roles as there are a set of assumptions that Superset is built upon. It is possible though for you to create your own roles, and union them to existing ones.
 

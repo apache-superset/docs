@@ -9,7 +9,7 @@ export default {
     'Connecting to Databases',
     'Creating Charts and Dashboards',
     'Miscellaneous',
-    'FAQs',
+    'Frequently Asked Questions',
     'Contributing',
     'Roadmap',
     'Learning Resources',
