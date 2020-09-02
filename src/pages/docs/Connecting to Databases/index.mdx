@@ -82,33 +82,6 @@ mysql://mysqluser:mysqluserpassword@docker.for.mac.host.internal/example?charset
 
 Then click “Test Connection”, which should give you an “OK” message. If not, please look at your terminal for error messages, and reach out for help.
 
-As we mentioned earlier, you can repeat this process for every database you want superset to be able to connect to. Here's a list of the recommended package(s) for each database or data engine:
-
-- Amazon Athena: `pip install "PyAthenaJDBC>1.0.9"` or "PyAthena>1.2.0"
-- Amazon Redshift: `pip install sqlalchemy-redshift`
-- Apache Drill:  `pip install sqlalchemy-drill`
-- Apache Druid: `pip install pydruid`
-- Apache Hive: `pip install pyhive`
-- Apache Impala: `pip install impyla`
-- Apache Kylin: `pip install kylinpy`
-- Apache Pinot: `pip install pinotdb`
-- Apache Spark SQL: `pip install pyhive`
-- Google BigQuery: `pip install pybigquery`
-- ClickHouse: `pip install sqlalchemy-clickhouse`
-- CockroachDB: `pip install cockroachdb`
-- Dremio: `pip install sqlalchemy_dremio`
-- Elasticsearch: `pip install elasticsearch-dbapi`
-- Exasol: `pip install sqlalchemy-exasol`
-- Google Sheets: `pip install gsheetsdb`
-- IBM Db2: `pip install ibm_db_sa`
-- MySQL: `pip install mysqlclient`
-- Oracle: `pip install cx_Oracle`
-- PostgreSQL: `pip install psycopg2`
-- Presto: `pip install pyhive`
-- Snowflake: `pip install snowflake-sqlalchemy`
-- SQL Server: `pip install pymssql`
-- Teradata: `pip install sqlalchemy-teradata`
-- Vertica: `pip install sqlalchemy-vertica-python`
-- Hana: `pip install hdbcli sqlalchemy-hana`
+As we mentioned earlier, you can repeat this process for every database you want superset to be able to connect to. 
 
 Note that many other databases are supported. The minimum criteria is the existence of a functional SQLAlchemy dialect and Python driver. Searching for `sqlalchemy <database_name>` should help you uncover any potential connector libraries.
