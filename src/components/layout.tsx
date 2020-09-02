@@ -1,15 +1,14 @@
-import React from "react";
-import { Link } from "gatsby";
+import React from 'react';
+import { Link } from 'gatsby';
 import { Layout, Menu, Button } from 'antd';
 import { css } from '@emotion/core';
 
-import logoSvg from '../images/superset-logo-horiz.svg'
+import logoSvg from '../images/superset-logo-horiz.svg';
 import Footer from './footer';
-import SEO from "./seo"
+import SEO from './seo';
 import AppMenu from './menu';
 import 'antd/dist/antd.css';
-import "./layout.css"
-
+import './layout.css';
 
 const { Header, Sider } = Layout;
 
@@ -19,18 +18,18 @@ const layoutStyles = css`
     background-color: white !important;
   }
   Button {
-    background: #20A7C9;
-    border-color: #20A7C9;
+    background: #20a7c9;
+    border-color: #20a7c9;
     border-radius: 4px;
   }
- `;
+`;
 
 const headerStyle = css`
   background-color: #fff;
   position: fixed;
   top: 0;
   width: 100%;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,.12);
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12);
   z-index: 1;
   .ant-menu {
     background: transparent;
@@ -99,7 +98,7 @@ const contentStyle = css`
 `;
 
 const contentLayoutDocsStyle = css`
-  position:fixed;
+  position: fixed;
   top: 64px;
   left: 250px;
   right: 0px;
@@ -111,16 +110,15 @@ const contentLayoutDocsStyle = css`
 `;
 
 const logoStyle = css`
-  float:left;
+  float: left;
   margin-left: -50px;
   margin-top: 5px;
   heigh: 30px;
-`
-
-
+`;
 
 const AppLayout = ({ children }) => {
-  const isOnDocsPage = typeof window !== 'undefined' && window.location.pathname.indexOf("docs") > 0;
+  const isOnDocsPage =
+    typeof window !== 'undefined' && window.location.pathname.indexOf('docs') > 0;
 
   return (
     <Layout css={layoutStyles}>
@@ -142,36 +140,34 @@ const AppLayout = ({ children }) => {
         </Menu>
         <div css={getStartedButtonStyle}>
           <Link to="/docs/intro">
-          <Button type="primary" size="large">Get Started</Button>
+            <Button type="primary" size="large">
+              Get Started
+            </Button>
           </Link>
         </div>
       </Header>
-      {isOnDocsPage ?
+      {isOnDocsPage ? (
         <>
-          <Layout css={contentLayoutDocsStyle }>
-            {isOnDocsPage &&
+          <Layout css={contentLayoutDocsStyle}>
+            {isOnDocsPage && (
               <Sider width={250} css={sidebarStyle}>
-                <AppMenu/>
+                <AppMenu />
               </Sider>
-            }
+            )}
             <Layout css={contentStyle}>
-              <div css={centerLayoutStyle}>
-                {children}
-              </div>
+              <div css={centerLayoutStyle}>{children}</div>
               <Footer />
             </Layout>
           </Layout>
         </>
-      :
+      ) : (
         <Layout>
-          { children }
+          {children}
           <Footer />
         </Layout>
-      }
+      )}
     </Layout>
+  );
+};
 
-  )
-}
-
-export default AppLayout
-
+export default AppLayout;
