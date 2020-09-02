@@ -2,15 +2,14 @@
 name: Vertica
 menu: Connecting to Databases
 route: /docs/databases/vertica
-index: 11
+index: 26
 version: 1
 ---
 
 Vertica
 -------------
 
-
-[Vertica](http://www.vertica.com/) connection parameters:
+The recommended connector library is [sqlalchemy-vertica-python](https://pypi.org/project/sqlalchemy-vertica-python/). The [Vertica](http://www.vertica.com/) connection parameters are:
 
 * **User Name:** UserName
 * **Password:** DBPassword
@@ -21,9 +20,10 @@ Vertica
 * **Database Name:** Database Name
 * **Port:** default 5433
 
+The connection string is formatted as follows:
 
 ```
-vertica+vertica_python://<UserName>:<DBPassword>@<Database Host>/<Database Name>
+vertica+vertica_python://{username}:{password}@{host}/{database}
 ```
 
 Other parameters:

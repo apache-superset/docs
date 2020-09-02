@@ -2,12 +2,14 @@
 name: Postgres
 menu: Connecting to Databases
 route: /docs/databases/postgres
-index: 9
+index: 21
 version: 1
 ---
 
 Postgres
 -------------
+
+Note that the Postgres connector library [psycopg2](https://www.psycopg.org/docs/) comes out of the box with Superset.
 
 Postgres sample connection parameters:
 
@@ -20,10 +22,10 @@ Postgres sample connection parameters:
 * **Database Name**: Database Name
 * **Port**: default 5432
 
-The URI:
+The connection string looks like:
 
 ```
-postgresql:://<UserName>:<DBPassword>@<Database Host>/<Database Name>
+postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}
 ```
 Extra parameters:
 

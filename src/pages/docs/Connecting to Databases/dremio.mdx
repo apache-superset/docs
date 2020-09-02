@@ -2,19 +2,17 @@
 name: Dremio
 menu: Connecting to Databases
 route: /docs/databases/dremio
-index: 6
+index: 14
 version: 1
 ---
 
 Dremio
 -------------
 
-To connect to Dremio setup the URI as in this example :
-```
-dremio://<User>:<password>@<Host>:<Port-default-31010>/dremio
-```
+The recommended connector library for Dremio is [sqlalchemy_dremio](https://github.com/sqggles/sqlalchemy_dremio).
 
-Where,
+The expected connection string is formatted as follows:
 
-Host: Hostname or IP address of the coordinator
-Port: ODBC port
+```
+dremio://{username}:{password}@{host}:{port}/dremio
+```

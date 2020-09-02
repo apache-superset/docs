@@ -2,25 +2,25 @@
 name: MySQL
 menu: Connecting to Databases
 route: /docs/databases/mysql
-index: 8
+index: 19
 version: 1
 ---
 
 MySQL
 -------------
 
+The [Installing Database Drivers](/docs/databases/installing-database-drivers) section has the most complete instructions for installing MySQL.
 
-Set up the URI using the following settings:
+The recommended connector library for MySQL is [mysqlclient](https://pypi.org/project/mysqlclient/).
 
-* **User Name**: UserName
-* **Password**: DBPassword
-* **Database Host**:
-    * For Localhost: localhost or 127.0.0.1   
-    * For On Prem: IP address or Host name
-    * For AWS Endpoint   
-* **Database Name**: Database Name
-* **Port**: default 3306
+For Docker running in Linux, the recommended connection string is:
 
 ```
-mysql://<UserName>:<DBPassword>@<Database Host>/<Database Name>
+mysql://mysqluser:mysqluserpassword@localhost/example?charset=utf8
+```  
+
+For Docker running in OSX, the recommended connection string is:
+
 ```
+mysql://mysqluser:mysqluserpassword@docker.for.mac.host.internal/example?charset=utf8
+``` 
