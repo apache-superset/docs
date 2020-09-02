@@ -188,6 +188,7 @@ const Theme = () => {
 
   return (
     <ThemeProvider theme={config}>
+      <SEO title="Superset" />
       <Layout>
         <div css={titleContainer}>
           <img width="600" className="logo-horiz" src={logo} />

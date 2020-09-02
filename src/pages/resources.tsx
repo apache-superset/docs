@@ -2,6 +2,7 @@ import React from 'react';
 import { css } from '@emotion/core';
 import { supersetTheme } from '@superset-ui/style';
 import { Button } from 'antd';
+import SEO from '../components/seo';
 import Image from '../components/image';
 import Layout from '../components/layout';
 
@@ -70,6 +71,7 @@ const title = css`
 const Resources = () => {
   return (
     <Layout>
+      <SEO title="Resources" />
       <div css={resourcesContainer}>
         <h1 css={title}>Resources</h1>
         <div className="links">

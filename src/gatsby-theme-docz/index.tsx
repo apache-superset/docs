@@ -1,15 +1,18 @@
 import React from 'react';
 import { theme, useConfig } from 'docz';
 import { ThemeProvider } from 'theme-ui';
+import SEO from '../components/seo';
 import Layout from '../components/layout';
 import NextLinks from '../components/next';
 
 import 'antd/dist/antd.css';
+
 const Theme = ({ children }) => {
   const config = useConfig();
   return (
     <ThemeProvider theme={config}>
       <Layout>
+        <SEO title="Documents" />
         {children}
         <div>
           <NextLinks />

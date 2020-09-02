@@ -3,6 +3,7 @@ import { css } from '@emotion/core';
 import { supersetTheme } from '@superset-ui/style';
 import { Button, Card } from 'antd';
 import { GithubOutlined } from '@ant-design/icons';
+import SEO from '../components/seo';
 import Layout from '../components/layout';
 import { pmc } from '../resources/data';
 
@@ -88,6 +89,7 @@ const Community = () => {
   });
   return (
     <Layout>
+      <SEO title="Community" />
       <div css={titleContainer}>
         <h1 css={title}>Community</h1>
         <h2>The community has many active members who support each other in solving problems</h2>
