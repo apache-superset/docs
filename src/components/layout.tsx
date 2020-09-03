@@ -73,6 +73,7 @@ const contentStyle = css`
   }
   img {
     max-width: 800px;
+    margin-bottom: 15px;
   }
   blockquote {
     color: rgb(132, 146, 166);
@@ -88,11 +89,11 @@ const contentStyle = css`
     background-color: #82ef8217;
     border-radius: 3px;
     max-width: 800px;
-    code {
-      white-space: normal;
-    }
   }
   p {
+    font-size: 16px;
+  }
+  ul {
     font-size: 16px;
   }
 `;

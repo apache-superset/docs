@@ -42,7 +42,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
@@ -54,7 +54,8 @@
   },
   "eslintConfig": {
     "globals": {
-      "window": true
+      "window": true,
+      "console": true
     }
   },
   "bugs": {

@@ -6,7 +6,6 @@ const getPathName = (path) => {
 export const getActiveMenuItem = (items) => {
   let selectedKey;
   let openKey;
-  // eslint-disable-next-line no-undef
   const path = getPathName(window.location.pathname);
   items.forEach(({ menu, id: itemId, route: itemRoute }) => {
     if (menu) {
@@ -16,7 +15,7 @@ export const getActiveMenuItem = (items) => {
           openKey = itemId;
         }
       });
-    } else {
+    } else if (itemRoute) {
       if (getPathName(itemRoute) === path) {
         selectedKey = itemId;
         openKey = itemId;
@@ -42,7 +41,6 @@ export const getActiveMenuItem = (items) => {
 const listOrderedMenu = (menus) => {
   const newlist = [];
   const stack = [...menus];
-
   while (stack.length > 0) {
     let temp = stack.shift();
     if (Array.isArray(temp.menu)) {
@@ -58,7 +56,6 @@ export const getPreviousAndNextUrls = (menus) => {
   const items = listOrderedMenu(menus);
   let prevUrl;
   let nextUrl;
-  // eslint-disable-next-line no-undef
   const path = typeof window !== 'undefined' && getPathName(window.location.pathname);
 
   items.forEach(({ route }, index) => {
