@@ -10,7 +10,9 @@ interface Props {
   otherProps?: any;
 }
 
-const Image = ({ imageName, type, width, height, ...otherProps }): Props => {
+const Image = ({
+  imageName, type, width, height, ...otherProps
+}: Props) => {
   const data = useStaticQuery(graphql`
     query {
       logoSm: file(relativePath: { eq: "src/images/s.png" }) {

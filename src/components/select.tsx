@@ -1,19 +1,16 @@
 import React from 'react';
 import { Select } from 'antd';
 import querystring from 'querystring';
-import url from 'url';
 
 const { Option } = Select;
 
 const versions = ['1', '2'];
 
-const VersionSelect = () => {
-  const version = querystring.parse(window.location.search.substr(1)).version;
-  console.log('version', version);
+export default function VersionSelect() {
+  const { version } = querystring.parse(window.location.search.substr(1));
   const handleChange = (e) => {
-    console.log('e', e);
     // @ts-ignore
-    window.location = '/docs/intro?version=' + e;
+    window.location = `/docs/intro?version=${e}`;
   };
   return (
     <div>
@@ -25,4 +22,4 @@ const VersionSelect = () => {
       </Select>
     </div>
   );
-};
+}

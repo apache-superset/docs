@@ -1,6 +1,5 @@
 import React from 'react';
-import { Layout, Button } from 'antd';
-import { Link } from 'gatsby';
+import { Layout } from 'antd';
 import { css } from '@emotion/core';
 import { GithubOutlined, SlackSquareOutlined } from '@ant-design/icons';
 
@@ -53,14 +52,14 @@ const LayoutFooter = () => (
   <>
     <Footer css={footerStyle}>
       <div css={apacheLinksStyle} className="apacheLinks">
-        <a href="https://www.apache.org/security/" target="_blank">
+        <a href="https://www.apache.org/security/" target="_blank" rel="noreferrer">
           Security &nbsp;|
         </a>
-        <a href="https://www.apache.org/foundation/sponsorship.html" target="_blank">
+        <a href="https://www.apache.org/foundation/sponsorship.html" target="_blank" rel="noreferrer">
           Donate &nbsp;|
         </a>
 
-        <a href="https://www.apache.org/foundation/thanks.html" target="_blank">
+        <a href="https://www.apache.org/foundation/thanks.html" target="_blank" rel="noreferrer">
           Thanks
         </a>
       </div>
@@ -69,29 +68,35 @@ const LayoutFooter = () => (
           <a
             href="https://apache-superset.slack.com/join/shared_invite/zt-g8lpruog-HeqpgYrwdfrD5OYhlU7hPQ#/"
             target="_blank"
+            rel="noreferrer"
           >
             <SlackSquareOutlined className="icon" />
           </a>
-          <a href="https://github.com/apache/incubator-superset" target="_blank">
+          <a href="https://github.com/apache/incubator-superset" target="_blank" rel="noreferrer">
             <GithubOutlined className="icon" />
           </a>
           <a
             href="https://stackoverflow.com/questions/tagged/apache-superset+superset"
             target="_blank"
+            rel="noreferrer"
           >
-            <img src="/images/so-icon.svg" className="icon svg" />
+            <img alt="StackOverflow" src="/images/so-icon.svg" className="icon svg" />
           </a>
         </div>
       </div>
       <div css={copyrightStyle}>
-        © Copyright {new Date().getFullYear()},
-        <a href="http://www.apache.org/" target="_blank">
+        © Copyright
+        {' '}
+        {new Date().getFullYear()}
+        ,
+        <a href="http://www.apache.org/" target="_blank" rel="noreferrer">
           &nbsp;The Apache Software Fountation
         </a>
         , &nbsp;Licensed under the Apache
-        <a href="https://www.apache.org/licenses/" target="_blank">
+        <a href="https://www.apache.org/licenses/" target="_blank" rel="noreferrer">
           &nbsp;License.
-        </a>{' '}
+        </a>
+        {' '}
         <br />
         <div>
           Disclaimer: Apache Superset is an effort undergoing incubation at The Apache Software

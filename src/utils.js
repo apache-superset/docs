@@ -1,8 +1,7 @@
-const getPathName = (path) => {
-  return path.replace(/[/]+/g, '');
-};
+/* eslint no-undef: "error" */
+const getPathName = (path) => path.replace(/[/]+/g, '');
 
-//get active menus
+// get active menus
 export const getActiveMenuItem = (items) => {
   let selectedKey;
   let openKey;
@@ -26,23 +25,23 @@ export const getActiveMenuItem = (items) => {
 };
 
 // TODO implement versioned dox?
-/*const getVersionedDocs = (v, menus) => {
-   //menus.filter(doc => 
+/* const getVersionedDocs = (v, menus) => {
+   //menus.filter(doc =>
   const stack = [...menus];
   while(stack.length > 0) {
     let temp = stack.shift();
     if (Array.isArray(temp.menu)){
-       
+
     } else newlist.push(temp);
   }
-}*/
+} */
 
-//flattens ordered menu
+// flattens ordered menu
 const listOrderedMenu = (menus) => {
   const newlist = [];
   const stack = [...menus];
   while (stack.length > 0) {
-    let temp = stack.shift();
+    const temp = stack.shift();
     if (Array.isArray(temp.menu)) {
       const sortedMenu = temp.menu.sort((a, b) => a.index - b.index);
       stack.unshift(...sortedMenu);
@@ -51,7 +50,7 @@ const listOrderedMenu = (menus) => {
   return newlist;
 };
 
-//functionality for prev and next button
+// functionality for prev and next button
 export const getPreviousAndNextUrls = (menus) => {
   const items = listOrderedMenu(menus);
   let prevUrl;

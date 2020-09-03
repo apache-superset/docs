@@ -168,7 +168,7 @@ export const Databases = [
   },
   {
     title: 'Oracle',
-    href: `https://www.oracle.com/database/`,
+    href: 'https://www.oracle.com/database/',
     imgName: 'oraclelogo.png',
   },
   {

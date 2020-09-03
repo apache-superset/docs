@@ -1,13 +1,10 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import { supersetTheme } from '@superset-ui/style';
 import { Button, Card } from 'antd';
 import { GithubOutlined } from '@ant-design/icons';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
 import { pmc } from '../resources/data';
-
-const { colors } = supersetTheme;
 
 const { Meta } = Card;
 
@@ -19,12 +16,7 @@ const titleContainer = css`
 
 const title = css`
   margin-top: 150px;
-  color: ${colors.grayscale.base};
   font-size: 60px;
-`;
-
-const hr = css`
-  width: 60%;
 `;
 
 const communityContainer = css`
@@ -70,10 +62,10 @@ const getInvolvedContainer = css`
 `;
 
 const Community = () => {
-  let pmcList = pmc.map((e) => {
+  const pmcList = pmc.map((e) => {
     const name = e.name.indexOf(' ');
     return (
-      <a href={e.github} target="_blank" key={name}>
+      <a href={e.github} target="_blank" rel="noreferrer" key={name}>
         <Card
           className="communityCard"
           hoverable
@@ -100,40 +92,60 @@ const Community = () => {
               <a
                 href="https://apache-superset.slack.com/join/shared_invite/zt-g8lpruog-HeqpgYrwdfrD5OYhlU7hPQ#/"
                 target="_blank"
+                rel="noreferrer"
               >
                 {' '}
-                Slack community{' '}
-              </a>{' '}
-              - interact with other Superset users and community members <br />
-              <a href="https://github.com/apache/incubator-superset" target="_blank">
+                Slack community
                 {' '}
-                Github page{' '}
-              </a>{' '}
-              - create tickets to report issues, report bugs, and suggest new features <br />
-              <a href="https://lists.apache.org/list.html?dev@superset.apache.org" target="_blank">
-                {' '}
-                Mailing list{' '}
               </a>
-              - receive up-to-date news and announcements on all things Superset <br />
+              {' '}
+              - interact with other Superset users and community members
+              {' '}
+              <br />
+              <a href="https://github.com/apache/incubator-superset" target="_blank" rel="noreferrer">
+                {' '}
+                Github page
+                {' '}
+              </a>
+              {' '}
+              - create tickets to report issues, report bugs, and suggest new features
+              {' '}
+              <br />
+              <a href="https://lists.apache.org/list.html?dev@superset.apache.org" target="_blank" rel="noreferrer">
+                {' '}
+                Mailing list
+                {' '}
+              </a>
+              - receive up-to-date news and announcements on all things Superset
+              {' '}
+              <br />
               <a
                 href="https://stackoverflow.com/questions/tagged/superset+apache-superset"
                 target="_blank"
+                rel="noreferrer"
               >
                 {' '}
-                Stack Overflow{' '}
+                Stack Overflow
+                {' '}
               </a>
-              - get help with Superset issues <br />
+              - get help with Superset issues
+              {' '}
+              <br />
               <a
                 href="https://www.meetup.com/Global-Apache-Superset-Community-Meetup/"
                 target="_blank"
+                rel="noreferrer"
               >
                 {' '}
-                Superset Meetup group{' '}
+                Superset Meetup group
+                {' '}
               </a>
-              - join our monthly virtual meetups and register for any upcoming events <br />
+              - join our monthly virtual meetups and register for any upcoming events
+              {' '}
+              <br />
               <br />
             </span>
-            <a href="https://github.com/apache-superset/awesome-apache-superset" target="_blank">
+            <a href="https://github.com/apache-superset/awesome-apache-superset" target="_blank" rel="noreferrer">
               <Button type="primary" size="large">
                 Additional resources
               </Button>

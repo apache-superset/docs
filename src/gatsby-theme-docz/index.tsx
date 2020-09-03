@@ -7,7 +7,11 @@ import NextLinks from '../components/next';
 
 import 'antd/dist/antd.css';
 
-const Theme = ({ children }) => {
+interface Props {
+  children: React.ReactNode,
+}
+
+const Theme = ({ children }: Props) => {
   const config = useConfig();
   return (
     <ThemeProvider theme={config}>
@@ -22,5 +26,5 @@ const Theme = ({ children }) => {
   );
 };
 
-//@ts-ignore
+// @ts-ignore
 export default theme()(Theme);

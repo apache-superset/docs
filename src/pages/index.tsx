@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { theme, useConfig } from 'docz';
 import { Link } from 'gatsby';
 import { ThemeProvider } from 'theme-ui';
@@ -32,8 +32,11 @@ const titleContainer = css`
     margin-top: 39px;
   }
   .logo-horiz {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .incubator {
+    margin-top: 40px;
   }
   .alert {
     color: #0c5460;
@@ -48,11 +51,6 @@ const titleContainer = css`
   }
 `;
 
-const title = css`
-  color: ${colors.grayscale.dark2};
-  font-size: 60px;
-`;
-
 const secondaryHeading = css`
   font-size: 55px;
   text-align: center;
@@ -63,7 +61,7 @@ const featureHeight = '160';
 const featureSectionStyle = css`
   background: #fff;
   padding: 5vw 0;
-  margin-top: 50px;
+  margin-top: 0px;
   margin-bottom: 30px;
   .featureList {
     padding: 0px;
@@ -169,18 +167,6 @@ const linkCarousel = css`
     }
   }
 `;
-const particlesContainer = css`
-  height: 500px;
-  width: 1100px;
-  background: transparent;
-  z-index: -1;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: visible;
-`;
 
 const Theme = () => {
   const config = useConfig();
@@ -191,12 +177,16 @@ const Theme = () => {
       <SEO title="Superset" />
       <Layout>
         <div css={titleContainer}>
-          <img width="600" className="logo-horiz" src={logo} />
+          <img width="600" className="logo-horiz" src={logo} alt="logo-horiz" />
           <h2>
-            Apache Superset is a modern data <br />
+            Apache Superset is a modern data
+            {' '}
+            <br />
             exploration and visualization platform
           </h2>
-          <Image imageName="incubatorSm" />
+          <div className="incubator">
+            <Image imageName="incubatorSm" />
+          </div>
           <div>
             <Link to="/docs/intro">
               <Button type="primary" size="large">
@@ -212,14 +202,16 @@ const Theme = () => {
             {' '}
             Superset is fast, lightweight, intuitive, and loaded with options that make it easy for
             users of all skill sets to explore and visualize their data, from simple pie charts to
-            highly detailed geospatial charts.{' '}
+            highly detailed geospatial charts.
+            {' '}
           </h4>
           <ul className="featureList ant-row">
             <Col span={12}>
               <li className="feature">
                 <span className="imagePlaceHolder">
                   {' '}
-                  <PieChartOutlined />{' '}
+                  <PieChartOutlined />
+                  {' '}
                 </span>
                 <span className="featureText">
                   <strong>Powerful and easy to use </strong>
@@ -232,11 +224,14 @@ const Theme = () => {
               <li className="feature">
                 <span className="imagePlaceHolder">
                   {' '}
-                  <BoxPlotOutlined />{' '}
+                  <BoxPlotOutlined />
+                  {' '}
                 </span>
                 <span className="featureText">
                   <strong> Integrates with modern databases</strong>
-                  <br /> Superset can connect to any SQL based datasource through SQL Alchemy,
+                  <br />
+                  {' '}
+                  Superset can connect to any SQL based datasource through SQL Alchemy,
                   including modern cloud native data sources and engines at petabyte scale.
                 </span>
               </li>
@@ -246,7 +241,8 @@ const Theme = () => {
               <li className="feature">
                 <span className="imagePlaceHolder">
                   {' '}
-                  <BarChartOutlined />{' '}
+                  <BarChartOutlined />
+                  {' '}
                 </span>
                 <span className="featureText">
                   <strong> Modern architecture </strong>
@@ -258,10 +254,13 @@ const Theme = () => {
               <li className="feature">
                 <span className="imagePlaceHolder">
                   {' '}
-                  <DotChartOutlined />{' '}
+                  <DotChartOutlined />
+                  {' '}
                 </span>
                 <span className="featureText">
-                  <strong> Rich visualizations and dashboards </strong> <br />
+                  <strong> Rich visualizations and dashboards </strong>
+                  {' '}
+                  <br />
                   Superset ships with a wide array of beautiful visualizations. Our visualization
                   plug-in architecture makes it easy to build custom visualizations that drop
                   directly into Superset.
@@ -275,29 +274,29 @@ const Theme = () => {
           <h2 css={secondaryHeading}>Explore</h2>
           <div className="toggleContainer">
             <div className="toggleBtns">
-              <div className="toggle" onClick={() => slider.current.goTo(0)}>
+              <div className="toggle" onClick={() => slider.current.goTo(0)} role="button">
                 <h3>Explore</h3>
                 <span>Explore your data using the array of data visualizations.</span>
               </div>
 
-              <div className="toggle" onClick={() => slider.current.goTo(1)}>
+              <div className="toggle" onClick={() => slider.current.goTo(1)} role="button">
                 <h3>View</h3>
                 <span>View your data through interactive dashboards</span>
               </div>
-              <div className="toggle" onClick={() => slider.current.goTo(2)}>
+              <div className="toggle" onClick={() => slider.current.goTo(2)} role="button">
                 <h3>Investigate</h3>
                 <span>Use sqlab to write queries to explore your data</span>
               </div>
             </div>
             <Carousel ref={slider} effect="scrollx">
               <div className="imageContainer">
-                <img src="/images/pie-chart.png" />
+                <img src="/images/pie-chart.png" alt="" />
               </div>
               <div className="imageContainer">
-                <img src="/images/google-analytics.png" />
+                <img src="/images/google-analytics.png" alt="" />
               </div>
               <div className="imageContainer">
-                <img src="/images/sqllab.png" />
+                <img src="/images/sqllab.png" alt="" />
               </div>
             </Carousel>
           </div>
@@ -306,19 +305,27 @@ const Theme = () => {
           <h2 css={secondaryHeading}>Supported Data Sources</h2>
 
           <ul className="databaseList">
-            {Databases.map(({ title, href, imgName: imageName, width, height }) => (
-              <a href={href} target="_blank" key={imageName}>
-                <Image {...{ imageName, type: 'db', width, height }} />
+            {Databases.map(({
+              title, href, imgName: imageName, width, height,
+            }) => (
+              <a href={href} target="_blank" key={imageName} rel="noreferrer">
+                <Image {...{
+                  imageName, type: 'db', width, height, alt: title,
+                }}
+                />
               </a>
             ))}
           </ul>
           <span className="databaseSub">
             {' '}
-            ... and any other SQLAlchemy{' '}
+            ... and any other SQLAlchemy
+            {' '}
             <a href="https://superset.incubator.apache.org/installation.html#database-dependencies">
               {' '}
-              compatible data source.{' '}
-            </a>{' '}
+              compatible data source.
+              {' '}
+            </a>
+            {' '}
           </span>
         </div>
       </Layout>
