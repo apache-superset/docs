@@ -6,12 +6,14 @@ index: 10
 version: 1
 ---
 
-SQL Templating
--------------
+## SQL Templating
 
 ### Jinja Templates
 
-SQL Lab supports [Jinja templating](https://jinja.palletsprojects.com/en/2.11.x/) in queries. You'll need to to overload the default Jinja context in your environment by defining the JINJA_CONTEXT_ADDONS in your superset configuration (`superset_config.py`). Objects referenced in this dictionary are made available for users to use in their SQL code.
+SQL Lab supports [Jinja templating](https://jinja.palletsprojects.com/en/2.11.x/) in queries. You'll
+need to to overload the default Jinja context in your environment by defining the
+JINJA_CONTEXT_ADDONS in your superset configuration (`superset_config.py`). Objects referenced in
+this dictionary are made available for users to use in their SQL code.
 
 ```
 JINJA_CONTEXT_ADDONS = {
@@ -19,9 +21,15 @@ JINJA_CONTEXT_ADDONS = {
 }
 ```
 
-Besides default Jinja templating, SQL lab also supports self-defined template processor by setting the `CUSTOM_TEMPLATE_PROCESSORS` in your superset configuration. The values in this dictionary overwrite the default Jinja template processors of the specified database engine. The example below configures a custom presto template processor which implements its own logic of processing macro template with regex parsing. It uses the `$` style macro instead of `{{ }}` style in Jinja templating. 
+Besides default Jinja templating, SQL lab also supports self-defined template processor by setting
+the `CUSTOM_TEMPLATE_PROCESSORS` in your superset configuration. The values in this dictionary
+overwrite the default Jinja template processors of the specified database engine. The example below
+configures a custom presto template processor which implements its own logic of processing macro
+template with regex parsing. It uses the `$` style macro instead of `{{ }}` style in Jinja
+templating.
 
-By configuring it with `CUSTOM_TEMPLATE_PROCESSORS`, a SQL template on a presto database is processed by the custom one rather than the default one.
+By configuring it with `CUSTOM_TEMPLATE_PROCESSORS`, a SQL template on a presto database is
+processed by the custom one rather than the default one.
 
 ```python
 def DATE(
@@ -65,7 +73,9 @@ CUSTOM_TEMPLATE_PROCESSORS = {
 }
 ```
 
-SQL Lab also includes a live query validation feature with pluggable backends. You can configure which validation implementation is used with which database engine by adding a block like the following to your configuration file:
+SQL Lab also includes a live query validation feature with pluggable backends. You can configure
+which validation implementation is used with which database engine by adding a block like the
+following to your configuration file:
 
 ```
 FEATURE_FLAGS = {
@@ -75,5 +85,5 @@ FEATURE_FLAGS = {
 }
 ```
 
-The available validators and names can be found in [sql_validators](https://github.com/apache/incubator-superset/tree/master/superset/sql_validators).
-
+The available validators and names can be found in
+[sql_validators](https://github.com/apache/incubator-superset/tree/master/superset/sql_validators).

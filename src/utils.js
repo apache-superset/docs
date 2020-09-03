@@ -1,5 +1,4 @@
 const getPathName = (path) => {
-  console.log('path', path);
   return path.replace(/[/]+/g, '');
 };
 
@@ -8,18 +7,15 @@ export const getActiveMenuItem = (items) => {
   let selectedKey;
   let openKey;
   const path = getPathName(window.location.pathname);
-  console.log(items);
   items.forEach(({ menu, id: itemId, route: itemRoute }) => {
     if (menu) {
       menu.forEach(({ id: menuId, route }) => {
-        console.log(route);
         if (getPathName(route) === path) {
           selectedKey = menuId;
           openKey = itemId;
         }
       });
     } else if (itemRoute) {
-      console.log(itemRoute);
       if (getPathName(itemRoute) === path) {
         selectedKey = itemId;
         openKey = itemId;

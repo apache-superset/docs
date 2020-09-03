@@ -6,8 +6,7 @@ index: 10
 version: 1
 ---
 
-Scheduling and Emailing Reports
--------------
+## Scheduling and Emailing Reports
 
 ### Email Reports
 
@@ -27,11 +26,15 @@ Now you will find two new items in the navigation bar that allow you to schedule
 - **Manage > Dashboard Emails**
 - **Manage > Chart Email Schedules**
 
-Schedules are defined in [crontab format](https://crontab.guru/) and each schedule can have a list of recipients (all of them can receive a single mail, or separate mails). For audit purposes, all outgoing mails can have a mandatory BCC.
+Schedules are defined in [crontab format](https://crontab.guru/) and each schedule can have a list
+of recipients (all of them can receive a single mail, or separate mails). For audit purposes, all
+outgoing mails can have a mandatory BCC.
 
-In order get picked up you need to configure a celery worker and a celery beat (see section above “Celery Tasks”). Your celery configuration also needs an entry `email_reports.schedule_hourly` for `CELERYBEAT_SCHEDULE`.
+In order get picked up you need to configure a celery worker and a celery beat (see section above
+“Celery Tasks”). Your celery configuration also needs an entry `email_reports.schedule_hourly` for
+`CELERYBEAT_SCHEDULE`.
 
-To send emails you need to configure SMTP settings in your `superset_config.py` configuration file. 
+To send emails you need to configure SMTP settings in your `superset_config.py` configuration file.
 
 ```
 EMAIL_NOTIFICATIONS = True
@@ -50,7 +53,10 @@ To render dashboards you need to install a local browser on your Superset instan
 - [geckodriver](https://github.com/mozilla/geckodriver) for Firefox
 - [chromedriver](http://chromedriver.chromium.org/) for Chrome
 
-You'll need to adjust the `EMAIL_REPORTS_WEBDRIVER` accordingly in your configuration. You also need to specify on behalf of which username to render the dashboards. In general dashboards and charts are not accessible to unauthorized requests, that is why the worker needs to take over credentials of an existing user to take a snapshot.
+You'll need to adjust the `EMAIL_REPORTS_WEBDRIVER` accordingly in your configuration. You also need
+to specify on behalf of which username to render the dashboards. In general dashboards and charts
+are not accessible to unauthorized requests, that is why the worker needs to take over credentials
+of an existing user to take a snapshot.
 
 ```
 EMAIL_REPORTS_USER = 'username_with_permission_to_access_dashboards'
@@ -58,14 +64,20 @@ EMAIL_REPORTS_USER = 'username_with_permission_to_access_dashboards'
 
 **Important notes**
 
-- Be mindful of the concurrency setting for celery (using `-c 4`). Selenium/webdriver instances can consume a lot of CPU / memory on your servers.
-- In some cases, if you notice a lot of leaked geckodriver processes, try running your celery processes with `celery worker --pool=prefork --max-tasks-per-child=128 ...`
-- It is recommended to run separate workers for the `sql_lab` and `email_reports` tasks. This can be done using the `queue` field in `CELERY_ANNOTATIONS`.
-- Adjust `WEBDRIVER_BASEURL` in your configuration file if celery workers can’t access Superset via its default value of `http://0.0.0.0:8080/`.
+- Be mindful of the concurrency setting for celery (using `-c 4`). Selenium/webdriver instances can
+  consume a lot of CPU / memory on your servers.
+- In some cases, if you notice a lot of leaked geckodriver processes, try running your celery
+  processes with `celery worker --pool=prefork --max-tasks-per-child=128 ...`
+- It is recommended to run separate workers for the `sql_lab` and `email_reports` tasks. This can be
+  done using the `queue` field in `CELERY_ANNOTATIONS`.
+- Adjust `WEBDRIVER_BASEURL` in your configuration file if celery workers can’t access Superset via
+  its default value of `http://0.0.0.0:8080/`.
 
 ### Schedule Reports
 
-You can optionally allow your users to schedule queries directly in SQL Lab. This is done by addding extra metadata to saved queries, which are then picked up by an external scheduled (like [Apache Airflow](https://airflow.apache.org/)).
+You can optionally allow your users to schedule queries directly in SQL Lab. This is done by addding
+extra metadata to saved queries, which are then picked up by an external scheduled (like
+[Apache Airflow](https://airflow.apache.org/)).
 
 To allow scheduled queries, add the following to your configuration file:
 
@@ -152,6 +164,11 @@ FEATURE_FLAGS = {
 }
 ```
 
-This feature flag is based on [react-jsonschema-form](https://github.com/mozilla-services/react-jsonschema-form) and will add a button called “Schedule Query” to SQL Lab. When the button is clicked, a modal will show up where the user can add the metadata required for scheduling the query.
+This feature flag is based on
+[react-jsonschema-form](https://github.com/mozilla-services/react-jsonschema-form) and will add a
+button called “Schedule Query” to SQL Lab. When the button is clicked, a modal will show up where
+the user can add the metadata required for scheduling the query.
 
-This information can then be retrieved from the endpoint `/savedqueryviewapi/api/read` and used to schedule the queries that have `scheduled_queries` in their JSON metadata. For schedulers other than Airflow, additional fields can be easily added to the configuration file above.
+This information can then be retrieved from the endpoint `/savedqueryviewapi/api/read` and used to
+schedule the queries that have `scheduled_queries` in their JSON metadata. For schedulers other than
+Airflow, additional fields can be easily added to the configuration file above.

@@ -6,10 +6,10 @@ index: 16
 version: 1
 ---
 
-Google BigQuery
--------------
+## Google BigQuery
 
-The recommended connector library for BigQuery is [pybigquery](https://github.com/mxmzdlv/pybigquery).
+The recommended connector library for BigQuery is
+[pybigquery](https://github.com/mxmzdlv/pybigquery).
 
 The connection string for BigQuery looks like:
 
@@ -17,11 +17,14 @@ The connection string for BigQuery looks like:
 bigquery://{project_id}
 ```
 
-When adding a new BigQuery connection in Superset, you'll also need to add the GCP Service Account credentials file (as a JSON).
+When adding a new BigQuery connection in Superset, you'll also need to add the GCP Service Account
+credentials file (as a JSON).
 
-1. Create your Service Account via the Google Cloud Platform control panel, provide it access to the appropriate BigQuery datasets, and download the JSON configuration file for the service account. 
+1. Create your Service Account via the Google Cloud Platform control panel, provide it access to the
+   appropriate BigQuery datasets, and download the JSON configuration file for the service account.
 
-2. n Superset, Add a JSON blob to the **Secure Extra** field in the database configuration form with the following format:
+2. n Superset, Add a JSON blob to the **Secure Extra** field in the database configuration form with
+   the following format:
 
 ```
 {
@@ -48,6 +51,7 @@ The resulting file should have this structure:
 }
 ```
 
-You should then be able to connect to your BigQuery datasets. 
+You should then be able to connect to your BigQuery datasets.
 
-To be able to upload CSV or Excel files to BigQuery in Superset, you'll need to also add the [pandas_gbq](https://github.com/pydata/pandas-gbq) library.
+To be able to upload CSV or Excel files to BigQuery in Superset, you'll need to also add the
+[pandas_gbq](https://github.com/pydata/pandas-gbq) library.

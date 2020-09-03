@@ -54,7 +54,8 @@
   },
   "eslintConfig": {
     "globals": {
-      "window": true
+      "window": true,
+      "console": true
     }
   },
   "bugs": {

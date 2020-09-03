@@ -6,12 +6,13 @@ index: 2
 version: 1
 ---
 
-Installing Superset from Scratch
--------------
+## Installing Superset from Scratch
 
 ### OS Dependencies
 
-Superset stores database connection information in its metadata database. For that purpose, we use the cryptography Python library to encrypt connection passwords. Unfortunately, this library has OS level dependencies.
+Superset stores database connection information in its metadata database. For that purpose, we use
+the cryptography Python library to encrypt connection passwords. Unfortunately, this library has OS
+level dependencies.
 
 **Debian and Ubuntu**
 
@@ -21,7 +22,8 @@ The following command will ensure that the required dependencies are installed:
 sudo apt-get install build-essential libssl-dev libffi-dev python-dev python-pip libsasl2-dev libldap2-dev
 ```
 
-In Ubuntu 18.04 If you have python3.6 installed alongside with python2.7 (which is default on Ubuntu 18.04), run this command also:
+In Ubuntu 18.04 If you have python3.6 installed alongside with python2.7 (which is default on Ubuntu
+18.04), run this command also:
 
 ```
 sudo apt-get install build-essential libssl-dev libffi-dev python3.6-dev python-pip libsasl2-dev libldap2-dev
@@ -37,13 +39,16 @@ sudo yum install gcc gcc-c++ libffi-devel python-devel python-pip python-wheel o
 
 **Mac OS X**
 
-If you're not on the latest version of OS X, we recommend upgrading because we've found that many issues people have run into are linked to older versions of Mac OS X. After updating, install the latest version of XCode command line tools:
+If you're not on the latest version of OS X, we recommend upgrading because we've found that many
+issues people have run into are linked to older versions of Mac OS X. After updating, install the
+latest version of XCode command line tools:
 
 ```
 xcode-select --install
 ```
 
-We don't recommend using the system installed Python. Instead, first install the [homebrew](https://brew.sh/) manager and then run the following commands:
+We don't recommend using the system installed Python. Instead, first install the
+[homebrew](https://brew.sh/) manager and then run the following commands:
 
 ```
 brew install pkg-config libffi openssl python
@@ -59,7 +64,8 @@ pip install --upgrade setuptools pip
 
 ### Python Virtual Environment
 
-We highly recommend installing Superset insode of a virtual environment. Python 3 ships with `virtualenv` out of the box but you can install it using:
+We highly recommend installing Superset insode of a virtual environment. Python 3 ships with
+`virtualenv` out of the box but you can install it using:
 
 ```
 pip install virtualenv
@@ -74,7 +80,9 @@ python3 -m venv venv
 . venv/bin/activate
 ```
 
-Once you activated your virtual environment, all of the Python packages you install or uninstall will be confined to this environment. You can exit the environment by running `deactivate` on the command line.
+Once you activated your virtual environment, all of the Python packages you install or uninstall
+will be confined to this environment. You can exit the environment by running `deactivate` on the
+command line.
 
 ### Installing and Initializing Superset
 
@@ -107,12 +115,13 @@ superset init
 superset run -p 8088 --with-threads --reload --debugger
 ```
 
-If everything worked, you should be able to navigate to `hostname:port` in your browser (e.g. locally by default at `localhost:8088`) and login using the username and password you created.
-
+If everything worked, you should be able to navigate to `hostname:port` in your browser (e.g.
+locally by default at `localhost:8088`) and login using the username and password you created.
 
 ### Installing Superset with Helm in Kubernetes
 
-You can install Superset into Kubernetes with [Helm](https://helm.sh/). The chart is located in `install/helm`.
+You can install Superset into Kubernetes with [Helm](https://helm.sh/). The chart is located in
+`install/helm`.
 
 To install Superset in Kubernetes, run:
 
@@ -120,4 +129,5 @@ To install Superset in Kubernetes, run:
 helm upgrade --install superset ./install/helm/superset
 ```
 
-Note that the above command will install Superset into `default` namespace of your Kubernetes cluster.
+Note that the above command will install Superset into `default` namespace of your Kubernetes
+cluster.
