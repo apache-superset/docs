@@ -116,17 +116,19 @@ const logoStyle = css`
   margin-top: 5px;
   heigh: 30px;
 `;
+interface Props {
+  children: React.ReactNode,
+}
 
-const AppLayout = ({ children }) => {
-  const isOnDocsPage =
-    typeof window !== 'undefined' && window.location.pathname.indexOf('docs') > 0;
+const AppLayout = ({ children }: Props) => {
+  const isOnDocsPage = typeof window !== 'undefined' && window.location.pathname.indexOf('docs') > 0;
 
   return (
     <Layout css={layoutStyles}>
       <SEO title="Welcome" />
       <Header css={headerStyle}>
         <Link to="/">
-          <img height="50" css={logoStyle} src={logoSvg} />
+          <img height="50" css={logoStyle} src={logoSvg} alt="logo" />
         </Link>
         <Menu mode="horizontal">
           <Menu.Item>
