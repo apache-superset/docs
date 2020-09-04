@@ -290,13 +290,13 @@ const Theme = () => {
             </div>
             <Carousel ref={slider} effect="scrollx">
               <div className="imageContainer">
-                <img src="/images/pie-chart.png" alt="" />
+                <img src="/images/explore.gif" alt="Explore" width="800"/>
               </div>
               <div className="imageContainer">
-                <img src="/images/google-analytics.png" alt="" />
+                <img src="/images/dashboards.gif" alt="" />
               </div>
               <div className="imageContainer">
-                <img src="/images/sqllab.png" alt="" />
+                <img src="/images/sqllab.gif" alt="" />
               </div>
             </Carousel>
           </div>

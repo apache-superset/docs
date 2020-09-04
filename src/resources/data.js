@@ -114,7 +114,7 @@ export const Databases = [
   {
     title: 'Apache Druid',
     href: 'http://druid.io/',
-    imgName: 'apache-druid.jpeg',
+    imgName: 'druid.png',
   },
   {
     title: 'Apache Kylin',
